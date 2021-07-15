@@ -15,6 +15,7 @@
     <link href="../css/layout/content.css" rel="stylesheet"/>
     <link href="../css/layout/header.css" rel="stylesheet"/>
     <link href="../css/layout/menu.css" rel="stylesheet"/>
+    <link href="../css/layout/form.css" rel="stylesheet"/>
 </head>
 
 <body>
@@ -35,7 +36,7 @@
         </div>
     </div>
     <div class="menu">
-        <div class="menu-item" >
+        <div class="menu-item active" >
             <div class="menu-icon"></div>
             <div class="menu-item-text">Tổng quan</div>
         </div>
@@ -73,12 +74,12 @@
             </div>
         </div>
         <div class="search">
-            <div class="textbox-default">
-                <div class="icon-input">
-                </div>
+            <div class="textbox">
                 <input class="input-field" 
                        type="text" 
                        placeholder="Tìm kiếm theo mã, Tên hoặc Số điện thoại">
+                <div class="icon-input">
+                </div>
             </div>
             <div class="textbox-default">
                 Tất cả phòng ban
@@ -294,7 +295,7 @@
             <div class="page">
                 <div class="first-page"></div>
                 <div class="prev-page"></div>
-                <div class="page-number">1</div>
+                <div class="page-number active">1</div>
                 <div class="page-number">2</div>
                 <div class="page-number">3</div>
                 <div class="page-number">4</div>
@@ -302,6 +303,119 @@
                 <div class="last-page"></div>
             </div>
             <div class="acount">10 nhân viên/trang</div>
+        </div>
+    </div>
+    <div class="form">
+        <div class="head-form">
+            <div class="title">
+                <b>THÔNG TIN NHÂN VIÊN</b>
+            </div>
+            <div class="close-button"></div>
+        </div>
+        <div class="body">
+            <div class="image">
+                <div class="avatar"></div>
+                <div class="require">(Vui lòng chọn ảnh có định dạng .jpg,.jpeg,.png,.gif.)</div>
+            </div>
+            <div class="form-boby">
+                <div class="modal">
+                    <div class="title">
+                        <b>A. THÔNG TIN CHUNG:</b>
+                    </div>
+                    <div class="modal-field">
+                        <div class="column">
+                            <div class="input-field">
+                                <div class="title-input">Mã nhân viên(<span class="binding">*</span>)</div>
+                                <input type="text" class="input-box">
+                            </div>
+                            <div class="input-field">
+                                <div class="title-input">Ngày sinh</div>
+                                <input type="date" class="input-box">
+                            </div>
+                            <div class="input-field">
+                                <div class="title-input">Số CMTND/Căn cước(<span class="binding">*</span>)</div>
+                                <input type="text" class="input-box">
+                            </div>
+                            <div class="input-field">
+                                <div class="title-input">Nơi cấp</div>
+                                <input type="text" class="input-box">
+                            </div>
+                            <div class="input-field">
+                                <div class="title-input">Email(<span class="binding">*</span>)</div>
+                                <input type="email" class="input-box">
+                            </div>
+        
+                        </div>
+                        <div class="column">
+                            <div class="input-field">
+                                <div class="title-input">Họ và tên(<span class="binding">*</span>)</div>
+                                <input type="text" class="input-box">
+                            </div>
+                            <div class="input-field">
+                                <div class="title-input">Giới tính</div>
+                                <select name="gent" class="input-box">
+                                    <option value="nam">Nam</option>
+                                    <option value="nu">Nữ</option>
+                                </select>
+                            </div>
+                            <div class="input-field">
+                                <div class="title-input">Ngày cấp</div>
+                                <input type="datetime" class="input-box">
+                            </div>
+                            <div class="input-field"></div>
+                            <div class="input-field">
+                                <div class="title-input">Số điện thoại(<span class="binding">*</span>)</div>
+                                <input type="tel" class="input-box">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal">
+                    <div class="title">
+                        <b>B. THÔNG TIN CÔNG VIỆC:</b>
+                    </div>
+                    <div class="modal-field">
+                        <div class="column">
+                            <div class="input-field">
+                                <div class="title-input">Vị trí</div>
+                                <input type="text" class="input-box">
+                            </div>
+                            <div class="input-field">
+                                <div class="title-input">Mã số thuế cá nhân</div>
+                                <input type="number" class="input-box">
+                            </div>
+                            <div class="input-field">
+                                <div class="title-input">Ngày gia nhập công ty</div>
+                                <input type="date" class="input-box">
+                            </div>
+        
+                        </div>
+                        <div class="column">
+                            <div class="input-field">
+                                <div class="title-input">Phòng ban</div>
+                                <input type="text" class="input-box">
+                            </div>
+                            <div class="input-field">
+                                <div class="title-input">Lương cơ bản</div>
+                                <input type="text" class="input-box">
+                            </div>
+                            <div class="input-field">
+                                <div class="title-input">Tình trạng công việc</div>
+                                <select name="status work" class="input-box">
+                                    <option value="work">Đang làm việc</option>
+                                    <option value="no-work">Nghỉ phép</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="cancle button">Huỷ</div>
+            <div class="save button">
+                <div class="icon-button"></div>
+                Lưu</div>
         </div>
     </div>
 
