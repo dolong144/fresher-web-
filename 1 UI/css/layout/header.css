@@ -1,7 +1,6 @@
 .header {
     display: flex;
     height: 48px;
-    
     width: 100%;
 }
 .header .header-left{
@@ -38,9 +37,11 @@
     height: 48px;
     border-bottom: 1px solid #bbbbbb;
 }
-.header .header-right .name-restaurant{
-    margin-left: 36px;
-    color: #000000;
+.header .header-right .name-restaurant .combo-box .select-button{
+    border: none;
+}
+.header .header-right .name-restaurant .combo-box .value{
+    padding: 0 16px;
     font-size: 20px;
 
 }
@@ -63,12 +64,12 @@
     margin-right: 16px;
     
 }
-.header .header-right .user .option{
+.header .header-right .user .option-btn{
     width: 16px;
     height: 16px;
     background-image: url(../../content/icon/option.png);
     background-size: contain;
     background-repeat: no-repeat;
-    margin-left: 16px;
+    margin-right: 16px;
     /* background-position: center; */
 }

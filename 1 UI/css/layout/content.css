@@ -31,68 +31,14 @@
   background-size: contain;
   background-repeat: no-repeat;
 }
-.conten .nav .button .text {
+.content .nav .button .text {
   padding-right: 16px;
 }
 .content .search {
+  position: relative;
   display: flex;
   margin-top: 16px;
   margin-bottom: 16px;
-}
-
-.content .search .textbox-default {
-  margin: 8px;
-  display: flex;
-  height: 40px;
-  border: 1px solid #bbbbbb;
-  padding-left: 16px;
-  padding-right: 16px;
-  border-radius: 4px;
-  box-sizing: border-box;
-  text-align: center;
-  align-items: center;
-}
-.content .search .textbox-default:active {
-  border-color: #019160;
-}
-.content .search .textbox {
-  position: relative;
-}
-.content .search .textbox:focus {
-  border: 0;
-}
-.content .search .textbox .icon-input {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  margin: 12px 8px 12px 16px;
-  width: 16px;
-  height: 16px;
-  background-image: url(../../content/icon/search.png);
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
-.content .search .textbox .input-field {
-  border: none;
-  width: 300px;
-  outline: none;
-  padding-left: 40px;
-  margin: 8px;
-  display: flex;
-  height: 40px;
-  border: 1px solid #bbbbbb;
-  padding-left: 40px;
-  border-radius: 4px;
-  box-sizing: border-box;
-  align-items: center;
-}
-.content .search .textbox .input-field::placeholder {
-  font-size: 11px;
-  color: #bbbbbb;
-}
-.content .search .textbox .input-field:focus {
-  border-color: #019160;
 }
 
 .content .search .textbox-default .refresh {
@@ -102,12 +48,13 @@
   background-image: url(../../content/icon/refresh.png);
   background-repeat: no-repeat;
   background-size: contain;
+  align-items: center;
 }
 .content .search .textbox-default:nth-child(4) {
-  margin: 16px;
+  
   position: absolute;
   right: 0;
-  top: 70px;
+  top: 0px;
 }
 .content .table {
   height: calc(100vh - 271px);
@@ -119,20 +66,23 @@
 .content .table table {
   width: 100%;
   border-collapse: collapse;
+  position: relative;
 }
 .content .table table thead {
-  position: sticky;
-  top: 0;
   background-color: #e9ebee;
 }
 .content .table table thead th {
+  background-color: #e9ebee;
   padding-left: 10px;
   text-align: left;
   height: 48px;
+  position: sticky;
+  top: 0;
+  left: 0;
 }
 .content .table table thead th:nth-child(4) {
   padding-right: 8px;
-  text-align: end;
+  text-align: center;
 }
 .content .table table thead th:nth-child(9) {
   padding-right: 8px;
@@ -152,7 +102,7 @@
 }
 .content .table table tbody tr td:nth-child(4) {
   padding-right: 8px;
-  text-align: end;
+  text-align: center;
 }
 .content .table table tbody tr td:nth-child(9) {
   padding-right: 8px;

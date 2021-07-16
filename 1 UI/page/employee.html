@@ -5,12 +5,13 @@
 <head>
     <meta charset="utf-8" />
     <title>Phần mềm quản lý nhà hàng - CUKCUK.VN</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
     <link href="../css/main.css" rel="stylesheet" />
     <!-- <link href="../css/common/header.css" rel="stylesheet" />
     <link href="../css/common/navbar.css" rel="stylesheet" />
     <link href="../css/page/employee.css" rel="stylesheet" /> -->
     <link href="../css/base/button.css" rel="stylesheet" />
-    <!-- <link href="../css/base/textbox.css" rel="stylesheet" /> -->
+    <link href="../css/base/textbox.css" rel="stylesheet" />
     <link href="../css/layout/content.css" rel="stylesheet"/>
     <link href="../css/layout/content.css" rel="stylesheet"/>
     <link href="../css/layout/header.css" rel="stylesheet"/>
@@ -26,12 +27,27 @@
         </div>
         <div class="header-right">
             <div class="name-restaurant">
-                <b>Nhà hàng Biển Đông</b>
+                <b>
+                    <div class="combo-box">
+                        <div class="select-button">
+                            
+                            <div class="value">Nhà hàng Biển Đông</div>
+                            <div class="icon-button">
+                                <i class="fas fa-solid fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="option">
+                            
+                            <div class="value">Nhà hàng CUKCUK</div>
+                            <div class="value">Nhà hàng Đại dương</div>
+                        </div>
+                    </div>
+                </b>
             </div>
             <div class="user">
                 <div class="avatar"></div>
                 <div class="name">Đỗ Văn Long</div>
-                <div class="option"></div>
+                <div class="option-btn"></div>
             </div>
         </div>
     </div>
@@ -74,18 +90,39 @@
             </div>
         </div>
         <div class="search">
-            <div class="textbox">
-                <input class="input-field" 
-                       type="text" 
-                       placeholder="Tìm kiếm theo mã, Tên hoặc Số điện thoại">
-                <div class="icon-input">
+            <div class="combo-search">
+                <div class="search-button">
+                    <div class="icon-search"></div>
+                    <input type="text" class="input-box" placeholder="Tìm kiếm theo mã, Tên hoặc Số điện thoại">
+                </div>
+                <div class="option">
+                    <div class="value">option 1</div>
+                    <div class="value">option 2</div>
                 </div>
             </div>
-            <div class="textbox-default">
-                Tất cả phòng ban
+            <div class="combo-box">
+                <div class="select-button">
+                    <div class="title">Tất cả phòng ban</div>
+                    <div class="icon-button">
+                        <i class="fas fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+                <div class="option">
+                    <div class="value">option</div>
+                    <div class="value">option</div>
+                </div>
             </div>
-            <div class="textbox-default">
-                Tất cả vị trí
+            <div class="combo-box">
+                <div class="select-button">
+                    <div class="title">Tất cả vị trí</div>
+                    <div class="icon-button">
+                        <i class="fas fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+                <div class="option">
+                    <div class="value">option</div>
+                    <div class="value">option</div>
+                </div>
             </div>
             <div class="textbox-default">
                 <div class="refresh"></div>
@@ -353,10 +390,20 @@
                             </div>
                             <div class="input-field">
                                 <div class="title-input">Giới tính</div>
-                                <select name="gent" class="input-box">
-                                    <option value="nam">Nam</option>
-                                    <option value="nu">Nữ</option>
-                                </select>
+                                <div class="combo-box">
+                                    <div class="select-button">
+                                        
+                                        <div class="title">Giới tính</div>
+                                        <div class="icon-button">
+                                            <i class="fas fa-solid fa-chevron-down"></i>
+                                        </div>
+                                    </div>
+                                    <div class="option">
+                                        
+                                        <div class="value">Nam</div>
+                                        <div class="value">Nữ</div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-field">
                                 <div class="title-input">Ngày cấp</div>
@@ -378,7 +425,20 @@
                         <div class="column">
                             <div class="input-field">
                                 <div class="title-input">Vị trí</div>
-                                <input type="text" class="input-box">
+                                <div class="combo-box">
+                                    <div class="select-button">
+                                        
+                                        <div class="title">Vị trí</div>
+                                        <div class="icon-button">
+                                            <i class="fas fa-solid fa-chevron-down"></i>
+                                        </div>
+                                    </div>
+                                    <div class="option">
+                                        
+                                        <div class="value">option</div>
+                                        <div class="value">option</div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-field">
                                 <div class="title-input">Mã số thuế cá nhân</div>
@@ -393,7 +453,20 @@
                         <div class="column">
                             <div class="input-field">
                                 <div class="title-input">Phòng ban</div>
-                                <input type="text" class="input-box">
+                                <div class="combo-box">
+                                    <div class="select-button">
+                                        
+                                        <div class="title">Phòng ban</div>
+                                        <div class="icon-button">
+                                            <i class="fas fa-solid fa-chevron-down"></i>
+                                        </div>
+                                    </div>
+                                    <div class="option">
+                                        
+                                        <div class="value">option</div>
+                                        <div class="value">option</div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-field">
                                 <div class="title-input">Lương cơ bản</div>
@@ -401,17 +474,27 @@
                             </div>
                             <div class="input-field">
                                 <div class="title-input">Tình trạng công việc</div>
-                                <select name="status work" class="input-box">
-                                    <option value="work">Đang làm việc</option>
-                                    <option value="no-work">Nghỉ phép</option>
-                                </select>
+                                <div class="combo-box">
+                                    <div class="select-button">
+                                        
+                                        <div class="title">Tình trạng công việc</div>
+                                        <div class="icon-button">
+                                            <i class="fas fa-solid fa-chevron-down"></i>
+                                        </div>
+                                    </div>
+                                    <div class="option">
+                                        
+                                        <div class="value">option</div>
+                                        <div class="value">option</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="footer">
+        <div class="footer-form">
             <div class="cancle button">Huỷ</div>
             <div class="save button">
                 <div class="icon-button"></div>
