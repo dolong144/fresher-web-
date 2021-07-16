@@ -1,6 +1,6 @@
 @import url(../main.css);
 .form {
-  display: none;
+  /* display: none; */
   width: 60vw;
   height: calc(100vh - 48px);
   border-radius: 4px;
@@ -56,9 +56,9 @@
   width: calc(60vw - 198px);
   display: block;
 }
-.form .body .modal .title{
+/* .form .body .modal .title{
   font-family: GoogleSans-Bold;
-}
+} */
 .form .body .modal .modal-field{
   display: grid;
   grid-template-columns: 50% 50%;
@@ -91,10 +91,15 @@
   font-size: 11px;
   color: #bbbbbb;
 }
+.form .body .modal .modal-field .column .input-field .combo-box{
+  margin: 0;
+  width: 100%;
+}
+.form .body .form-body .modal{}
 /* .form .body .modal .modal-field .column .input-field .input-box option:hover{
   background-color: blue;
 } */
-.form .footer{
+.form .footer-form{
   display: flex;
   position: absolute;
   width: 100%;
@@ -105,11 +110,11 @@
   align-items: center;
 
 }
-.form .footer .cancle{
+.form .footer-form .cancle{
   color: #000000;
   background-color: transparent;
 }
-.form .footer .cancle:hover{
+.form .footer-form .cancle:hover{
   background-color: #E9EBEE;
 }
 

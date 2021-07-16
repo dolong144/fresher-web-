@@ -7,10 +7,14 @@
     border-radius: 4px;
     box-sizing: border-box;
     text-align: justify;
+    align-items: center;
 }
 .textbox-default:focus {
     border-color: #019160;
 }
+.textbox-default:active {
+    border-color: #019160;
+  }
 .textbox-default .icon-input{
     margin: 12px 8px 12px 16px;
     width: 16px; 

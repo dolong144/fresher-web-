@@ -21,3 +21,122 @@
 .button:active {
     background-color: #01B075;
 }
+.combo-box{
+    
+    display: inline-block;
+    position: relative;
+    margin: 0 16px;
+}
+.combo-box .select-button{
+    position: relative;
+    display: flex;
+    height: 40px;
+    border-radius: 4px;
+    color: #000000;
+    padding-left: 16px;
+    padding-right: 16px;
+    text-align: center;
+    background-color: #ffffff;
+    line-height: 40px;
+    border: 1px solid #bbbbbb;
+    box-sizing: border-box;
+    cursor: pointer;
+    
+}
+
+.combo-box .select-button:active {
+    border-color: #019160;
+}
+.combo-box .select-button .title{
+    margin-right: 24px;
+}
+.combo-box .select-button .icon-button{
+    color: #000000;
+    position: absolute;
+    right: -1px;
+    top: -1px;
+    width: 40px;
+    height: 40px;
+    border-radius: 0 4px 4px 0;
+    
+}
+.combo-box {
+    
+}
+.combo-box .select-button {
+   
+}
+.option {
+    position: absolute;
+    width: 100%;
+}
+.option .value{
+    height: 40px;
+    color: #000000;
+    padding-left: 16px;
+    padding-right: 16px;
+    text-align: 0 center;
+    background-color: #ffffff;
+    line-height: 40px;
+    box-sizing: unset;
+    cursor: pointer;
+}
+
+.option .value:hover{
+    background-color: #e5e5e5;
+}
+.option .value:active{
+    background-color: #019160;
+    color: #ffffff;
+}
+.combo-search{
+    position: relative;
+}
+.combo-search .search-button{
+    display: flex;
+    position: relative;
+    align-items: center;
+    width: fit-content;
+    box-sizing: border-box;
+}
+.combo-search .search-button .icon-search{
+    position: absolute;
+    top: 0px;
+    left: 0;
+    margin: 12px;
+    width: 16px;
+    height: 16px;
+    background-image: url(../../content/icon/search.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.combo-search .search-button .input-box{
+    display: inline;
+    height: 40px;
+    color: #000000;
+    padding-left: 40px;
+    padding-right: 16px;
+    text-align: 0 center;
+    line-height: 40px;
+    outline: none;
+    border-radius: 4px;
+    border: 1px solid #bbbbbb;
+}
+.combo-search .search-button .input-box::placeholder{
+    font-size: 11px;
+    color: #bbbbbb;
+}
+.combo-search .search-button .icon-button{
+    color: #000000;
+    padding: 12px;
+    position: absolute;
+    right: 0px;
+    top: 1px;
+    width: 16px;
+    height: 16px;
+    border-radius: 0 4px 4px 0;
+    align-items: center;
+}
+.combo-search .search-button .input-box:focus {
+    border-color: #019160;
+}
