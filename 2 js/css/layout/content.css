@@ -1,0 +1,203 @@
+.content {
+  display: inline;
+  position: absolute;
+  top: 49px;
+  left: 226px;
+  width: calc(100vw - 226px);
+  padding: 16px;
+  background-color: #e9ebee;
+}
+.content .nav {
+  display: flex;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  width: 100%;
+}
+.content .nav .title {
+  color: #000000;
+  font-size: 24px;
+}
+.content .nav .button {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 0;
+}
+.content .nav .button .icon-button {
+  margin: 0 8px 0 0px;
+  background-image: url(../../content/icon/add.png);
+  width: 16px;
+  height: 16px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.content .nav .button .text {
+  padding-right: 16px;
+}
+.content .search {
+  position: relative;
+  display: flex;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.content .search .textbox-default .refresh {
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  background-image: url(../../content/icon/refresh.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  align-items: center;
+}
+.content .search .textbox-default:nth-child(4) {
+  
+  position: absolute;
+  right: 0;
+  top: 0px;
+}
+.content .table {
+  height: calc(100vh - 271px);
+  width: 100%;
+  overflow: auto;
+  /* scrollbar-width: thin; */
+}
+
+.content .table table {
+  width: 100%;
+  border-collapse: collapse;
+  position: relative;
+}
+.content .table table thead {
+  background-color: #e9ebee;
+}
+.content .table table thead th {
+  background-color: #e9ebee;
+  padding-left: 10px;
+  text-align: left;
+  height: 48px;
+  position: sticky;
+  top: 0;
+  left: 0;
+}
+.content .table table thead th:nth-child(4) {
+  padding-right: 8px;
+  text-align: center;
+}
+.content .table table thead th:nth-child(9) {
+  padding-right: 8px;
+  text-align: end;
+}
+.content .table table tbody {
+  overflow: auto;
+  height: 100%;
+}
+.content .table table tbody tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+.content .table table tbody tr td {
+  padding-left: 10px;
+  height: 48px;
+  text-align: left;
+}
+.content .table table tbody tr td:nth-child(4) {
+  padding-right: 8px;
+  text-align: center;
+}
+.content .table table tbody tr td:nth-child(9) {
+  padding-right: 8px;
+  text-align: end;
+}
+.content .footer {
+  padding: 16px;
+  display: flex;
+  height: 56px;
+  width: 100%;
+  justify-content: space-between;
+}
+.content .footer .number {
+  height: 56px;
+  display: flex;
+  align-items: center;
+}
+.content .footer .page {
+  display: flex;
+}
+
+.content .footer .page .first-page {
+  margin: 12px;
+  width: 32px;
+  height: 32px;
+  background-position: center;
+  background-image: url(../../content/icon/btn-firstpage.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-radius: 4px;
+}
+.content .footer .page .prev-page {
+  margin: 12px;
+  width: 32px;
+  height: 32px;
+  background-position: center;
+  background-image: url(../../content/icon/btn-prev-page.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-radius: 4px;
+}
+.content .footer .page .page-number {
+  display: flex;
+  margin: 12px;
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+  color: #000000;
+  border: 1px solid #bbbbbb;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.content .footer .page .next-page {
+  margin: 12px;
+  width: 32px;
+  height: 32px;
+  background-position: center;
+  background-image: url(../../content/icon/btn-next-page.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-radius: 4px;
+}
+.content .footer .page .last-page {
+  margin: 12px;
+  width: 32px;
+  height: 32px;
+  background-position: center;
+  background-image: url(../../content/icon/btn-lastpage.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-radius: 4px;
+}
+.content .footer .page div:hover {
+  background-color: #ffffff;
+  border: none;
+  cursor: pointer;
+}
+.content .footer .page .page-number:active {
+  background-color: #019160;
+  color: #ffffff;
+  border: none;
+}
+/* page active default  */
+.content .footer .page .active {
+  background-color: #019160;
+  color: #ffffff;
+  border: none;
+}
+.content .footer .page .active:hover {
+  background-color: #019160;
+  color: #ffffff;
+  border: none;
+}
+.content .footer .acount {
+  height: 56px;
+  display: flex;
+  align-items: center;
+}
