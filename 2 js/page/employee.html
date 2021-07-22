@@ -364,37 +364,37 @@
                             <div class="column">
                                 <div class="input-field input-binding "id="employeeCode">
                                     <div class="title-input">Mã nhân viên(<span class="binding">*</span>)</div>
-                                    <input type="text" class="input-box">
+                                    <input type="text" class="input-box" id="txtEmployeeCode">
                                 </div>
                                 <div class="input-field">
                                     <div class="title-input">Ngày sinh</div>
-                                    <input type="date" class="input-box">
+                                    <input type="date" class="input-box"id="txtDateOfBirth">
                                 </div>
                                 <div class="input-field input-binding" id="employeeIdentify">
                                     <div class="title-input" >Số CMTND/Căn cước(<span class="binding">*</span>)</div>
-                                    <input type="text" class="input-box">
+                                    <input type="text" class="input-box" id="txtIdentifyNumber">
                                 </div>
                                 <div class="input-field">
                                     <div class="title-input">Nơi cấp</div>
-                                    <input type="text" class="input-box">
+                                    <input type="text" class="input-box" id="txtIdentityPlace">
                                 </div>
-                                <div class="input-field input-binding">
+                                <div class="input-field input-binding" id="employeeEmail">
                                     <div class="title-input">Email(<span class="binding">*</span>)</div>
-                                    <input type="email" class="input-box">
+                                    <input type="email" class="input-box" id="txtEmail">
                                 </div>
             
                             </div>
                             <div class="column">
                                 <div class="input-field input-binding" id="employeeName" >
                                     <div class="title-input" >Họ và tên(<span class="binding">*</span>)</div>
-                                    <input type="text" class="input-box">
+                                    <input type="text" class="input-box" id="txtFullName">
                                 </div>
                                 <div class="input-field">
                                     <div class="title-input">Giới tính</div>
                                     <div class="combo-box">
                                         <div class="select-button">
                                             
-                                            <div class="title">Giới tính</div>
+                                            <div class="title" id="txtGenderName">Giới tính</div>
                                             <div class="icon-button">
                                                 <i class="fas fa-solid fa-chevron-down"></i>
                                             </div>
@@ -408,12 +408,12 @@
                                 </div>
                                 <div class="input-field">
                                     <div class="title-input">Ngày cấp</div>
-                                    <input type="datetime" class="input-box">
+                                    <input type="date" class="input-box" id="txtIdentityDate">
                                 </div>
                                 <div class="input-field"></div>
-                                <div class="input-field input-binding">
+                                <div class="input-field input-binding" id="employeePhone">
                                     <div class="title-input">Số điện thoại(<span class="binding">*</span>)</div>
-                                    <input type="tel" class="input-box">
+                                    <input type="tel" class="input-box" id="txtPhoneNumber">
                                 </div>
                             </div>
                         </div>
@@ -428,7 +428,7 @@
                                     <div class="title-input">Vị trí</div>
                                     <div class="combo-box" id="position">
                                         <div class="select-button">
-                                            <div class="title">Vị trí</div>
+                                            <div class="title" id="txtPositionName">Vị trí</div>
                                             <div class="icon-button">
                                                 <i class="fas fa-solid fa-chevron-down"></i>
                                             </div>
@@ -438,18 +438,18 @@
                                     </div>
                                 </div>
                                 <div class="input-field">
-                                    <div class="title-input">Mã số thuế cá nhân</div>
+                                    <div class="title-input" id="txtPersonalTaxCode">Mã số thuế cá nhân</div>
                                     <input type="number" class="input-box">
                                 </div>
                                 <div class="input-field">
                                     <div class="title-input">Ngày gia nhập công ty</div>
-                                    <input type="date" class="input-box">
+                                    <input type="date" class="input-box" id="txtJoinDate">
                                 </div>
             
                             </div>
                             <div class="column">
                                 <div class="input-field">
-                                    <div class="title-input">Phòng ban</div>
+                                    <div class="title-input" id="txtDepartmentName">Phòng ban</div>
                                     <div class="combo-box" id="department">
                                         <div class="select-button">
                                             
@@ -464,7 +464,7 @@
                                     </div>
                                 </div>
                                 <div class="input-field">
-                                    <div class="title-input">Lương cơ bản</div>
+                                    <div class="title-input" id="txtSalary">Lương cơ bản</div>
                                     <input type="text" class="input-box">
                                 </div>
                                 <div class="input-field">
@@ -472,7 +472,7 @@
                                     <div class="combo-box">
                                         <div class="select-button">
                                             
-                                            <div class="title">Tình trạng công việc</div>
+                                            <div class="title" id="txtWorkStatus">Tình trạng công việc</div>
                                             <div class="icon-button">
                                                 <i class="fas fa-solid fa-chevron-down"></i>
                                             </div>

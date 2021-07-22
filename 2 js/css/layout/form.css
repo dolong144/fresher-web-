@@ -109,15 +109,10 @@
   margin: 0;
   width: 100%;
 }
-#employeeCode .error{
+.form .body .modal .modal-field .column .input-field .error{
   border: 1px solid red;
 }
-#employeeName .error{
-  border: 1px solid red;
-}
-#employeeIdentify .error{
-  border: 1px solid red;
-}
+
 .form .footer-form{
   display: flex;
   position: absolute;

@@ -40,7 +40,7 @@ $(window).click(function(event){
         $(event.target).addClass("active");
         $(".cb-box-active .select-button .title").text($(".cb-box-active .option-active .active").text());
         hideOption();
-        console.log(event.target);
+        
 
     }
 
