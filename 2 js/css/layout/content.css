@@ -5,7 +5,7 @@
   left: 226px;
   width: calc(100vw - 226px);
   padding: 16px;
-  background-color: #e9ebee;
+  background-color: #ffffff;
 }
 .content .nav {
   display: flex;
@@ -60,19 +60,20 @@
   height: calc(100vh - 271px);
   width: 100%;
   overflow: auto;
-  /* scrollbar-width: thin; */
+
 }
 
 .content .table table {
   width: 100%;
   border-collapse: collapse;
   position: relative;
+  
 }
 .content .table table thead {
-  background-color: #e9ebee;
+  background-color: #ffffff;
 }
 .content .table table thead th {
-  background-color: #e9ebee;
+  background-color: #ffffff;
   padding-left: 10px;
   text-align: left;
   height: 48px;
@@ -92,8 +93,11 @@
   overflow: auto;
   height: 100%;
 }
+.content .table table tr{
+  border-bottom: 1px solid #bbbbbb;
+}
 .content .table table tbody tr:nth-child(odd) {
-  background-color: #ffffff;
+  background-color: #e5e5e5;
 }
 .content .table table tbody tr td {
   padding-left: 10px;
@@ -109,7 +113,10 @@
   text-align: end;
 }
 .content .footer {
-  padding: 16px;
+  background-color: #e5e5e5;
+  bottom: 0;
+  right: 0;
+  padding: 0 16px;
   display: flex;
   height: 56px;
   width: 100%;

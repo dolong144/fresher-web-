@@ -41,3 +41,15 @@ body {
     font-family: 'GoogleSans-Thin';
     src: url('../content/font/GoogleSans-Thin.otf') format('opentype');
 }
+::-webkit-scrollbar{
+    width: 10px;
+    height: 10px;
+}
+::-webkit-scrollbar-track{
+    border-radius: 4px;
+    background-color: #e9ebee;
+}
+::-webkit-scrollbar-thumb{
+    border-radius: 4px;;
+    background-color: #bbbbbb;
+}

@@ -44,13 +44,14 @@
     
 }
 
-.combo-box .select-button:active {
+.cb-box-active .select-button{
     border-color: #019160;
 }
 .combo-box .select-button .title{
     margin-right: 24px;
 }
 .combo-box .select-button .icon-button{
+    
     color: #000000;
     position: absolute;
     right: -1px;
@@ -64,6 +65,13 @@
     display: none;
     position: absolute;
     width: 100%;
+}
+.cb-box-active .option-active{
+    display: inline-block;
+    z-index: 1;
+}
+.cb-box-active .icon-button{
+    transform: rotate(180deg);
 }
 .option .value{
     height: 40px;
@@ -80,7 +88,11 @@
 .option .value:hover{
     background-color: #e5e5e5;
 }
-.option .value:active{
+.option .active{
+    background-color: #019160;
+    color: #ffffff;
+}
+.option .active:hover{
     background-color: #019160;
     color: #ffffff;
 }
