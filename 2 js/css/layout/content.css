@@ -40,6 +40,9 @@
   margin-top: 16px;
   margin-bottom: 16px;
 }
+.content .search .combo-box{
+  width: 200px;
+}
 
 .content .search .textbox-default .refresh {
   align-items: center;
@@ -94,11 +97,16 @@
   height: 100%;
 }
 .content .table table tr{
+  cursor: pointer;
   border-bottom: 1px solid #bbbbbb;
 }
+
 .content .table table tbody tr:nth-child(odd) {
-  background-color: #e5e5e5;
+  background-color: #E9EBEE;
 }
+.content .table table tbody tr:hover{
+  background-color: #e5e5e5;
+ }
 .content .table table tbody tr td {
   padding-left: 10px;
   height: 48px;

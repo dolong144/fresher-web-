@@ -73,23 +73,23 @@
 /* .form .body .modal .title{
   font-family: GoogleSans-Bold;
 } */
-.form .body .modal .modal-field{
+.form .body .modal .row{
   display: grid;
   grid-template-columns: 50% 50%;
 }
-.form .body .modal .modal-field .column{
+.form .body .modal .row .input-field{
   margin: 0 16px 8px 0;
 }
-.form .body .modal .modal-field .column .input-field{
+.form .body .modal .row .input-field{
   display: block;
 }
-.form .body .modal .modal-field .column .input-field .title-input{
+.form .body .modal .row .title-input{
   margin: 8px 0 0 0;
 }
-.form .body .modal .modal-field .column .input-field .title-input .binding{
+.form .body .modal .row .title-input .binding{
   color: red;
 }
-.form .body .modal .modal-field .column .input-field .input-box{
+.form .body .modal .row .input-box{
   margin: 0;
   height: 40px;
   width: 100%;
@@ -98,18 +98,18 @@
   border: 1px solid #bbbbbb;
   outline: none;
 }
-.form .body .modal .modal-field .column .input-field .input-box:focus{
+.form .body .modal .row .input-field .input-box:focus{
   border: 1px solid #019160;
 }
-.form .body .modal .modal-field .column .input-field .input-box::placeholder{
+.form .body .modal .row .input-field .input-box::placeholder{
   font-size: 11px;
   color: #bbbbbb;
 }
-.form .body .modal .modal-field .column .input-field .combo-box{
+.form .body .modal .row .input-field .combo-box{
   margin: 0;
   width: 100%;
 }
-.form .body .modal .modal-field .column .input-field .error{
+.form .body .modal .row .input-field .error{
   border: 1px solid red;
 }
 
