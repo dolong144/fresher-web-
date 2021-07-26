@@ -23,24 +23,30 @@ $(document).ready(function(){
     //DVLong(21/7/2021)
     $(".content .nav .button").click(function(){
         typeSubmitForm = 1;
+        $("#txtEmployeeCode").focus();
         formCover.show();
         form.show();
-        $.ajax({
-            url:'http://cukcuk.manhnv.net/v1/Employees/NewEmployeeCode',
-            method: 'GET',
-            async:false,
-        }).done(res=>{
-            $("#txtEmployeeCode").val(res);
-            $("#txtEmployeeCode").focus();
-        }).fail(res=>{
-
-        })
+        try {
+            $.ajax({
+                url:'http://cukcuk.manhnv.net/v1/Employees/NewEmployeeCode',
+                method: 'GET',
+                async:false,
+            }).done(res=>{
+                $("#txtEmployeeCode").val(res);
+                $("#txtEmployeeCode").focus();
+            }).fail(res=>{
+                console.log(res);
+    
+            })
+        } catch (error) {
+            console.log(error);
+        }
         
     })
     //sửa thông tin nhân viên
     //DVLong(23/7/2021)
     $("#detailEmployee tbody").on('dblclick','tr',function(){
-        console.log(1);
+        
         resetForm();
         typeSubmitForm = 2;
         employeeId = checkData($(this).attr("id"));
@@ -101,6 +107,16 @@ $(document).ready(function(){
             console.log(error);
         }
 
+    })
+    // chọn 1 hàng thông tin muốn xoá
+    $("#detailEmployee tbody").on('click','tr',function(){
+        $(this).addClass("selected-to-delete");
+        $(".selected-to-delete input").attr("checked","checked");
+    })
+    //huỷ chọn 
+    $("#detailEmployee tbody").on('click','.selected-to-delete',function(){
+        $(this ).removeAttr('checked');
+        $(this).removeClass("selected-to-delete");
     })
     //các trường nhập bắt buộc
     $("#employeeCode .input-box").blur(validataInput)
@@ -274,6 +290,7 @@ function loadData(){
             //hiển thị dữ liệu lên từng row
             $.each(data, function(index, item){
                 var tr = $(`<tr id="`+checkData(item.EmployeeId)+`">
+                    <td class="check-box-delete"><input type="checkbox"></input></td>
                     <td>`+ checkData(item.EmployeeCode) +`</td>
                     <td>`+ checkData(item.FullName) +`</td>
                     <td>`+ checkData(item.GenderName) +`</td>
@@ -298,7 +315,7 @@ function loadData(){
 };
 function checkData(data){   
 
-    return data ? data :``;
+    return data ? data : ``;
 }
 //load vị trí
 //DVLong(22/7/2021)
@@ -313,7 +330,10 @@ function loadPosition(){
             var data = res;
             //hiển thị dữ liệu vị trí
             $.each(data, function(index, item){
-                var selected = `<div class="value" code="`+ checkData(item.PositionId) +`">` +checkData(item.PositionName)+ `</div>`;
+                var selected = `<div class="value" code="`+ checkData(item.PositionId) +`"><div class="icon-active">
+                                    <i class="fas fa-solid fa-check"></i>
+                                    </div>
+                                    <div>` +checkData(item.PositionName)+ `</div></div>`;
                 if(!item.EmployeeCode) {}
             $('#position .option').append(selected);
             $('#txtPositionCode .option').append(selected);
@@ -339,7 +359,11 @@ function loadDepartment(){
             var data = res;
             //hiển thị dữ liệu phòng ban
             $.each(data, function(index, item){
-                var depaertment = `<div class="value" code="`+ checkData(item.DepartmentId) +`">` +checkData(item.DepartmentName)+ `</div>`;
+                                            
+                var depaertment = `<div class="value" code="`+ checkData(item.DepartmentId) +`"><div class="icon-active">
+                                        <i class="fas fa-solid fa-check"></i>
+                                        </div>
+                                        <div>` +checkData(item.DepartmentName)+ `</div></div>`;
                 if(!item.EmployeeCode) {}
             $('#department .option').append(depaertment);
             $('#txtDepartmentCode .option').append(depaertment);

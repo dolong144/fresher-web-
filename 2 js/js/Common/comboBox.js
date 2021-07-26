@@ -32,17 +32,23 @@ $("body").on('click','.combo-box',function(event){
     }
     
 })
+$(".combo-box ").on('click','.value',function(){
+    $(".cb-box-active .option-active .value").removeClass("active");
+    $(this).addClass("active");
+    $(".cb-box-active .select-button .title").text($(".cb-box-active .option-active .active").text());
+    hideOption();
+})
 
 $(window).click(function(event){
     //chọn 1 giá trị của dropdown
-    if(event.target.matches(".combo-box .value")){
-        $(".cb-box-active .option-active .value").removeClass("active");
-        $(event.target).addClass("active");
-        $(".cb-box-active .select-button .title").text($(".cb-box-active .option-active .active").text());
-        hideOption();
+    // if(event.target.matches(".combo-box .value ")){
+    //     $(".cb-box-active .option-active .value").removeClass("active");
+    //     $(event.target).addClass("active");
+    //     $(".cb-box-active .select-button .title").text($(".cb-box-active .option-active .active").text());
+    //     hideOption();
         
 
-    }
+    // }
 
     //nếu ấn ra ngoài thì ẩn dropdown
     if(  !(event.target.matches(".combo-box .title")

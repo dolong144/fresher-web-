@@ -4,10 +4,11 @@
     <meta charset="utf-8"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="css/base/button.css">
-    
+    <link rel="stylesheet" href="css/base/toast.css">
     <title>index</title>
 </head>
 <body>
+    <i class="fas fa-solid fa-x" style="width:20px; height: 20px; color: red; font-size:20px; "></i>
     <div class="combo-box">
         <div class="select-button">
             <div class="title">Giới tính</div>
@@ -17,8 +18,18 @@
         </div>
         <div class="option">
             
-            <div class="value">Nam</div>
-            <div class="value">Nữ</div>
+            <div class="value">
+                <div class="icon-active">
+                    <i class="fas fa-solid fa-check"></i>
+                </div>
+                <div>Nam</div>
+            </div>
+            <div class="value">
+                <div class="icon-active">
+                    <i class="fas fa-solid fa-check"></i>
+                </div>
+                <div>Nữ</div>
+            </div>
         </div>
     </div>
     <div class="combo-box">
@@ -33,6 +44,9 @@
             <div class="value">Nam</div>
             <div class="value">Nữ</div>
         </div>
+    </div>
+    <div class="icon-button">
+        
     </div>
     <!-- <div class="combo-search">
         
@@ -48,8 +62,36 @@
             <div class="value">Nữ</div>
         </div>
     </div>
+    <i class="fa-solid fa-stop"></i>
      -->
+     <div class="toast_container success">
+         <div class="toast">
+             <div class="toast_icon--main">
+                <i class="fas fal fa-check"></i>
+             </div>
+             <div class="toast_title">
+                Thành công!
+             </div>
+             <div class="toast_close">
+                <i class="fas fal fa-times"></i>
+             </div>
+         </div>
+     </div>
+     <div class="toast_container error">
+        <div class="toast">
+            <div class="toast_icon--main">
+                <i class="fas fal fa-exclamation"></i>
+            </div>
+            <div class="toast_title">
+               Có lỗi xảy ra!
+            </div>
+            <div class="toast_close">
+               <i class="fas fal fa-times"></i>
+            </div>
+        </div>
+    </div>
+     
     <script src="js/lib/jquery-3.6.0.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/Common/comboBox.js"></script>
 </body>
 </html>

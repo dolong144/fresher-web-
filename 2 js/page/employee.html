@@ -17,6 +17,7 @@
     <link href="../css/layout/header.css" rel="stylesheet"/>
     <link href="../css/layout/menu.css" rel="stylesheet"/>
     <link href="../css/layout/form.css" rel="stylesheet"/>
+    <link href="../css/base/toast.css" rel="stylesheet"/>
 </head>
 
 <body>
@@ -37,9 +38,26 @@
                             </div>
                         </div>
                         <div class="option">
-                            <div class="value active">Nhà hàng Biển Đông</div>
-                            <div class="value">Nhà hàng CUKCUK</div>
-                            <div class="value">Nhà hàng Đại dương</div>
+                            <div class="value active">
+                                <div class="icon-active">
+                                    <i class="fas fa-solid fa-check"></i>
+                                </div>
+                                <div>Nhà hàng Biển Đông</div>
+                            </div>
+
+                            <div class="value">
+                                <div class="icon-active">
+                                    <i class="fas fa-solid fa-check"></i>
+                                </div>
+                                <div>Nhà hàng CUKCUK</div>
+                            </div>
+                            <div class="value">
+                                <div class="icon-active">
+                                    <i class="fas fa-solid fa-check"></i>
+                                </div>
+                                <div>Nhà hàng Đại dương</div>
+                            </div>
+                            
                         </div>
                     </div>
                 </b>
@@ -82,13 +100,23 @@
             <div class="title">
                 <b>Danh sách nhân viên</b>
             </div>
-            <div class="button">
-                <div class="icon-button"></div>
-                <div class="text">
-                    <p>Thêm nhân viên</p>
+            <div class="top-button">
+                <div class="button delete-button">
+                    <div class="icon-button"></div>
+                    <div class="text">
+                        <p>Xoá nhân viên</p>
+                    </div>
+                </div>
+                <div class="button add-button">
+                    <div class="icon-button"></div>
+                    <div class="text">
+                        <p>Thêm nhân viên</p>
+                    </div>
                 </div>
             </div>
+            
         </div>
+        
         <div class="search">
             <div class="combo-search">
                 <div class="search-button">
@@ -108,8 +136,20 @@
                     </div>
                 </div>
                 <div class="option">
-                    <!-- <div class="value">option</div>
-                    <div class="value">option</div> -->
+                    <!-- <div class="option">
+                            <div class="value">
+                                <div class="icon-active">
+                                    <i class="fas fa-solid fa-check"></i>
+                                </div>
+                                <div>Nam</div>
+                            </div>
+                            <div class="value">
+                                <div class="icon-active">
+                                    <i class="fas fa-solid fa-check"></i>
+                                </div>
+                                <div>Nữ</div>
+                            </div>
+                        </div>-->
                 </div>
             </div>
             <div class="combo-box" id="position">
@@ -131,6 +171,7 @@
         <div class="table">
             <table id="detailEmployee">
                 <thead>
+                    <th></th>
                     <th>Mã nhân viên</th>
                     <th>Họ và tên</th>
                     <th>Giới tính</th>
@@ -385,8 +426,25 @@
                                         </div>
                                     </div>
                                     <div class="option">
-                                        <div class="value" code ="1">Nam</div>
-                                        <div class="value" code ="0">Nữ</div>
+                                        <div class="value" code = "1">
+                                            <div class="icon-active">
+                                                <i class="fas fa-solid fa-check"></i>
+                                            </div>
+                                            <div>Nam</div>
+                                        </div>
+                                        <div class="value" code = "0">
+                                            <div class="icon-active">
+                                                <i class="fas fa-solid fa-check"></i>
+                                            </div>
+                                            <div>Nữ</div>
+                                        </div>
+                                        <div class="value" code ="2">
+                                            <div class="icon-active">
+                                                <i class="fas fa-solid fa-check"></i>
+                                            </div>
+                                            <div>Không xác định</div>
+                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -479,9 +537,18 @@
                                         </div>
                                     </div>
                                     <div class="option">
-                                        
-                                        <div class="value">Đang đi làm</div>
-                                        <div class="value">Đang nghỉ làm</div>
+                                        <div class="value">
+                                            <div class="icon-active">
+                                                <i class="fas fa-solid fa-check"></i>
+                                            </div>
+                                            <div>Đang đi làm</div>
+                                        </div>
+                                        <div class="value">
+                                            <div class="icon-active">
+                                                <i class="fas fa-solid fa-check"></i>
+                                            </div>
+                                            <div>Đang nghỉ làm</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -493,14 +560,46 @@
             <div class="footer-form">
                 <div class="cancle button">Huỷ</div>
                 <div class="save button">
-                    <div class="icon-button"></div>
+                    <div class="icon-button">
+                        
+                    </div>
                     Lưu</div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="toast_container success-toast">
+        <div class="toast">
+            <div class="toast_icon--main">
+               <i class="fas fal fa-check"></i>
+            </div>
+            <div class="toast_title">
+               Thành công!
+            </div>
+            <div class="toast_close">
+               <i class="fas fal fa-times"></i>
             </div>
         </div>
     </div>
+    <div class="toast_container error-toast">
+       <div class="toast">
+           <div class="toast_icon--main">
+               <i class="fas fal fa-exclamation"></i>
+           </div>
+           <div class="toast_title">
+              Có lỗi xảy ra!
+           </div>
+           <div class="toast_close">
+              <i class="fas fal fa-times"></i>
+           </div>
+       </div>
+   </div>
     <script src="../js/lib/jquery-3.6.0.min.js"></script>
-    <script src="../js/page/employee.js"></script>
-    <script src="../js/main.js"></script>
+    <script src="../js/Common/format.js"></script>
+    <script src="../js/Common/form.js"></script>
+    <script src="../js/Common/comboBox.js"></script>
+    <script src="../js/page/EmployeeOop.js"></script>
+    
 </body>
 
 </html>

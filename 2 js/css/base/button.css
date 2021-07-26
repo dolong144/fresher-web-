@@ -13,7 +13,6 @@
     cursor: pointer;
     min-width: 100px;
 }
-
 .button:hover {
     background-color: #2FBE8E;
 }
@@ -74,9 +73,11 @@
     transform: rotate(180deg);
 }
 .option .value{
+    position: relative;
+    display: flex;
     height: 40px;
     color: #000000;
-    padding-left: 16px;
+    padding-left: 40px;
     padding-right: 16px;
     text-align: 0 center;
     background-color: #ffffff;
@@ -95,6 +96,18 @@
 .option .active:hover{
     background-color: #019160;
     color: #ffffff;
+}
+.option .value .icon-active{
+    display: none;
+}
+.option .active .icon-active{
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    display: inline-block;
+    color: #FFF;
+    width: 16px;
+    height: 16px;
 }
 .combo-search{
     position: relative;
