@@ -31,7 +31,7 @@
 }
 .content .nav .button .icon-button {
   margin: 0 8px 0 0px;
-  background-image: url(../../content/icon/add.png);
+  background-image: url(../../assets/icon/add.png);
   width: 16px;
   height: 16px;
   background-size: contain;
@@ -39,18 +39,6 @@
 }
 .content .nav .button .text {
   padding-right: 16px;
-}
-.content .nav .delete-button{
-  background-color: #F65464;
-}
-.content .nav .delete-button:hover{
-  background-color: #f5263a;
-}
-.content .nav .delete-button .icon-delete{
-  
-  width: 32px;
-  height: 40px;
-  color: #ffffff;
 }
 .content .search {
   position: relative;
@@ -66,7 +54,7 @@
   align-items: center;
   width: 24px;
   height: 24px;
-  background-image: url(../../content/icon/refresh.png);
+  background-image: url(../../assets/icon/refresh.png);
   background-repeat: no-repeat;
   background-size: contain;
   align-items: center;
@@ -162,7 +150,7 @@
   width: 32px;
   height: 32px;
   background-position: center;
-  background-image: url(../../content/icon/btn-firstpage.svg);
+  background-image: url(../../assets/icon/btn-firstpage.svg);
   background-size: contain;
   background-repeat: no-repeat;
   border-radius: 4px;
@@ -172,7 +160,7 @@
   width: 32px;
   height: 32px;
   background-position: center;
-  background-image: url(../../content/icon/btn-prev-page.svg);
+  background-image: url(../../assets/icon/btn-prev-page.svg);
   background-size: contain;
   background-repeat: no-repeat;
   border-radius: 4px;
@@ -193,7 +181,7 @@
   width: 32px;
   height: 32px;
   background-position: center;
-  background-image: url(../../content/icon/btn-next-page.svg);
+  background-image: url(../../assets/icon/btn-next-page.svg);
   background-size: contain;
   background-repeat: no-repeat;
   border-radius: 4px;
@@ -203,7 +191,7 @@
   width: 32px;
   height: 32px;
   background-position: center;
-  background-image: url(../../content/icon/btn-lastpage.svg);
+  background-image: url(../../assets/icon/btn-lastpage.svg);
   background-size: contain;
   background-repeat: no-repeat;
   border-radius: 4px;

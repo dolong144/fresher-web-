@@ -53,13 +53,22 @@ class page{
         //Đong form
         // click vào dấu đóng form
         $(".form .head-form .close-button").click(function(){
-            resetForm();
-            closeForm();
+            showPopup("confirm-popup",'Đóng form','Bạn có chắc muốn bỏ dữ liệu đã nhập?');
+            $(".confirm-popup .footer-popup .button-yes").click(function(){
+                hidenPopup();
+                resetForm();
+                closeForm();
+            })
+            
         });
         //clisck vào nút huỷ
         $(".form .footer-form .cancle").click(function(){
-            resetForm();
-            closeForm();
+            showPopup("confirm-popup",'Đóng form','Bạn có chắc muốn bỏ dữ liệu đã nhập?');
+            $(".confirm-popup .footer-popup .button-yes").click(function(){
+                hidenPopup();
+                resetForm();
+                closeForm();
+            })
         });
         // đong form khi click ra ngoài form
         $(window).click(function(event){
@@ -131,14 +140,43 @@ class page{
         })
         // Xoá nhân viên
         $(".content .nav .delete-button").click(function(){
+
             // xác nhận lại
-            // xoá data
-            self.deleteData();
+            if($("table tbody .selected-to-delete").length == 0){
+                showPopup('notify-popup','Chưa chọn đối tượng!','Bạn chưa chọn bản ghi nào!');
+
+                $(".popup-container .notify-popup .footer-popup .button-yes").click(hidenPopup);
+            }
+            else{
+                showPopup('alert-popup','Xoá nhân viên','Bạn có chắc muốn xoá bản ghi?');
+                // nhân viên
+                $(".popup-container .popup .button-yes").click(function(){
+                    self.deleteData();
+                    hidenPopup();
+                })
+            }
+            console.log($(".popup-container .notify-popup .footer-popup .button-yes"));
+            // debugger;
         });
+
+        // ẩn popup
+        
+
+        
+        $(".popup-container .popup .close-button").click(function(){
+            hidenPopup();
+        })
+        $(".popup-container .popup .button-cancle").click(function(){
+            hidenPopup();
+        })
+
+
+        
+
         //đóng toast
         $(".toast_container .toast_close").click(function(){
-            $(".toast_container .toast").removeClass("toast_active");
-        })
+            hidenToast();
+        });
 
 
         //this.addData();
@@ -176,8 +214,7 @@ class page{
         
                 }) 
             }).fail(function(res){
-                $(".toast_container .toast").removeClass("toast_active");
-                $(".error-toast .toast").addClass("toast_active");
+                showToast('error-toast','Load thông tin bị lỗi!');
             })
         } catch (error) {
             console.log(error);
@@ -229,8 +266,7 @@ class page{
 
         if($(".error").length != 0){
             // console.log($(".error"));
-            $(".toast_container .toast").removeClass("toast_active");
-            $(".error-toast .toast").addClass("toast_active");
+            showToast('error-toast','Vui lòng xem lại thông tin!');
             return;
         }
 
@@ -262,8 +298,7 @@ class page{
                 contentType: 'application/json',
                 async: false,
             }).done(res =>{
-                $(".toast_container .toast").removeClass("toast_active");
-                $(".success-toast .toast").addClass("toast_active");
+                showToast('success-toast','Thêm nhân viên thành công!');
                 this.typeSubmitForm = 0;
                 self.employeeId = '';
                 this.loadData();
@@ -271,8 +306,7 @@ class page{
                 closeForm();
                 return;
             }).fail(res =>{
-                $(".toast_container .toast").removeClass("toast_active");
-                $(".error-toast .toast").addClass("toast_active");
+                showToast('error-toast','Có lỗi xảy ra!');
             })
         } catch (error) {
             console.log(error);
@@ -337,8 +371,7 @@ class page{
                 })
                 
             }).fail(res=>{
-                $(".toast_container .toast").removeClass("toast_active");
-                $(".error-toast .toast").addClass("toast_active");
+                showToast('error-toast','Có lỗi xảy ra!');
             })
             
         } catch (error) {
@@ -348,7 +381,6 @@ class page{
     //xoá dữ liệu
     //dvlong(26/7/2021)
     deleteData(){
-
         var arrDelete = $("table tbody .selected-to-delete");
         $.each(arrDelete,function(index, item){
             this.EmployeeId = $(item).attr('id');
@@ -358,8 +390,7 @@ class page{
                     method:'DELETE',
                     async: false,
                 }).done(function(res){
-                    $(".toast_container .toast").removeClass("toast_active");
-                    $(".success-toast .toast").addClass("toast_active");
+                    showToast('success-toast','Đã xoá nhân viên!');
     
                 }).fail(function(res){
                     console.log(res);
@@ -394,8 +425,7 @@ class page{
         
                 }) 
             }).fail(function(res){
-                $(".toast_container .toast").removeClass("toast_active");
-                $(".error-toast .toast").addClass("toast_active");
+                showToast('error-toast','Có lỗi xảy ra!');
             })
         } catch (error) {
             console.log(error);
@@ -425,8 +455,7 @@ class page{
         
                 }) 
             }).fail(function(res){
-                $(".toast_container .toast").removeClass("toast_active");
-                $(".error-toast .toast").addClass("toast_active");
+                showErrorToast();
             })
         } catch (error) {
             console.log(error);

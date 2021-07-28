@@ -1,0 +1,60 @@
+.menu {
+  width: 225px;
+  height: calc(100vh - 49px);
+  border-right: 1px solid #bbbbbb;
+  background-color: #ffffff;
+}
+.menu .menu-item {
+  display: flex;
+  align-items: center;
+  height: 44px;
+  width: 100%;
+  background-color: #ffffff;
+  color: #454545;
+  padding-left: 16px;
+  box-sizing: border-box;
+}
+.menu .menu-item:hover {
+  background-color: #e5e5e5;
+  color: #000000;
+}
+/* menu active default  */
+.menu .active {
+  background-color: #019160;
+  color: #ffffff;
+}
+.menu .menu-item:active {
+  background-color: #019160;
+  color: #ffffff;
+}
+.menu .active:hover{
+  background-color: #019160;
+  color: #ffffff;
+}
+.menu .menu-item .menu-icon {
+  width: 20px;
+  height: 20px;
+  /* background-color: #ffffff; */
+  margin-right: 10px;
+
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.menu .menu-item:first-child .menu-icon {
+  background-image: url(../../assets/icon/dashboard.png);
+}
+.menu .menu-item:nth-child(2) .menu-icon {
+  background-image: url(../../assets/icon/report.png);
+}
+.menu .menu-item:nth-child(3) .menu-icon {
+  background-image: url(../../assets/icon/dashboard.png);
+}
+.menu .menu-item:nth-child(4) .menu-icon {
+  background-image: url(../../assets/icon/dic-employee.png);
+}
+.menu .menu-item:nth-child(5) .menu-icon {
+  background-image: url(../../assets/icon/dic-employee.png);
+}
+.menu .menu-item:nth-child(6) .menu-icon {
+  background-image: url(../../assets/icon/setting.png);
+}

@@ -1,0 +1,26 @@
+.textbox-default {
+    display: flex;
+    height: 40px;
+    border: 1px solid #bbbbbb;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    text-align: justify;
+    align-items: center;
+}
+.textbox-default:focus {
+    border-color: #019160;
+}
+.textbox-default:active {
+    border-color: #019160;
+  }
+.textbox-default .icon-input{
+    margin: 12px 8px 12px 16px;
+    width: 16px; 
+    height: 16px;
+    background-image: url(../../assets/icon/search.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+
+}
