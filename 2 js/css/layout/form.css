@@ -78,6 +78,7 @@
   grid-template-columns: 50% 50%;
 }
 .form .body .modal .row .input-field{
+  position: relative;
   margin: 0 16px 8px 0;
 }
 .form .body .modal .row .input-field{

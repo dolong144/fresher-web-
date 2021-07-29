@@ -1,14 +1,4 @@
-.background_toast{
-	z-index: 5;
-	position: fixed;
-	left: 0;
-	top: 0;
-	opacity: 0;
-	display: none;
-	background-color: transparent;
-	width: 100vw;
-	height: 100vh;
-}
+
 .toast_container {
 	position: fixed;
 	z-index: 10;
@@ -62,12 +52,21 @@
 	align-items: center;
 	justify-content: space-evenly;
 }
+.toast_icon--main i{
+	display: none;
+}
+
 .error-toast .toast_icon--main {
 	background-color: #F65464;
 }
-
+.error-toast #error-icon{
+	display: inline-block;
+}
 .success-toast .toast_icon--main {
 	background-color: #019160;
+}
+.success-toast #success-icon{
+	display: inline-block;
 }
 
 .toast_close {

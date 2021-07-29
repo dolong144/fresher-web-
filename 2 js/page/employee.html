@@ -18,6 +18,7 @@
     <link href="../css/layout/menu.css" rel="stylesheet"/>
     <link href="../css/layout/form.css" rel="stylesheet"/>
     <link href="../css/base/toast.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../css/base/tooltip.css">
     <link rel="stylesheet" href="../css/base/popup.css">
 </head>
 
@@ -406,10 +407,12 @@
                         </div>
                         <div class="row">
                             <div class="input-field input-binding"id="employeeCode">
+                                <div class="tooltip-alert">Thông tin bắt buộc!</div>
                                 <div class="title-input">Mã nhân viên(<span class="binding">*</span>)</div>
                                 <input type="text" class="input-box" id="txtEmployeeCode">
                             </div>
                             <div class="input-field input-binding" id="employeeName" >
+                                <div class="tooltip-alert">Thông tin bắt buộc!</div>
                                 <div class="title-input" >Họ và tên(<span class="binding">*</span>)</div>
                                 <input type="text" class="input-box" id="txtFullName">
                             </div>
@@ -454,6 +457,7 @@
                         </div>
                         <div class="row">
                             <div class="input-field input-binding" id="employeeIdentity">
+                                <div class="tooltip-alert">Thông tin bắt buộc!</div>
                                 <div class="title-input" >Số CMTND/Căn cước(<span class="binding">*</span>)</div>
                                 <input type="text" class="input-box" id="txtIdentityNumber">
                             </div>
@@ -470,10 +474,12 @@
                         </div>
                         <div class="row">
                             <div class="input-field input-binding" id="employeeEmail">
+                                <div class="tooltip-alert">Thông tin bắt buộc!</div>
                                 <div class="title-input">Email(<span class="binding">*</span>)</div>
                                 <input type="email" class="input-box" id="txtEmail">
                             </div>
                             <div class="input-field input-binding" id="employeePhone">
+                                <div class="tooltip-alert">Thông tin bắt buộc!</div>
                                 <div class="title-input">Số điện thoại(<span class="binding">*</span>)</div>
                                 <input type="tel" class="input-box" id="txtPhoneNumber">
                             </div>
@@ -571,34 +577,22 @@
             
         </div>
     </div>
-    <div class="background_toast">
-        <div class="toast_container">
-            <div class="toast">
-                <div class="toast_icon--main">
-                   <i class="fas fal fa-check"></i>
-                </div>
-                <div class="toast_title">
-                   Thành công!
-                </div>
-                <div class="toast_close">
-                   <i class="fas fal fa-times"></i>
-                </div>
+    
+    <div class="toast_container">
+        <div class="toast">
+            <div class="toast_icon--main">
+                <i class="fas fal fa-check" id="success-icon"></i>
+                <i class="fas fal fa-exclamation" id="error-icon"></i>
+            </div>
+            <div class="toast_title">
+                Thành công!
+            </div>
+            <div class="toast_close">
+                <i class="fas fal fa-times"></i>
             </div>
         </div>
-        <!-- <div class="toast_container error-toast">
-            <div class="toast">
-                <div class="toast_icon--main">
-                    <i class="fas fal fa-exclamation"></i>
-                </div>
-                <div class="toast_title">
-                   Có lỗi xảy ra!
-                </div>
-                <div class="toast_close">
-                   <i class="fas fal fa-times"></i>
-                </div>
-            </div>
-        </div> -->
     </div>
+        
     <div class="popup-container">
         <div class="popup">
             <div class="header-popup">
@@ -625,6 +619,7 @@
     <script src="../js/Common/comboBox.js"></script>
     <script src="../js/Common/toast.js"></script>
     <script src="../js/Common/popup.js"></script>
+    <script src="../js/Common/tooltip.js"></script>
     <script src="../js/page/EmployeeOop.js"></script>
     
 </body>

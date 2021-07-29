@@ -2,7 +2,7 @@
 <html lang="en" >
 <head>
     <meta charset="utf-8"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"> -->
     <link rel="stylesheet" href="css/base/button.css">
     <link rel="stylesheet" href="css/base/toast.css">
     <link rel="stylesheet" href="css/base/tooltip.css">
@@ -10,114 +10,14 @@
     <title>index</title>
 </head>
 <body>
-    <i class="fas fa-solid fa-x" style="width:20px; height: 20px; color: red; font-size:20px; "></i>
-    <div class="combo-box">
-        <div class="select-button">
-            <div class="title">Giới tính</div>
-            <div class="icon-button">
-                <i class="fas fa-solid fa-chevron-down"></i>
-            </div>
-        </div>
-        <div class="option">
-            
-            <div class="value">
-                <div class="icon-active">
-                    <i class="fas fa-solid fa-check"></i>
-                </div>
-                <div>Nam</div>
-            </div>
-            <div class="value">
-                <div class="icon-active">
-                    <i class="fas fa-solid fa-check"></i>
-                </div>
-                <div>Nữ</div>
-            </div>
+    <div class="background">
+        <div class="input-field">
+            <div class="tooltip-alert">xin chào</div>
+            <div class="title-input" >Mã số thuế cá nhân</div>
+            <input type="number" class="input-box" id="txtPersonalTaxCode">
         </div>
     </div>
-    <div class="combo-box">
-        <div class="select-button">
-            <div class="title">Giới tính</div>
-            <div class="icon-button">
-                <i class="fas fa-solid fa-chevron-down"></i>
-            </div>
-        </div>
-        <div class="option">
-            
-            <div class="value">Nam</div>
-            <div class="value">Nữ</div>
-        </div>
-    </div>
-    <div class="icon-button">
-        
-    </div>
-    <!-- <div class="combo-search">
-        
-        <div class="search-button">
-            <div class="icon-search"></div>
-            <input type="text" class="input-box" placeholder="Giới tính">
-            <div class="icon-button">
-                <i class="fas fa-solid fa-chevron-down"></i>
-            </div>
-        </div>
-        <div class="option">
-            <div class="value">Nam</div>
-            <div class="value">Nữ</div>
-        </div>
-    </div>
-    <i class="fa-solid fa-stop"></i>
-     -->
-     <div class="toast_container success">
-         <div class="toast">
-             <div class="toast_icon--main">
-                <i class="fas fal fa-check"></i>
-             </div>
-             <div class="toast_title">
-                Thành công!
-             </div>
-             <div class="toast_close">
-                <i class="fas fal fa-times"></i>
-             </div>
-         </div>
-     </div>
-     <div class="toast_container error">
-        <div class="toast toast_active">
-            <div class="toast_icon--main">
-                <i class="fas fal fa-exclamation"></i>
-            </div>
-            <div class="toast_title">
-               Có lỗi xảy ra!
-            </div>
-            <div class="toast_close">
-               <i class="fas fal fa-times"></i>
-            </div>
-        </div>
-    </div>
-    <div class="input">
-        <div class="tooltip-alert">hi</div>
-        <input type="text">
-    </div>
-    <div class="popup-container">
-        <div class="popup">
-            <div class="header-popup">
-                <div class="head-title">Đóng form thông tin chung</div>
-                <div class="close-button">
-                    <i class="fas fal fa-times"></i>
-                </div>
-            </div>
-            <div class="body-popup">
-                <div class="icon-popup">
-                    <i class="fas far fa-exclamation-triangle"></i>
-                </div>
-                Bạn có chắc muốn đóng form nhập "Thông tin chung của
-thủ tục 603" hay không?
-            </div>
-            <div class="footer-popup">
-                <div class="button button-cancle">Huỷ</div>
-                <div class="button button-yes">Đồng ý</div>
-            </div>
-        </div>
-    </div>
-     
+
     <script src="js/lib/jquery-3.6.0.min.js"></script>
     <script src="js/Common/comboBox.js"></script>
 </body>

@@ -1,13 +1,15 @@
 // hiện toast 
 
 function showToast(typeToast,content){
-    $(".background_toast").css('display','flex');
-    $(".background_toast").css('opacity','1');
+    
     $(".toast").css('display','flex')
     
     $(".toast_container .toast").addClass("toast_active");
     $(".toast_container .toast").addClass(typeToast);
     $(".toast_container .toast .toast_title").text(content);
+    
+    setTimeout(hidenToast,5000);
+    ;
 }
 
 

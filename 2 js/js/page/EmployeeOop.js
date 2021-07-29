@@ -155,7 +155,7 @@ class page{
                     hidenPopup();
                 })
             }
-            console.log($(".popup-container .notify-popup .footer-popup .button-yes"));
+            
             // debugger;
         });
 
@@ -244,6 +244,22 @@ class page{
                 $(item).removeClass("error");
                 $(item).removeAttr('title');
             }
+            if ($("#employeeCode .error").length != 0){
+                showTooltip("employeeCode",'Thông tin bắt buộc!');
+                
+            }
+            if ($("#employeeName .error").length != 0){
+                showTooltip("employeeName",'Thông tin bắt buộc!');
+                
+            }
+            if ($("#employeeIdentity .error").length != 0){
+                showTooltip("employeeIdentity",'Thông tin bắt buộc!');
+                
+            }
+            if ($("#employeePhone .error").length != 0){
+                showTooltip("employeePhone",'Thông tin bắt buộc!');
+                
+            }
         });
         
         // //check lại mail
@@ -252,11 +268,13 @@ class page{
         let email_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[ a-zA-Z]{2,4}$/i;
         if(email_address == ''){
             $("#txtEmail").addClass("error");
-            $("#txtEmail").attr('title','thông tin này chưa nhập');
+            showTooltip("employeeEmail",'Thông tin bắt buộc!')
+            // $("#txtEmail").attr('title','thông tin này chưa nhập');
         }
         else if(!email_regex.test(email_address)){
             $("#txtEmail").addClass("error");
-            $("#txtEmail").attr('title','sai định dạng email');
+            showTooltip("employeeEmail",'Email sai định dạng!')
+            // $("#txtEmail").attr('title','sai định dạng email');
         } else{
             $("#txtEmail").removeClass("error");
             $("#txtEmail").removeAttr('title');

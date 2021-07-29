@@ -1,7 +1,9 @@
+
 //ẩn form
 function closeForm(){
     $(".form").hide();
     $(".cover-form").hide();
+    
 }
 //reset form
 function resetForm(){
@@ -15,4 +17,5 @@ function resetForm(){
         $(errorField).removeClass("error");
     })
     $(".form .option .value").removeClass('active');
+    hidenTooltip();
 }
