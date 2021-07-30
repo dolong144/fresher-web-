@@ -19,7 +19,7 @@ class page{
         var self = this;
         // mở form nhập nhân viên
         $(".content .nav .add-button").click(function(){
-            this.typeSubmitForm = 1;
+            self.typeSubmitForm = 1;
             $("#txtEmployeeCode").focus();
             $(".cover-form").show();
             $(".form").show();
@@ -77,7 +77,12 @@ class page{
             }
             else {
                 if(event.target.matches(".cover-form")){
-                    closeForm();
+                    showPopup("confirm-popup",'Đóng form','Bạn có chắc muốn bỏ dữ liệu đã nhập?');
+                    $(".confirm-popup .footer-popup .button-yes").click(function(){
+                        hidenPopup();
+                        resetForm();
+                        closeForm();
+                    })
                 }
                 
             }
@@ -177,7 +182,7 @@ class page{
         $(".toast_container .toast_close").click(function(){
             hidenToast();
         });
-
+        $(".textbox-default").click(this.loadData);
 
         //this.addData();
 
@@ -316,9 +321,14 @@ class page{
                 contentType: 'application/json',
                 async: false,
             }).done(res =>{
-                showToast('success-toast','Thêm nhân viên thành công!');
+                if(this.typeSubmitForm == 1){
+                    showToast('success-toast','Thêm nhân viên thành công!');
+                }
+                if(this.typeSubmitForm == 2){
+                    showToast('success-toast','Sửa nhân viên thành công!');
+                }
                 this.typeSubmitForm = 0;
-                self.employeeId = '';
+                this.employeeId = '';
                 this.loadData();
                 resetForm();
                 closeForm();

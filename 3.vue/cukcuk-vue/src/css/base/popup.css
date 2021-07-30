@@ -96,7 +96,10 @@
 	color: red;
 }
 .alert-popup .footer-popup .button-yes{
-	background-color: red;
+	background-color: #F65464;
+}
+.alert-popup .footer-popup .button-yes:hover{
+	background-color: #f5263a;
 }
 /* xác nhận */
 .confirm-popup .body-popup .icon-popup{

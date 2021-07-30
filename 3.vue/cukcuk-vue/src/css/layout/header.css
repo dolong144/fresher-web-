@@ -24,7 +24,7 @@
     /* display: inline-block; */
     height: 24px;
     width: 100%;
-    background-image: url(../../assets/cukcuk-logo.png);
+    background-image: url(../../assets/img/cukcuk-logo.png);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: 0 center; 
@@ -41,6 +41,9 @@
     width: 300px;
 }
 .header .header-right .name-restaurant .combo-box .select-button{
+    border: none;
+}
+.header .header-right .name-restaurant .combo-box .select-button .icon-button{
     border: none;
 }
 

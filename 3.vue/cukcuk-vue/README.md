@@ -1,4 +1,4 @@
-# vue-demo-d
+# cukcuk-vue
 
 ## Project setup
 ```

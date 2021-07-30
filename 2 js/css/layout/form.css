@@ -45,8 +45,14 @@
 }
 .form .body{
   display: flex;
+  max-height: 100vh;
 
 }
+.form .form-body{
+  overflow: auto;
+  margin-bottom: 100px;
+}
+
 .form .body .image .avatar {
   align-items: center;
   border-radius: 100%;

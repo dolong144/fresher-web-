@@ -40,6 +40,18 @@
 .content .nav .button .text {
   padding-right: 16px;
 }
+.content .nav .delete-button{
+  background-color: #F65464;
+}
+.content .nav .delete-button:hover{
+  background-color: #f5263a;
+}
+.content .nav .delete-button .icon-delete{
+  
+  width: 32px;
+  height: 40px;
+  color: #ffffff;
+}
 .content .search {
   position: relative;
   display: flex;
@@ -90,11 +102,11 @@
   top: 0;
   left: 0;
 }
-.content .table table thead th:nth-child(4) {
+.content .table table thead th:nth-child(5) {
   padding-right: 8px;
   text-align: center;
 }
-.content .table table thead th:nth-child(9) {
+.content .table table thead th:nth-child(10) {
   padding-right: 8px;
   text-align: end;
 }
@@ -118,11 +130,11 @@
   height: 48px;
   text-align: left;
 }
-.content .table table tbody tr td:nth-child(4) {
+.content .table table tbody tr td:nth-child(5) {
   padding-right: 8px;
   text-align: center;
 }
-.content .table table tbody tr td:nth-child(9) {
+.content .table table tbody tr td:nth-child(10) {
   padding-right: 8px;
   text-align: end;
 }

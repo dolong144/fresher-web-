@@ -58,6 +58,7 @@
     width: 40px;
     height: 40px;
     border-radius: 0 4px 4px 0;
+    border: 1px solid #bbbbbb;
     
 }
 .option {
@@ -69,7 +70,9 @@
     display: inline-block;
     z-index: 1;
 }
-.cb-box-active .icon-button{
+.cb-box-active .select-button .icon-button{
+    border-radius:  4px 0 0 4px;
+    border: 1px solid #019160;
     transform: rotate(180deg);
 }
 .option .value{

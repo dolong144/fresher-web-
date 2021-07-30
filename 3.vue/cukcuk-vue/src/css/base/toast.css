@@ -1,14 +1,4 @@
-.background_toast{
-	z-index: 5;
-	position: fixed;
-	left: 0;
-	top: 0;
-	opacity: 0;
-	display: none;
-	background-color: transparent;
-	width: 100vw;
-	height: 100vh;
-}
+
 .toast_container {
 	position: fixed;
 	z-index: 10;
@@ -26,7 +16,6 @@
 	border-radius: 5px;
 	padding: 15px;
 	margin-bottom: 4px;
-	
 	align-items: center;
 	justify-content: space-between;
 	box-shadow: 0 10px 24px -8px rgba(0, 0, 0, 0.16);
@@ -63,12 +52,21 @@
 	align-items: center;
 	justify-content: space-evenly;
 }
+.toast_icon--main i{
+	display: none;
+}
+
 .error-toast .toast_icon--main {
 	background-color: #F65464;
 }
-
+.error-toast #error-icon{
+	display: inline-block;
+}
 .success-toast .toast_icon--main {
 	background-color: #019160;
+}
+.success-toast #success-icon{
+	display: inline-block;
 }
 
 .toast_close {

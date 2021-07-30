@@ -43,6 +43,9 @@
 .header .header-right .name-restaurant .combo-box .select-button{
     border: none;
 }
+.header .header-right .name-restaurant .combo-box .select-button .icon-button{
+    border: none;
+}
 
 .header .header-right .name-restaurant .combo-box .title{
     padding: 0 16px;
