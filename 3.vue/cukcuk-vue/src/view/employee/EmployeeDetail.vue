@@ -26,7 +26,7 @@
                             <div class="input-field input-binding" id="employeeName" >
                                 <div class="tooltip-alert">Thông tin bắt buộc!</div>
                                 <div class="title-input" >Họ và tên(<span class="binding">*</span>)</div>
-                                <input type="text" class="input-box" id="txtFullName" v-model="employee.EmployeeName" >
+                                <input type="text" class="input-box" id="txtFullName" v-model="employee.FullName" >
                             </div>
                         </div>
                         <div class="row">
@@ -81,7 +81,7 @@
                         <div class="row">
                             <div class="input-field">
                                 <div class="title-input">Nơi cấp</div>
-                                <input type="text" class="input-box" id="txtIdentityPlace" v-model="employee.IdentityNumber">
+                                <input type="text" class="input-box" id="txtIdentityPlace" v-model="employee.IdentityPlace">
                             </div>
                         </div>
                         <div class="row">
@@ -180,7 +180,7 @@
             </div>
             <div class="footer-form">
                 <div class="cancle button" @click="showPopup">Huỷ</div>
-                <div class="save button">
+                <div class="save button" @click="submitForm">
                     <div class="icon-button">
                         
                     </div>
@@ -188,58 +188,145 @@
             </div>
             
         </div>
-        <popup :class="{'showPopup':isShowPopup}" :isShowPopup="isShowPopup" @showPopup="showPopup" @closeForm="closeForm" />
+        <popup  :class="{'showPopup':isShowPopup}" 
+                :isShowPopup="isShowPopup" 
+                :titlePopup="titlePopup"
+                :typePopup="typePopup"
+                :contentPopup="contentPopup"
+                @showPopup="showPopup" 
+                @closeForm="closeForm" />
+        <toast  :class="{'showToast':isShowToast}"
+                :contentToast="contentToast"
+                :typeToast="typeToast"/>
     </div>
 </template>
 <script>
 import popup from "../../components/base/BasePopup.vue"
+import toast from "../../components/base/BaseToast.vue"
 import axios from "axios";
+import Format from "../../model/Format.js"
 
 export default {
     components:{
-        popup
+        popup,toast
+    },
+    created(){
+        
+
     },
     props:{
         isShowForm:{
             type: Boolean,
-            default: false,
+            // default: true,
             required: true,
         },
         employeeId:{
             type: String,
             default: '',
             required: true,
+        },
+        newCode:{
+            type:String,
+            required:false,
+        },
+        typeSubmitForm:{
+            type:Boolean,
+            required:true,
         }
     },
     data() {
         return {
-            employee:{},
+            employee:{
+                EmployeeCode: this.newCode,
+            },
             isShowPopup: false,
-            
+            typePopup:'',
+            titlePopup:'',
+            contentPopup:'',
+            isShowToast:false,
+            typeToast:'',
+            contentToast:'',
         }
     },
+    mounted(){
+        
+    },
     methods:{
+        //Đóng form nhập nhân viên
         closeForm(){
+            this.employee = {EmployeeCode:''};
             this.$emit('btnAdd');
+            
         },
+        //Hiện popup thông báo
         showPopup(){
             this.isShowPopup = !this.isShowPopup ;
-        }
+            this.titlePopup ='Đóng form?';
+            this.contentPopup ='Bạn có chắc muốn đóng form?';
+            this.typePopup = 'confirm-popup';
+        },
+        //Ấn lưu thông tin nhân viên
+        submitForm(){
+
+            let self = this;
+            //thêm mới nhân viên
+            if(self.typeSubmitForm){
+                axios.post('http://cukcuk.manhnv.net/v1/Employees',self.employee).then(res=>{
+                    console.log(res);
+                    alert("thêm thành công");
+                    self.closeForm();
+                }).catch(res=>{
+                    console.log(res);
+                    console.log("error")
+                    self.closeForm();
+                })
+            }
+            //Sửa 1 nhân viên
+            else{
+                axios.put('http://cukcuk.manhnv.net/v1/Employees/'+self.employeeId,self.employee).then(res=>{
+                    console.log(res);
+                    alert("sửa thành công");
+                    self.closeForm();
+                }).catch(res=>{
+                    console.log(res);
+                    console.log("error")
+                    self.closeForm();
+                })
+            }
+            
+        },
+        
+        
     },
     watch: { 
         employeeId(){
             let self = this;
-            
+            /* Lấy dữ liệu nhân viên theo mã và hiển thị lên form
+            dvlong(2/8/2021)
+            */
             axios.get("http://cukcuk.manhnv.net/v1/Employees/" + self.employeeId).then(res=>{
                 
                 self.employee = res.data;
+                self.employee.DateOfBirth = Format.dobFormatToForm(self.employee.DateOfBirth)
+                self.employee.IdentityDate = Format.dobFormatToForm(self.employee.IdentityDate)
+                self.employee.JoinDate = Format.dobFormatToForm(self.employee.JoinDate)
+                self.employee.Salary = Format.currencyFormatter(self.employee.Salary)
                 
-            }).catch(res=>{
+            }).catch(res=>{ 
                 console.log(res);
+                
             })
+        },
+        /* gán EmployeeCode bằng mã code mới
+        dvlong(31/7/2021)
+         */
+        isShowForm: function(){
+            if(this.typeSubmitForm){
+                this.employee.EmployeeCode = this.newCode;
+            }
+            
         }
     }
-    
 }
 </script>
 <style scoped>
@@ -255,6 +342,9 @@ export default {
     }
     .showPopup{
         display: block;
+    }
+    .showToast{
+        display: flex;
     }
     
 </style>

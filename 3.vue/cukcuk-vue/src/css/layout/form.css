@@ -37,6 +37,7 @@
   background-image: url(../../assets/icon/x.svg);
   background-size: contain;
   background-repeat: no-repeat;
+  border-radius: 0 4px;
 }
 .form .head-form .close-button:hover{
   background-color:#E9EBEE;

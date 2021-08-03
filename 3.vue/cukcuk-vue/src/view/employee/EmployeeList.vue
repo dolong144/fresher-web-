@@ -35,7 +35,7 @@
                         <div class="value">option 2</div>
                     </div>
                 </div>
-                <div class="combo-box" id="department">
+                <div class="combo-box" id="department" >
                     <div class="select-button">
                         <div class="title">Tất cả phòng ban</div>
                         <div class="icon-button">
@@ -43,6 +43,11 @@
                         </div>
                     </div>
                     <div class="option">
+                        <div class="value"  v-for="department in departments" 
+                                            :key="department.departmentId" 
+                                            :id = department.departmentId >
+                                                {{department.DepartmentName}}
+                        </div>
                     </div>
                 </div>
                 <div class="combo-box" id="position">
@@ -53,6 +58,11 @@
                         </div>
                     </div>
                     <div class="option">
+                        <div class="value"  v-for="position in positions" 
+                                            :key="position.positionId" 
+                                            :id = position.positionId >
+                                                {{position.PositionName}}
+                        </div>
                     </div>
                 </div>
                 <div class="textbox-default">
@@ -76,17 +86,20 @@
                     </thead>
                     <tbody>
                         
-                        <tr v-for="employee in employees" :key="employee.EmployeeId" @dblclick="rowDbClick(employee.EmployeeId)">
+                        <tr v-for="employee in employees" 
+                            :key="employee.EmployeeId" 
+                            @dblclick="rowDbClick(employee.EmployeeId)" 
+                            @click="rowClick()">
                             <td><input type="checkbox" name="" id=""></td>
                             <td>{{employee.EmployeeCode}}</td>
                             <td>{{employee.FullName}}</td>
                             <td>{{employee.GenderName}}</td>
-                            <td>{{employee.DateOfBirth}}</td>
+                            <td>{{employee.DateOfBirth | formatDate}}</td>
                             <td>{{employee.PhoneNumber}}</td>
                             <td>{{employee.Email}}</td>
                             <td>{{employee.PositionName}}</td>
                             <td>{{employee.DepartmentName}}</td>
-                            <td>{{employee.Salary}}</td>
+                            <td>{{employee.Salary | formatMoney}}</td>
                             <td>{{employee.WorkStatus }}</td>
                         </tr>
                     </tbody>
@@ -108,12 +121,18 @@
                 <div class="acount">10 nhân viên/trang</div>
             </div>
         </div>
-        <employeeDetail :class="{'showForm':isShowForm}" :isShowForm="isShowForm" :employeeId="employeeId" @btnAdd="btnAdd"/>
+        <employeeDetail :class="{'showForm':isShowForm}" 
+                        :isShowForm="isShowForm" 
+                        :newCode="newCode" 
+                        :typeSubmitForm="typeSubmitForm"
+                        :employeeId="employeeId" 
+                        @btnAdd="btnAdd"/>
     </div>
 </template>
 <script>
 import axios from "axios";
 import employeeDetail from "./EmployeeDetail.vue"
+import Format from "../../model/Format.js"
 export default {
     name: 'employeeList',
   components:{
@@ -121,36 +140,83 @@ export default {
   },
   mounted() {
       var self = this;
-      //Gọi API lấy dữ liệu
-      axios.get("http://cukcuk.manhnv.net/v1/Employees").then(res=>{
-          self.employees = res.data;
+      self.loadData();
+      //Gọi API lấy dữ liệu vị trí
+      axios.get("http://cukcuk.manhnv.net/v1/Positions").then(res=>{
+          self.positions = res.data;
+          console.log(self.positions);
+      }).catch(res=>{
+          console.log(res);
+      })
+      //Gọi API lấy dữ liệu phòng ban
+      axios.get("http://cukcuk.manhnv.net/api/Department").then(res=>{
+          self.departments = res.data;
+          console.log(self.departments);
       }).catch(res=>{
           console.log(res);
       })
   },
   methods:{
+      loadData(){
+            var self = this;
+            //Gọi API lấy dữ liệu nhân viên
+            axios.get("http://cukcuk.manhnv.net/v1/Employees").then(res=>{
+                self.employees = res.data;
+            }).catch(res=>{
+                console.log(res);
+            })
+      },
     //   hiện form nhập thông tin nhân viên khi ấn vào btn thêm nhân viên
     //   dvl(29/7/2021)
       btnAdd(){
-          this.isShowForm = !this.isShowForm;
+          
+          let self =this;
+          
+            axios.get('http://cukcuk.manhnv.net/v1/Employees/NewEmployeeCode').then(res=>{
+                self.newCode = res.data;
+                self.isShowForm = !self.isShowForm;
+                self.typeSubmitForm = true;
+                
+            }).catch(res=>{
+                console.log(res);
+                this.isShowForm = !this.isShowForm;
+            })
+        
+        self.loadData();
+                
       },
+      //hiện thông tin chi tiết 1 nhân viên
       rowDbClick(employeeId){
-          
+          this.typeSubmitForm = false;
           this.employeeId = employeeId
-          
-          this.btnAdd();
+          this.isShowForm = !this.isShowForm;
           //gọi api
          
+      },
+      rowClick(){
+
       }
 
   },
   data(){
       
       return{
+          typeSubmitForm:true,
           employeeId :'',
+          newCode: '',
           isShowForm : false,
-          employees:[]
+          employees:[],
+          positions:[],
+          departments:[],
       }
+  },
+  filters:{
+      formatDate: function(date){
+        return Format.dobFormat(date);
+      },
+        formatMoney: function(money){
+            return Format.currencyFormatter(money);
+        }
   }
 }
 </script>
