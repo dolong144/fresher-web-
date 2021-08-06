@@ -6,7 +6,7 @@
                     <b>Danh sách nhân viên</b>
                 </div>
                 <div class="top-button">
-                    <div class="button delete-button">
+                    <div class="button delete-button" :class="{'showButton':isShowButtonDelete}" @click="deleteEmployee()">
                         <div class="icon-delete">
                             <i class="fas fa-trash-alt"></i>
                         </div>
@@ -35,7 +35,7 @@
                         <div class="value">option 2</div>
                     </div>
                 </div>
-                <div class="combo-box" id="department" >
+                <!-- <div class="combo-box" id="department" >
                     <div class="select-button">
                         <div class="title">Tất cả phòng ban</div>
                         <div class="icon-button">
@@ -49,8 +49,9 @@
                                                 {{department.DepartmentName}}
                         </div>
                     </div>
-                </div>
-                <div class="combo-box" id="position">
+                </div> -->
+                
+                <!-- <div class="combo-box" id="position">
                     <div class="select-button">
                         <div class="title">Tất cả vị trí</div>
                         <div class="icon-button">
@@ -64,7 +65,18 @@
                                                 {{position.PositionName}}
                         </div>
                     </div>
-                </div>
+                </div> -->
+                <BaseDropdown
+                    id="dropdown__department"
+                    title="Tất cả phòng ban"
+                    type="Department"
+                />
+                <BaseDropdown
+                    id="dropdown__position"
+                    title="Tất cả vị trí"
+                    type="Position"
+                />
+
                 <div class="textbox-default">
                     <div class="refresh"></div>
                 </div>
@@ -86,11 +98,12 @@
                     </thead>
                     <tbody>
                         
-                        <tr v-for="employee in employees" 
+                        <tr v-for="(employee, index) in employees" 
                             :key="employee.EmployeeId" 
+                            ref="tableRow"
                             @dblclick="rowDbClick(employee.EmployeeId)" 
-                            @click="rowClick()">
-                            <td><input type="checkbox" name="" id=""></td>
+                            @click="rowClick(index)">
+                            <td><input type="checkbox" :value="employee['EmployeeId']"  ref="deleteBox"></td>
                             <td>{{employee.EmployeeCode}}</td>
                             <td>{{employee.FullName}}</td>
                             <td>{{employee.GenderName}}</td>
@@ -132,35 +145,24 @@
 <script>
 import axios from "axios";
 import employeeDetail from "./EmployeeDetail.vue"
-import Format from "../../model/Format.js"
+import BaseDropdown from "../../components/base/BaseDropDown.vue"
+import Format from "../../utils/Format.js"
+import EmployeesAPI from "@/api/components/EmployeesAPI";
 export default {
     name: 'employeeList',
   components:{
-      employeeDetail,
+      employeeDetail,BaseDropdown 
   },
   mounted() {
       var self = this;
       self.loadData();
-      //Gọi API lấy dữ liệu vị trí
-      axios.get("http://cukcuk.manhnv.net/v1/Positions").then(res=>{
-          self.positions = res.data;
-          console.log(self.positions);
-      }).catch(res=>{
-          console.log(res);
-      })
-      //Gọi API lấy dữ liệu phòng ban
-      axios.get("http://cukcuk.manhnv.net/api/Department").then(res=>{
-          self.departments = res.data;
-          console.log(self.departments);
-      }).catch(res=>{
-          console.log(res);
-      })
+      
   },
   methods:{
       loadData(){
             var self = this;
             //Gọi API lấy dữ liệu nhân viên
-            axios.get("http://cukcuk.manhnv.net/v1/Employees").then(res=>{
+            EmployeesAPI.getAll().then(res=>{
                 self.employees = res.data;
             }).catch(res=>{
                 console.log(res);
@@ -185,7 +187,8 @@ export default {
         self.loadData();
                 
       },
-      //hiện thông tin chi tiết 1 nhân viên
+      //hiện thông tin chi tiết 1 nhân viên khi nhấn đúp vào 1 hàng
+    //   dvlong(3/8/2021)
       rowDbClick(employeeId){
           this.typeSubmitForm = false;
           this.employeeId = employeeId
@@ -193,21 +196,66 @@ export default {
           //gọi api
          
       },
-      rowClick(){
-
+      /* check-uncheck khi nhấn vào 1 hàng
+      dvlong(2/8/2021)
+       */
+      rowClick(index){
+            this.$refs.deleteBox[index].defaultChecked = !this.$refs.deleteBox[index].defaultChecked;
+            if (this.$refs.deleteBox[index].defaultChecked) {
+                this.employeesToDelete.push(this.$refs.deleteBox[index].defaultValue);
+                
+            } else {
+                if (this.employeesToDelete.indexOf(this.$refs.deleteBox[index].defaultValue) > -1) {
+                this.employeesToDelete.splice(this.employeesToDelete.indexOf(this.$refs.deleteBox[index].defaultValue), 1);
+                }
+            }
+            
+      },
+      /* Xoá nhân viên đã chọn khi ấn nút xoá
+      dvlong(2/8/2021) 
+      */
+      deleteEmployee(){
+          let self = this;
+          let index = 0;
+          self.employeesToDelete.forEach((employeeIdDelete) =>{
+              EmployeesAPI.delete(employeeIdDelete).then(res =>{
+                index ++;
+                if (index == self.employeesToDelete.length){
+                    self.loadData();
+                    alert("xoá thành công");
+                    self.employeesToDelete=[]
+                }
+                console.log(res);
+          }).catch(res =>{
+              console.log(res);
+              
+          })
+          })
+          
       }
 
   },
   data(){
       
       return{
+          isShowButtonDelete:false,
+          employeesToDelete:[],
           typeSubmitForm:true,
           employeeId :'',
           newCode: '',
           isShowForm : false,
           employees:[],
-          positions:[],
-          departments:[],
+          
+      }
+  },
+  watch:{
+      employeesToDelete: function(){
+          if(this.employeesToDelete.length != 0){
+              this.isShowButtonDelete = true;
+          }
+          else{
+              this.isShowButtonDelete = false;
+          }
       }
   },
   filters:{
@@ -221,14 +269,17 @@ export default {
 }
 </script>
 <style scoped>
-    @import url('../../css/layout/content.css');
-    @import url('../../css/main.css');
-    @import url('../../css/base/button.css');
-    @import url('../../css/base/popup.css');
-    @import url('../../css/base/textbox.css');
-    @import url('../../css/base/toast.css');
-    @import url('../../css/base/tooltip.css');
+    @import url('../../assets/css/layout/content.css');
+    @import url('../../assets/css/main.css');
+    @import url('../../assets/css/base/button.css');
+    @import url('../../assets/css/base/popup.css');
+    @import url('../../assets/css/base/textbox.css');
+    @import url('../../assets/css/base/toast.css');
+    @import url('../../assets/css/base/tooltip.css');
     .showForm{
         display: block;
+    }
+    .content .nav .showButton{
+        display: flex;
     }
 </style>

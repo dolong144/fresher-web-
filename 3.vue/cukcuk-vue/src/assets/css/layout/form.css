@@ -34,7 +34,7 @@
   top: 0;
   height: 32px;
   width: 32px;
-  background-image: url(../../assets/icon/x.svg);
+  background-image: url(../../icon/x.svg);
   background-size: contain;
   background-repeat: no-repeat;
   border-radius: 0 4px;
@@ -43,6 +43,8 @@
   background-color:#E9EBEE;
 }
 .form .body{
+  max-height: 77vh;
+  overflow-x: hidden;
   display: flex;
 
 }
@@ -53,7 +55,7 @@
   border: 1px solid #bbbbbb;
   height: 150px;
   width: 150px;
-  background-image: url(../../assets/img/default-avatar.jpg);
+  background-image: url(../../img/default-avatar.jpg);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -84,7 +86,7 @@
   display: block;
 }
 .form .body .modal .row .title-input{
-  margin: 8px 0 0 0;
+  margin: 16px 0 4px 0;
 }
 .form .body .modal .row .title-input .binding{
   color: red;

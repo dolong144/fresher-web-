@@ -15,7 +15,7 @@
     width: 24px;
     height: 24px;
     margin: 12px 10px 12px 16px;
-    background-image: url(../../assets/img/toggle.png);
+    background-image: url(../../img/toggle.png);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -24,7 +24,7 @@
     /* display: inline-block; */
     height: 24px;
     width: 100%;
-    background-image: url(../../assets/img/cukcuk-logo.png);
+    background-image: url(../../img/cukcuk-logo.png);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: 0 center; 
@@ -59,7 +59,7 @@
     align-items: center;
 }
 .header .header-right .user .avatar{
-    background-image: url(../../assets/icon/avatar-default.png);
+    background-image: url(../../icon/avatar-default.png);
     height: 32px;
     width: 32px;
     margin-right: 16px;
@@ -74,7 +74,7 @@
 .header .header-right .user .option-btn{
     width: 16px;
     height: 16px;
-    background-image: url(../../assets/icon/option.png);
+    background-image: url(../../icon/option.png);
     background-size: contain;
     background-repeat: no-repeat;
     margin-right: 16px;

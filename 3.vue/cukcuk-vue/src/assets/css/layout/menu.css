@@ -41,20 +41,20 @@
   background-size: contain;
 }
 .menu .menu-item:first-child .menu-icon {
-  background-image: url(../../assets/icon/dashboard.png);
+  background-image: url(../../icon/dashboard.png);
 }
 .menu .menu-item:nth-child(2) .menu-icon {
-  background-image: url(../../assets/icon/report.png);
+  background-image: url(../../icon/report.png);
 }
 .menu .menu-item:nth-child(3) .menu-icon {
-  background-image: url(../../assets/icon/dashboard.png);
+  background-image: url(../../icon/dashboard.png);
 }
 .menu .menu-item:nth-child(4) .menu-icon {
-  background-image: url(../../assets/icon/dic-employee.png);
+  background-image: url(../../icon/dic-employee.png);
 }
 .menu .menu-item:nth-child(5) .menu-icon {
-  background-image: url(../../assets/icon/dic-employee.png);
+  background-image: url(../../icon/dic-employee.png);
 }
 .menu .menu-item:nth-child(6) .menu-icon {
-  background-image: url(../../assets/icon/setting.png);
+  background-image: url(../../icon/setting.png);
 }

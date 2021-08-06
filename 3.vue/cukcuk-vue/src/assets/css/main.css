@@ -14,32 +14,32 @@ body {
 
 @font-face {
     font-family: 'GoogleSans-Italic';
-    src: url('../assets/font/GoogleSans-Italic.otf') format('opentype');
+    src: url('../font/GoogleSans-Italic.otf') format('opentype');
 }
 
 @font-face {
     font-family: 'GoogleSans-Black';
-    src: url('../assets/font/GoogleSans-Black.otf') format('opentype');
+    src: url('../font/GoogleSans-Black.otf') format('opentype');
 }
 
 @font-face {
     font-family: 'GoogleSans-Bold';
-    src: url('../assets/font/GoogleSans-Bold.otf') format('opentype');
+    src: url('../font/GoogleSans-Bold.otf') format('opentype');
 }
 
 @font-face {
     font-family: 'GoogleSans-Light';
-    src: url('../assets/font/GoogleSans-Light.otf') format('opentype');
+    src: url('../font/GoogleSans-Light.otf') format('opentype');
 }
 
 @font-face {
     font-family: 'GoogleSans-Regular';
-    src: url('../assets/font/GoogleSans-Regular.otf') format('opentype');
+    src: url('../font/GoogleSans-Regular.otf') format('opentype');
 }
 
 @font-face {
     font-family: 'GoogleSans-Thin';
-    src: url('../assets/font/GoogleSans-Thin.otf') format('opentype');
+    src: url('../font/GoogleSans-Thin.otf') format('opentype');
 }
 ::-webkit-scrollbar{
     width: 10px;

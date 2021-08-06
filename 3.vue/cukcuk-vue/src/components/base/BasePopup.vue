@@ -57,9 +57,9 @@ export default {
 </script>
 <style scoped>
 
-@import url('../../css/main.css');
-@import url('../../css/base/button.css');
-@import url('../../css/base/popup.css');
+@import url('../../assets/css/main.css');
+@import url('../../assets/css/base/button.css');
+@import url('../../assets/css/base/popup.css');
  .showPopup{
         display: block;
     }

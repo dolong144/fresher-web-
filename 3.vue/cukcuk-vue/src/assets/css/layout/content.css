@@ -17,13 +17,12 @@
   color: #000000;
   font-size: 24px;
 }
-.content .nav .top-button{
+.content .nav .top-button {
   display: flex;
   position: absolute;
   right: 0;
 }
 .content .nav .button {
-
   display: flex;
   align-items: center;
   /* position: absolute;
@@ -31,7 +30,7 @@
 }
 .content .nav .button .icon-button {
   margin: 0 8px 0 0px;
-  background-image: url(../../assets/icon/add.png);
+  background-image: url(../../icon/add.png);
   width: 16px;
   height: 16px;
   background-size: contain;
@@ -40,14 +39,14 @@
 .content .nav .button .text {
   padding-right: 16px;
 }
-.content .nav .delete-button{
-  background-color: #F65464;
+.content .nav .delete-button {
+  display: none;
+  background-color: #f65464;
 }
-.content .nav .delete-button:hover{
+.content .nav .delete-button:hover {
   background-color: #f5263a;
 }
-.content .nav .delete-button .icon-delete{
-  
+.content .nav .delete-button .icon-delete {
   width: 32px;
   height: 40px;
   color: #ffffff;
@@ -58,7 +57,7 @@
   margin-top: 16px;
   margin-bottom: 16px;
 }
-.content .search .combo-box{
+.content .search .combo-box {
   width: 200px;
 }
 
@@ -66,13 +65,12 @@
   align-items: center;
   width: 24px;
   height: 24px;
-  background-image: url(../../assets/icon/refresh.png);
+  background-image: url(../../icon/refresh.png);
   background-repeat: no-repeat;
   background-size: contain;
   align-items: center;
 }
 .content .search .textbox-default:nth-child(4) {
-  
   position: absolute;
   right: 0;
   top: 0px;
@@ -81,14 +79,12 @@
   height: calc(100vh - 271px);
   width: 100%;
   overflow: auto;
-
 }
 
 .content .table table {
   width: 100%;
   border-collapse: collapse;
   position: relative;
-  
 }
 .content .table table thead {
   background-color: #ffffff;
@@ -114,17 +110,17 @@
   overflow: auto;
   height: 100%;
 }
-.content .table table tr{
+.content .table table tr {
   cursor: pointer;
   border-bottom: 1px solid #bbbbbb;
 }
 
 .content .table table tbody tr:nth-child(odd) {
-  background-color: #E9EBEE;
+  background-color: #e9ebee;
 }
-.content .table table tbody tr:hover{
+.content .table table tbody tr:hover {
   background-color: #e5e5e5;
- }
+}
 .content .table table tbody tr td {
   padding-left: 10px;
   height: 48px;
@@ -162,7 +158,7 @@
   width: 32px;
   height: 32px;
   background-position: center;
-  background-image: url(../../assets/icon/btn-firstpage.svg);
+  background-image: url(../../icon/btn-firstpage.svg);
   background-size: contain;
   background-repeat: no-repeat;
   border-radius: 4px;
@@ -172,7 +168,7 @@
   width: 32px;
   height: 32px;
   background-position: center;
-  background-image: url(../../assets/icon/btn-prev-page.svg);
+  background-image: url(../../icon/btn-prev-page.svg);
   background-size: contain;
   background-repeat: no-repeat;
   border-radius: 4px;
@@ -193,7 +189,7 @@
   width: 32px;
   height: 32px;
   background-position: center;
-  background-image: url(../../assets/icon/btn-next-page.svg);
+  background-image: url(../../icon/btn-next-page.svg);
   background-size: contain;
   background-repeat: no-repeat;
   border-radius: 4px;
@@ -203,7 +199,7 @@
   width: 32px;
   height: 32px;
   background-position: center;
-  background-image: url(../../assets/icon/btn-lastpage.svg);
+  background-image: url(../../icon/btn-lastpage.svg);
   background-size: contain;
   background-repeat: no-repeat;
   border-radius: 4px;

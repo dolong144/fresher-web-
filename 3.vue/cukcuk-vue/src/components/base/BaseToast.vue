@@ -31,9 +31,9 @@ export default {
 </script>
 <style scoped>
     
-    @import url('../../css/main.css');
-    @import url('../../css/base/button.css');
-    @import url('../../css/base/toast.css');
+    @import url('../../assets/css/main.css');
+    @import url('../../assets/css/base/button.css');
+    @import url('../../assets/css/base/toast.css');
     .showToast{
             display: block;
         }

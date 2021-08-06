@@ -105,31 +105,24 @@
                         <div class="row">
                             <div class="input-field">
                                 <div class="title-input">Vị trí</div>
-                                <div class="combo-box" id="txtPositionCode">
-                                    <div class="select-button">
-                                        <div class="title" >Vị trí</div>
-                                        <div class="icon-button">
-                                            <i class="fas fa-solid fa-chevron-down"></i>
-                                        </div>
-                                    </div>
-                                    <div class="option">
-                                    </div>
-                                </div>
+                                <BaseDropdown
+                                    :value="employee.PositionId"
+                                    id="dropdown__position"
+                                    title="Tất cả vị trí"
+                                    type="Position"
+                                />
                             </div>
                             <div class="input-field">
                                 <div class="title-input" >Phòng ban</div>
-                                <div class="combo-box" id="txtDepartmentCode">
-                                    <div class="select-button">
-                                        
-                                        <div class="title" >Phòng ban</div>
-                                        <div class="icon-button">
-                                            <i class="fas fa-solid fa-chevron-down"></i>
-                                        </div>
-                                    </div>
-                                    <div class="option">
-                                        
-                                    </div>
-                                </div>
+                            
+                                <BaseDropdown
+                                    :value ="employee.DepartmentId"
+                                    id="dropdown__department"
+                                    title="Tất cả phòng ban"
+                                    type="Department"
+                                />
+                                    
+                                
                             </div>
                         </div>
                         <div class="row">
@@ -203,9 +196,9 @@
 <script>
 import popup from "../../components/base/BasePopup.vue"
 import toast from "../../components/base/BaseToast.vue"
-import axios from "axios";
-import Format from "../../model/Format.js"
 
+import Format from "../../utils/Format.js"
+import EmployeesAPI from "@/api/components/EmployeesAPI";
 export default {
     components:{
         popup,toast
@@ -238,6 +231,8 @@ export default {
         return {
             employee:{
                 EmployeeCode: this.newCode,
+                DepartmentId:'',
+                PositionId:''
             },
             isShowPopup: false,
             typePopup:'',
@@ -271,7 +266,7 @@ export default {
             let self = this;
             //thêm mới nhân viên
             if(self.typeSubmitForm){
-                axios.post('http://cukcuk.manhnv.net/v1/Employees',self.employee).then(res=>{
+                EmployeesAPI.add(self.employee).then(res=>{
                     console.log(res);
                     alert("thêm thành công");
                     self.closeForm();
@@ -283,7 +278,7 @@ export default {
             }
             //Sửa 1 nhân viên
             else{
-                axios.put('http://cukcuk.manhnv.net/v1/Employees/'+self.employeeId,self.employee).then(res=>{
+                EmployeesAPI.update(self.employeeId,self.employee).then(res=>{
                     console.log(res);
                     alert("sửa thành công");
                     self.closeForm();
@@ -304,7 +299,7 @@ export default {
             /* Lấy dữ liệu nhân viên theo mã và hiển thị lên form
             dvlong(2/8/2021)
             */
-            axios.get("http://cukcuk.manhnv.net/v1/Employees/" + self.employeeId).then(res=>{
+            EmployeesAPI.getById(self.employeeId).then(res=>{
                 
                 self.employee = res.data;
                 self.employee.DateOfBirth = Format.dobFormatToForm(self.employee.DateOfBirth)
@@ -330,13 +325,13 @@ export default {
 }
 </script>
 <style scoped>
-    @import url('../../css/layout/form.css');
-    @import url('../../css/main.css');
-    @import url('../../css/base/button.css');
-    @import url('../../css/base/popup.css');
-    @import url('../../css/base/textbox.css');
-    @import url('../../css/base/toast.css');
-    @import url('../../css/base/tooltip.css');
+    @import url('../../assets/css/layout/form.css');
+    @import url('../../assets/css/main.css');
+    @import url('../../assets/css/base/button.css');
+    @import url('../../assets/css/base/popup.css');
+    @import url('../../assets/css/base/textbox.css');
+    @import url('../../assets/css/base/toast.css');
+    @import url('../../assets/css/base/tooltip.css');
     .showForm{
         display: block;
     }
