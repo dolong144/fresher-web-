@@ -30,15 +30,15 @@ export default {
         },
         typePopup:{
             type: String,
-            required: true,
+            
         },
         titlePopup:{
             type: String,
-            required: true,
+            
         },
         contentPopup:{
             type: String,
-            required: true,
+            
         }
     },
     methods:{
@@ -47,7 +47,7 @@ export default {
         
         hidePopupAndForm(){
             this.$emit('showPopup');
-            this.$emit('closeForm');
+            this.$emit('showForm');
         },
         hidePopup(){
             this.$emit('showPopup');

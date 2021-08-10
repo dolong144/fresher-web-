@@ -1,8 +1,7 @@
 <template>
-    <div>
-        <employeeList/>
-    </div>
     
+        <employeeList/>
+ 
 </template>
 
 <script>

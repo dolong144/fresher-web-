@@ -1,5 +1,5 @@
 <template>
-    <div class="toast_container">
+    <div class="toast_container" :class="{'showToast':isShowToast}">
         <div class="toast" :class="typeToast">
             <div class="toast_icon--main">
                 <i class="fas fal fa-check" id="success-icon"></i>
@@ -24,7 +24,15 @@ export default {
         typeToast:{
             type:String,
             required: true,
+        },
+        isShowToast:{
+            type:Boolean,
+            required:true,
+            
         }
+    },
+    methods:{
+        
     }
     
 }

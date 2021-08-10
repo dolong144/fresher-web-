@@ -42,14 +42,89 @@ body {
     src: url('../font/GoogleSans-Thin.otf') format('opentype');
 }
 ::-webkit-scrollbar{
-    width: 10px;
-    height: 10px;
+    width: 5px;
+    height: 5px;
+    background-color: lightgray;
+    border-radius: 2.5px;
 }
 ::-webkit-scrollbar-track{
     border-radius: 4px;
     background-color: #e9ebee;
 }
 ::-webkit-scrollbar-thumb{
-    border-radius: 4px;;
+    border-radius: 2.5px;;
     background-color: #bbbbbb;
+    min-height: 40px;
+}
+table::-webkit-scrollbar-thumb{
+    border-radius: 2.5px;;
+    background-color: #bbbbbb;
+    padding-bottom: 40px;
+    min-height: 40px;
+}
+table::-webkit-scrollbar-track-piece{
+    margin-top: 48px;
+}
+
+.delete-box{
+    position: relative;
+    width: 40px;
+    height: 24px;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+}
+.delete-box input{
+    position: absolute;
+    opacity: 0;
+    /* width: 24px;
+    height: 24px;
+    margin: 0;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    pointer-events: none;
+    cursor: pointer;
+    border: 0.1px solid #bbbbbb; */
+
+}
+.delete-box input[type=checkbox]:checked ~ .checkmark{
+    background-color: #019160;
+}
+.delete-box input[type=checkbox]:checked ~ .checkmark::after{
+    display: block;
+}
+.delete-box .checkmark{
+    margin: 0 8px;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    height: 24px;
+    width: 24px;
+    background-color: #ffffff;
+    border: 1px solid #bbbbbb;
+    border-radius: 4px;
+}
+.delete-box .checkmark::after{
+    content: "";
+    position: absolute;
+    display: none;
+    left: 8px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+input[type=checkbox]:checked .checkmark{
+    background-color: #019160;
+}
+input[type=checkbox]:checked .checkmark::after{
+    display: block;
 }

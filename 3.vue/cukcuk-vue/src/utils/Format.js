@@ -49,5 +49,33 @@ export default class Format{
             return '';
         }
     }
+    //Hàm xử lí trang thái làm việc
+    //DVLong(23/7/2021)
+     formatWorkStatusToName(status) {
+        switch (status) {
+            case 1:
+                return "Đang làm việc";
+            case 2:
+                return "Đang thử việc";
+            case 0:
+                return "Đã nghỉ việc";
+            default:
+                return "Chưa xác định";
+        }
+    }
+
+    //Hàm Xử lý giới tính
+    //DVLong(23/7/2021)
+    formatGenderToName(gender) {
+        switch (gender) {
+            case 0:
+                return "Nữ";
+            case 1:
+                return "Nam";
+
+            default:
+                return "Chưa xác định";
+        }
+    }
     
 }

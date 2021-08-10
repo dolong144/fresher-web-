@@ -7,7 +7,7 @@
         <div class="header-right">
             <div class="name-restaurant">
                 <b>
-                    <div class="combo-box">
+                    <!-- <div class="combo-box">
                         <div class="select-button">
                             
                             <div class="title">Nhà hàng Biển Đông</div>
@@ -37,7 +37,12 @@
                             </div>
                             
                         </div>
-                    </div>
+                    </div> -->
+                    <BaseDropdown
+                    id="dropdown__restaurant"
+                    title="Nhà hàng Biển Đông"
+                    type="restaurant"
+                />
                 </b>
             </div>
             <div class="user">
@@ -49,8 +54,12 @@
     </div>
 </template>
 <script>
+import BaseDropdown from '../base/BaseDropDown.vue'
 export default {
   name: 'TheHeader',
+  components:{
+      BaseDropdown,
+  }
   
 }
 </script>
