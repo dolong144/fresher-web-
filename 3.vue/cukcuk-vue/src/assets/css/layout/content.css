@@ -1,11 +1,13 @@
 .content {
   display: inline;
   position: absolute;
-  top: 49px;
-  left: 226px;
-  width: calc(100vw - 226px);
-  padding: 16px;
-  background-color: #ffffff;
+  top: 48px;
+  left: 225px;
+  width: calc(100vw - 225px);
+  height: calc(100vh - 48px);
+  padding: 16px 16px 0 16px;
+  background-color: #E9EBEE;
+  color: #454545;
 }
 .content .nav {
   display: flex;
@@ -60,6 +62,9 @@
 .content .search .combo-box {
   width: 200px;
 }
+.content .search .textbox-default{
+  background-color: #ffffff;
+}
 
 .content .search .textbox-default .refresh {
   align-items: center;
@@ -69,6 +74,7 @@
   background-repeat: no-repeat;
   background-size: contain;
   align-items: center;
+  
 }
 .content .search .textbox-default:nth-child(4) {
   position: absolute;
@@ -76,27 +82,36 @@
   top: 0px;
 }
 .content .table {
-  height: calc(100vh - 271px);
+  height: calc(100vh - 238px);
   width: 100%;
   overflow: auto;
+  background-color: #ffffff;
 }
 
 .content .table table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   position: relative;
 }
 .content .table table thead {
+  z-index: 3;
   background-color: #ffffff;
+  border-bottom: 1px solid #bbbbbb;
 }
 .content .table table thead th {
-  background-color: #ffffff;
+  border-bottom: 1px solid #bbbbbb;
+  z-index: 3;
+  background: #ffffff;
   padding-left: 10px;
   text-align: left;
   height: 48px;
   position: sticky;
   top: 0;
   left: 0;
+}
+.content .table table thead th:nth-child(1) {
+  min-width: 40px;
 }
 .content .table table thead th:nth-child(5) {
   padding-right: 8px;
@@ -112,11 +127,14 @@
 }
 .content .table table tr {
   cursor: pointer;
+  
+}
+.content .table table tr td{
   border-bottom: 1px solid #bbbbbb;
 }
 
-.content .table table tbody tr:nth-child(odd) {
-  background-color: #e9ebee;
+.content .table table tbody tr {
+  background-color: #ffffff;
 }
 .content .table table tbody tr:hover {
   background-color: #e5e5e5;
@@ -127,6 +145,9 @@
   text-align: left;
 }
 .content .table table tbody tr td:nth-child(5) {
+  min-width: 40px;
+}
+.content .table table tbody tr td:nth-child(5) {
   padding-right: 8px;
   text-align: center;
 }
@@ -135,7 +156,8 @@
   text-align: end;
 }
 .content .footer {
-  background-color: #e5e5e5;
+  position: absolute;
+  background-color: #E9EBEE;
   bottom: 0;
   right: 0;
   padding: 0 16px;
@@ -154,9 +176,9 @@
 }
 
 .content .footer .page .first-page {
-  margin: 12px;
-  width: 32px;
-  height: 32px;
+  margin: 8px;
+  width: 40px;
+  height: 40px;
   background-position: center;
   background-image: url(../../icon/btn-firstpage.svg);
   background-size: contain;
@@ -164,9 +186,9 @@
   border-radius: 4px;
 }
 .content .footer .page .prev-page {
-  margin: 12px;
-  width: 32px;
-  height: 32px;
+  margin: 8px;
+  width: 40px;
+  height: 40px;
   background-position: center;
   background-image: url(../../icon/btn-prev-page.svg);
   background-size: contain;
@@ -175,9 +197,9 @@
 }
 .content .footer .page .page-number {
   display: flex;
-  margin: 12px;
-  width: 32px;
-  height: 32px;
+  margin: 8px;
+  width: 40px;
+  height: 40px;
   border-radius: 100%;
   color: #000000;
   border: 1px solid #bbbbbb;
@@ -185,9 +207,9 @@
   align-items: center;
 }
 .content .footer .page .next-page {
-  margin: 12px;
-  width: 32px;
-  height: 32px;
+  margin: 8px;
+  width: 40px;
+  height: 40px;
   background-position: center;
   background-image: url(../../icon/btn-next-page.svg);
   background-size: contain;
@@ -195,9 +217,9 @@
   border-radius: 4px;
 }
 .content .footer .page .last-page {
-  margin: 12px;
-  width: 32px;
-  height: 32px;
+  margin: 8px;
+  width: 40px;
+  height: 40px;
   background-position: center;
   background-image: url(../../icon/btn-lastpage.svg);
   background-size: contain;

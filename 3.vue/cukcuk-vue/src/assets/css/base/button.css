@@ -65,6 +65,8 @@
     display: none;
     position: absolute;
     width: 100%;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 0 0 4px 4px;
 }
 .cb-box-active .option-active{
     display: inline-block;
@@ -76,6 +78,7 @@
     transform: rotate(180deg);
 }
 .option .value{
+    border-radius: 4px;
     position: relative;
     display: flex;
     height: 40px;

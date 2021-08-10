@@ -35,37 +35,6 @@
                         <div class="value">option 2</div>
                     </div>
                 </div>
-                <!-- <div class="combo-box" id="department" >
-                    <div class="select-button">
-                        <div class="title">Tất cả phòng ban</div>
-                        <div class="icon-button">
-                            <i class="fas fa-solid fa-chevron-down"></i>
-                        </div>
-                    </div>
-                    <div class="option">
-                        <div class="value"  v-for="department in departments" 
-                                            :key="department.departmentId" 
-                                            :id = department.departmentId >
-                                                {{department.DepartmentName}}
-                        </div>
-                    </div>
-                </div> -->
-                
-                <!-- <div class="combo-box" id="position">
-                    <div class="select-button">
-                        <div class="title">Tất cả vị trí</div>
-                        <div class="icon-button">
-                            <i class="fas fa-solid fa-chevron-down"></i>
-                        </div>
-                    </div>
-                    <div class="option">
-                        <div class="value"  v-for="position in positions" 
-                                            :key="position.positionId" 
-                                            :id = position.positionId >
-                                                {{position.PositionName}}
-                        </div>
-                    </div>
-                </div> -->
                 <BaseDropdown
                     id="dropdown__department"
                     title="Tất cả phòng ban"
@@ -84,7 +53,10 @@
             <div class="table">
                 <table id="detailEmployee">
                     <thead>
-                        <th></th>
+                        <th class="delete-box">
+                                <input type="checkbox" ref="deleteBox">
+                                <span class="checkmark"></span>
+                        </th>
                         <th>Mã nhân viên</th>
                         <th>Họ và tên</th>
                         <th>Giới tính</th>
@@ -96,14 +68,17 @@
                         <th>Mức lương cơ bản</th>
                         <th>Tình trạng công việc</th> 
                     </thead>
-                    <tbody>
+                    <tbody ref="body">
                         
                         <tr v-for="(employee, index) in employees" 
                             :key="employee.EmployeeId" 
                             ref="tableRow"
                             @dblclick="rowDbClick(employee.EmployeeId)" 
                             @click="rowClick(index)">
-                            <td><input type="checkbox" :value="employee['EmployeeId']"  ref="deleteBox"></td>
+                            <td class="delete-box">
+                                <input type="checkbox" :value="employee['EmployeeId']"  ref="deleteBox">
+                                <span class="checkmark"></span>
+                            </td>
                             <td>{{employee.EmployeeCode}}</td>
                             <td>{{employee.FullName}}</td>
                             <td>{{employee.GenderName}}</td>
@@ -139,7 +114,21 @@
                         :newCode="newCode" 
                         :typeSubmitForm="typeSubmitForm"
                         :employeeId="employeeId" 
-                        @btnAdd="btnAdd"/>
+                        @showForm="showForm"
+                        @loadData="loadData"
+                        @showToast="showToast"
+                        @showPopup="showPopup"/>
+        <popup  :class="{'showPopup':isShowPopup}" 
+                :isShowPopup="isShowPopup" 
+                :titlePopup="titlePopup"
+                :typePopup="typePopup"
+                :contentPopup="contentPopup"
+                @showPopup="showPopup" 
+                @showForm="showForm" />
+        <toast  :class="{'showToast':isShowToast}"
+                :contentToast="contentToast"
+                :typeToast="typeToast"
+                :isShowToast="isShowToast"/>
     </div>
 </template>
 <script>
@@ -147,11 +136,13 @@ import axios from "axios";
 import employeeDetail from "./EmployeeDetail.vue"
 import BaseDropdown from "../../components/base/BaseDropDown.vue"
 import Format from "../../utils/Format.js"
+import toast from "../../components/base/BaseToast.vue"
+import popup from "../../components/base/BasePopup.vue"
 import EmployeesAPI from "@/api/components/EmployeesAPI";
 export default {
     name: 'employeeList',
   components:{
-      employeeDetail,BaseDropdown 
+      employeeDetail, BaseDropdown, toast, popup
   },
   mounted() {
       var self = this;
@@ -160,10 +151,12 @@ export default {
   },
   methods:{
       loadData(){
+            this.$refs['body'].empty;
             var self = this;
             //Gọi API lấy dữ liệu nhân viên
             EmployeesAPI.getAll().then(res=>{
                 self.employees = res.data;
+                // self.showToast('Load dữ liệu thành công!','success-toast');
             }).catch(res=>{
                 console.log(res);
             })
@@ -176,22 +169,25 @@ export default {
           
             axios.get('http://cukcuk.manhnv.net/v1/Employees/NewEmployeeCode').then(res=>{
                 self.newCode = res.data;
-                self.isShowForm = !self.isShowForm;
+                self.showForm();
                 self.typeSubmitForm = true;
                 
             }).catch(res=>{
                 console.log(res);
                 this.isShowForm = !this.isShowForm;
             })
-        
-        self.loadData();
                 
+      },
+      //hàm ẩn hiện form
+      showForm(){
+          this.isShowForm = !this.isShowForm;
       },
       //hiện thông tin chi tiết 1 nhân viên khi nhấn đúp vào 1 hàng
     //   dvlong(3/8/2021)
       rowDbClick(employeeId){
+          
           this.typeSubmitForm = false;
-          this.employeeId = employeeId
+          this.employeeId = employeeId;
           this.isShowForm = !this.isShowForm;
           //gọi api
          
@@ -211,6 +207,9 @@ export default {
             }
             
       },
+      popupDelete(){
+          this.showPopup('Xoá nhân viên','Bạn có chắc muốn xoá nhân viên?',)
+      },
       /* Xoá nhân viên đã chọn khi ấn nút xoá
       dvlong(2/8/2021) 
       */
@@ -222,7 +221,7 @@ export default {
                 index ++;
                 if (index == self.employeesToDelete.length){
                     self.loadData();
-                    alert("xoá thành công");
+                    self.showToast('Xoá thành công!','success-toast');
                     self.employeesToDelete=[]
                 }
                 console.log(res);
@@ -232,7 +231,25 @@ export default {
           })
           })
           
-      }
+      },
+      //Hiện toast
+      showToast(content,type){
+          this.contentToast =content;
+          this.typeToast = type;
+          var self = this;
+          self.isShowToast = true;
+            setTimeout(function(){
+                self.isShowToast = false;
+            }, 3000);
+            
+      },
+      //Hiện popup thông báo
+        showPopup(title,content,type){
+            this.isShowPopup = !this.isShowPopup ;
+            this.titlePopup = title;
+            this.contentPopup =content;
+            this.typePopup = type;
+        },
 
   },
   data(){
@@ -245,7 +262,13 @@ export default {
           newCode: '',
           isShowForm : false,
           employees:[],
-          
+          isShowToast:false,
+          typeToast:'',
+          contentToast:'',
+          isShowPopup: false,
+          typePopup:'',
+          titlePopup:'',
+          contentPopup:'',
       }
   },
   watch:{
@@ -255,6 +278,11 @@ export default {
           }
           else{
               this.isShowButtonDelete = false;
+          }
+      },
+      isShowForm:function(){
+          if(!this.isShowForm){
+              this.employeeId = '';
           }
       }
   },
@@ -280,6 +308,9 @@ export default {
         display: block;
     }
     .content .nav .showButton{
+        display: flex;
+    }
+    .showToast{
         display: flex;
     }
 </style>
