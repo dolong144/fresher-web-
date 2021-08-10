@@ -165,7 +165,7 @@ namespace MISA.CukCuk.API.Controllers
             var response = StatusCode(200, rowEffects);
             return Ok(response);
         }
-        [HttpDelete]
+        [HttpDelete("{customerId}")]
         public IActionResult DeleteById(Guid customerId)
         {
             //truy cập vào database 
@@ -179,9 +179,9 @@ namespace MISA.CukCuk.API.Controllers
             IDbConnection dbConnection = new MySqlConnection(connectionString);
 
             //Xoá dữu liệu
-            var sqlCommand = $"DELETE FROM Customer WHERE CustomerId = @CustomerIdParam";
+            var sqlCommand = $"DELETE FROM Customer WHERE CustomerId = @CustomerId";
             DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@CustomerIdParam", customerId);
+            parameters.Add("@CustomerId", customerId);
             var rowEffects = dbConnection.Execute(sqlCommand, param: parameters);
 
             //Trả về cho client
