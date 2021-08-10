@@ -1,5 +1,5 @@
 <template>
-    <div class="combo-box" id="department"  @click="clickDropDown()" :value="value">
+    <div class="combo-box" id="department"  @click="clickDropDown()" :value="value" :class="{'cb-box-active':isShowOption}">
         <div class="select-button">
             <div class="title">{{dropdownTitle}}</div>
             <div class="icon-button">
@@ -83,6 +83,22 @@ export default {
                 },
         ]
         }
+        else if(this.type == 'restaurant'){
+            this.options = [
+                {
+                    restaurantId:'0',
+                    restaurantName:'Nhà hàng Biển Đông'
+                },
+                {
+                    restaurantId:'1',
+                    restaurantName:'Nhà hàng CukCuk'
+                },
+                {
+                    restaurantId:'2',
+                    restaurantName:'Nhà hàng Hoa mai'
+                },
+        ]
+        }
         else {
             axios.get(apiUrl).then(res => {
             this.options = res.data;
@@ -142,4 +158,5 @@ export default {
             display: block;
             z-index: 5;
         }
+
 </style>

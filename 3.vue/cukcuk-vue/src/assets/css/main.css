@@ -42,16 +42,28 @@ body {
     src: url('../font/GoogleSans-Thin.otf') format('opentype');
 }
 ::-webkit-scrollbar{
-    width: 10px;
-    height: 10px;
+    width: 5px;
+    height: 5px;
+    background-color: lightgray;
+    border-radius: 2.5px;
 }
 ::-webkit-scrollbar-track{
     border-radius: 4px;
     background-color: #e9ebee;
 }
 ::-webkit-scrollbar-thumb{
-    border-radius: 4px;;
+    border-radius: 2.5px;;
     background-color: #bbbbbb;
+    min-height: 40px;
+}
+table::-webkit-scrollbar-thumb{
+    border-radius: 2.5px;;
+    background-color: #bbbbbb;
+    padding-bottom: 40px;
+    min-height: 40px;
+}
+table::-webkit-scrollbar-track-piece{
+    margin-top: 48px;
 }
 
 .delete-box{

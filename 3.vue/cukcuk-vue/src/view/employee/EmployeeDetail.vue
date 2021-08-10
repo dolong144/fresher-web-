@@ -141,7 +141,7 @@
             </div>
             <div class="footer-form">
                 <div class="cancle button" @click="showPopupInForm">Huỷ</div>
-                <div class="save button" @click="submitForm">
+                <div class="save button-icon" @click="submitForm">
                     <div class="icon-button">
                         <i class="fas fal fa-save"></i>
                     </div>

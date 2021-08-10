@@ -30,16 +30,8 @@
   /* position: absolute;
   right: 0; */
 }
-.content .nav .button .icon-button {
-  margin: 0 8px 0 0px;
+.content .nav .button-icon .icon-button {
   background-image: url(../../icon/add.png);
-  width: 16px;
-  height: 16px;
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-.content .nav .button .text {
-  padding-right: 16px;
 }
 .content .nav .delete-button {
   display: none;
@@ -100,6 +92,7 @@
   border-bottom: 1px solid #bbbbbb;
 }
 .content .table table thead th {
+  white-space: nowrap;
   border-bottom: 1px solid #bbbbbb;
   z-index: 3;
   background: #ffffff;

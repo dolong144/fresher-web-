@@ -6,7 +6,7 @@
                     <b>Danh sách nhân viên</b>
                 </div>
                 <div class="top-button">
-                    <div class="button delete-button" :class="{'showButton':isShowButtonDelete}" @click="deleteEmployee()">
+                    <div class="button-icon delete-button" :class="{'showButton':isShowButtonDelete}" @click="deleteEmployee()">
                         <div class="icon-delete">
                             <i class="fas fa-trash-alt"></i>
                         </div>
@@ -14,7 +14,7 @@
                             <p>Xoá nhân viên</p>
                         </div>
                     </div>
-                    <div class="button add-button" @click="btnAdd()">
+                    <div class="button-icon add-button" @click="btnAdd()">
                         <div class="icon-button"></div>
                         <div class="text">
                             <p>Thêm nhân viên</p>

@@ -75,9 +75,11 @@
 .form .body .modal .title-modal{
   font-family: GoogleSans-Bold;
   font-size: 15px;
+  margin-top: 16px;
 }
 .form .body .modal .underline{
   margin-top: 4px;
+  margin-bottom: 16px;
   width: 100px;
   height: 4px;
   background-color: #019160;
@@ -94,13 +96,13 @@
   display: block;
 }
 .form .body .modal .row .title-input{
-  margin: 16px 0 4px 0;
+  margin: 0px 0 4px 0;
 }
 .form .body .modal .row .title-input .binding{
   color: red;
 }
 .form .body .modal .row .input-box{
-  margin: 0;
+  margin-bottom: 16px;
   height: 40px;
   width: 100%;
   padding: 0 16px 0 16px;
@@ -136,14 +138,12 @@
   align-items: center;
 
 }
-.form .footer-form .button{
+.form .footer-form .button-icon{
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: baseline;
 }
 .form .footer-form .button .icon-button{
-  width: 32px;
-  height: 40px;
+  
   color: #ffffff;
 }
 .form .footer-form .cancle{
