@@ -15,7 +15,7 @@
             </div>
             <div class="footer-popup">
                 <div class="button button-cancle" @click="hidePopup">Huỷ</div>
-                <div class="button button-yes" @click="hidePopupAndForm">Đóng</div>
+                <div class="button button-yes" @click="confirmPopup">Đóng</div>
             </div>
         </div>
     </div>
@@ -44,13 +44,14 @@ export default {
     methods:{
         // Hiện popup thông báo
         // dvlong (28/7/2021)
-        
-        hidePopupAndForm(){
-            this.$emit('showPopup');
-            this.$emit('showForm');
+
+        // xác nhận đồng ý popup
+        confirmPopup(){
+            this.$emit('confirmPopup');
         },
+        // ẩn popup đi
         hidePopup(){
-            this.$emit('showPopup');
+            this.$emit('hidePopup');
         }
     }
 }

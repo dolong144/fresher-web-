@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\source\\repos\\MISA.CukCuk\\MISA.CukCuk.API\\MISA.CukCuk.API.csproj": {}
+    "D:\\New folder\\thực tập\\git\\fresher-web-\\4.api\\MISA.CukCuk\\MISA.CukCuk.API\\MISA.CukCuk.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\source\\repos\\MISA.CukCuk\\MISA.CukCuk.API\\MISA.CukCuk.API.csproj": {
+    "D:\\New folder\\thực tập\\git\\fresher-web-\\4.api\\MISA.CukCuk\\MISA.CukCuk.API\\MISA.CukCuk.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\MISA.CukCuk\\MISA.CukCuk.API\\MISA.CukCuk.API.csproj",
+        "projectUniqueName": "D:\\New folder\\thực tập\\git\\fresher-web-\\4.api\\MISA.CukCuk\\MISA.CukCuk.API\\MISA.CukCuk.API.csproj",
         "projectName": "MISA.CukCuk.API",
-        "projectPath": "C:\\Users\\Admin\\source\\repos\\MISA.CukCuk\\MISA.CukCuk.API\\MISA.CukCuk.API.csproj",
+        "projectPath": "D:\\New folder\\thực tập\\git\\fresher-web-\\4.api\\MISA.CukCuk\\MISA.CukCuk.API\\MISA.CukCuk.API.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\source\\repos\\MISA.CukCuk\\MISA.CukCuk.API\\obj\\",
+        "outputPath": "D:\\New folder\\thực tập\\git\\fresher-web-\\4.api\\MISA.CukCuk\\MISA.CukCuk.API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -34,8 +34,9 @@ export default {
             required: true,
         },
         value:{
-            type: String,
-        }
+            
+        },
+        
 
     },
     created() {
@@ -54,15 +55,15 @@ export default {
         if(this.type == 'Gender'){
             this.options = [
                 {
-                    GenderId:'0',
+                    GenderId:0,
                     GenderName:'Nữ'
                 },
                 {
-                    GenderId:'1',
+                    GenderId:1,
                     GenderName:'Nam'
                 },
                 {
-                    GenderId:'2',
+                    GenderId:2,
                     GenderName:'Không xác định'
                 },
         ]
@@ -70,15 +71,15 @@ export default {
         else if(this.type == 'WorkStatus'){
             this.options = [
                 {
-                    WorkStatusId:'0',
+                    WorkStatusId:0,
                     WorkStatusName:'Đã nghỉ việc'
                 },
                 {
-                    WorkStatusId:'1',
+                    WorkStatusId:1,
                     WorkStatusName:'Đang làm việc'
                 },
                 {
-                    WorkStatusId:'2',
+                    WorkStatusId:2,
                     WorkStatusName:'Đang thử việc'
                 },
         ]
@@ -117,6 +118,12 @@ export default {
             indexOption:null,
             dropdownTitle:this.title,
             selectValue:this.value,
+            defaultTitle:{
+                Department: 'Phòng ban',
+                Position: 'Vị trí',
+                Gender:'Giới tính',
+                WorkStatus:'Tình trạng công việc',
+            },
         }
     },
     
@@ -145,6 +152,9 @@ export default {
                     
                 });
             }
+            // else{
+            //     this.dropdownTitle =this.defaultTitle[`${this.type}`];
+            // }
         }
     }
     

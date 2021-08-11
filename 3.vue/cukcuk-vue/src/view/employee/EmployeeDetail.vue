@@ -5,7 +5,7 @@
                 <div class="title">
                     <b>THÔNG TIN NHÂN VIÊN</b>
                 </div>
-                <div class="close-button" @click="showPopupInForm"></div>
+                <div class="close-button" @click="showPopup('Bỏ thông tin đang nhập','Bạn có chắc muốn bỏ thông tin đang nhập?','confirm-popup')"></div>
             </div>
             <div class="body">
                 <div class="image">
@@ -40,7 +40,7 @@
                             <div class="input-field">
                                 <div class="title-input" >Giới tính</div>
                                 <BaseDropdown ref="Gender"
-                                    :value="employee.GenderCode"
+                                    :value="employee.Gender"
                                     id="dropdown__gender"
                                     title="Giới tính"
                                     type="Gender"
@@ -127,7 +127,7 @@
                             <div class="input-field">
                                 <div class="title-input">Tình trạng công việc</div>
                                 <BaseDropdown ref="WorkStatus"
-                                    :value="employee.GenderCode"
+                                    :value="employee.WorkStatus"
                                     id="dropdown__work__status"
                                     title="Tình trạng công việc"
                                     type="WorkStatus"
@@ -140,7 +140,7 @@
                 </div>
             </div>
             <div class="footer-form">
-                <div class="cancle button" @click="showPopupInForm">Huỷ</div>
+                <div class="cancle button" @click="showPopup('Bỏ thông tin đang nhập','Bạn có chắc muốn bỏ thông tin đang nhập?','confirm-popup')">Huỷ</div>
                 <div class="save button-icon" @click="submitForm">
                     <div class="icon-button">
                         <i class="fas fal fa-save"></i>
@@ -150,7 +150,13 @@
             </div>
             
         </div>
-        
+        <popup  :class="{'showPopup':isShowPopup}" 
+                :isShowPopup="isShowPopup" 
+                :titlePopup="titlePopup"
+                :typePopup="typePopup"
+                :contentPopup="contentPopup"
+                @hidePopup="showPopup" 
+                @confirmPopup="confirmPopup"/>
         
     </div>
 </template>
@@ -160,9 +166,10 @@
 import Format from "../../utils/Format.js"
 import EmployeesAPI from "@/api/components/EmployeesAPI";
 import Tooltip from "../../components/base/BaseTooltip.vue"
+import popup from "../../components/base/BasePopup.vue"
 export default {
     components:{
-        Tooltip
+        Tooltip,popup
     },
     created(){
         
@@ -171,7 +178,7 @@ export default {
     props:{
         isShowForm:{
             type: Boolean,
-            // default: true,
+            default: false,
             required: true,
         },
         employeeId:{
@@ -196,6 +203,10 @@ export default {
                 PositionId:'',
                 Salary:'',
             },
+            isShowPopup:false,
+            titlePopup:'',
+            typePopup:'',
+            contentPopup:'',
             
             
         }
@@ -204,6 +215,9 @@ export default {
         
     },
     methods:{
+        // showPopup(){
+        //     this.isShowPopup = !this.isShowPopup;
+        // },
         //đặt lại employeeId theo option đã chọn
         setSelection(ref,id){
             this.$refs[`${ref}`].value =id;
@@ -211,13 +225,20 @@ export default {
         },
         //Đóng form nhập nhân viên
         closeForm(){
-            this.employee = {};
+            this.$emit('resetNewCode')
             this.$emit('showForm');
-            
+            this.resetForm();
         },
-        //Hiện thoong báo xác nhận xác nhận
-        showPopupInForm(){
-            this.$emit('showPopup','Bỏ thông tin đang nhập','Bạn có chắc muốn bỏ thông tin đang nhập?','confirm-popup');
+        //Hiện popup xác nhận
+        showPopup(title,content,type){
+            this.isShowPopup = !this.isShowPopup ;
+            this.titlePopup = title;
+            this.contentPopup =content;
+            this.typePopup = type;
+        },
+        confirmPopup(){
+            this.showPopup();
+            this.closeForm();
         },
         
         //Ấn lưu thông tin nhân viên
@@ -251,6 +272,16 @@ export default {
             }
             
         },
+        //reset form
+        resetForm(){
+            this.employee = {
+                EmployeeCode: this.newCode,
+                DepartmentId:'',
+                PositionId:'',
+                Salary:'',
+            };
+
+        }
         
         
     },
@@ -260,9 +291,11 @@ export default {
             /* Lấy dữ liệu nhân viên theo mã và hiển thị lên form
             dvlong(2/8/2021)
             */
-            EmployeesAPI.getById(self.employeeId).then(res=>{
-                
-                self.employee = res.data;
+            if (self.employeeId != ''){
+                EmployeesAPI.getById(self.employeeId).then(res=>{
+                self.employee = JSON.parse(JSON.stringify(res.data));
+
+                // format các dữ liệu cần thay đổi
                 self.employee.DateOfBirth = Format.dobFormatToForm(self.employee.DateOfBirth)
                 self.employee.IdentityDate = Format.dobFormatToForm(self.employee.IdentityDate)
                 self.employee.JoinDate = Format.dobFormatToForm(self.employee.JoinDate)
@@ -272,16 +305,20 @@ export default {
                 console.log(res);
                 
             })
+            }
         },
         /* gán EmployeeCode bằng mã code mới
         dvlong(31/7/2021)
          */
         isShowForm: function(){
-            if(this.typeSubmitForm){
+            if(this.typeSubmitForm && this.isShowForm){
+                
                 this.employee.EmployeeCode = this.newCode;
             }
             
-        }
+        },
+        
+
     }
 }
 </script>

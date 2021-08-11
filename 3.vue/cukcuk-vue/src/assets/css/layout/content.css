@@ -57,7 +57,9 @@
 .content .search .textbox-default{
   background-color: #ffffff;
 }
-
+.content .search .textbox-default:hover{
+  background-color: #e5e5e5;
+}
 .content .search .textbox-default .refresh {
   align-items: center;
   width: 24px;

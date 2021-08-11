@@ -6,7 +6,7 @@
                     <b>Danh sách nhân viên</b>
                 </div>
                 <div class="top-button">
-                    <div class="button-icon delete-button" :class="{'showButton':isShowButtonDelete}" @click="deleteEmployee()">
+                    <div class="button-icon delete-button" :class="{'showButton':isShowButtonDelete}" @click="showPopup('Xoá nhân viên!','Bạn có chắc muốn xoá các bản ghi đã chọn?','alert-popup')">
                         <div class="icon-delete">
                             <i class="fas fa-trash-alt"></i>
                         </div>
@@ -46,7 +46,7 @@
                     type="Position"
                 />
 
-                <div class="textbox-default">
+                <div class="textbox-default" @click="loadData()">
                     <div class="refresh"></div>
                 </div>
             </div>
@@ -117,14 +117,15 @@
                         @showForm="showForm"
                         @loadData="loadData"
                         @showToast="showToast"
-                        @showPopup="showPopup"/>
+                        @showPopup="showPopup"
+                        @resetNewCode="resetNewCode"/>
         <popup  :class="{'showPopup':isShowPopup}" 
                 :isShowPopup="isShowPopup" 
                 :titlePopup="titlePopup"
                 :typePopup="typePopup"
                 :contentPopup="contentPopup"
-                @showPopup="showPopup" 
-                @showForm="showForm" />
+                @hidePopup="showPopup" 
+                @confirmPopup="confirmPopup" />
         <toast  :class="{'showToast':isShowToast}"
                 :contentToast="contentToast"
                 :typeToast="typeToast"
@@ -151,8 +152,9 @@ export default {
   },
   methods:{
       loadData(){
-            this.$refs['body'].empty;
+            
             var self = this;
+            self.employees = {};
             //Gọi API lấy dữ liệu nhân viên
             EmployeesAPI.getAll().then(res=>{
                 self.employees = res.data;
@@ -160,7 +162,10 @@ export default {
             }).catch(res=>{
                 console.log(res);
             })
+            
+            
       },
+      
     //   hiện form nhập thông tin nhân viên khi ấn vào btn thêm nhân viên
     //   dvl(29/7/2021)
       btnAdd(){
@@ -177,6 +182,10 @@ export default {
                 this.isShowForm = !this.isShowForm;
             })
                 
+      },
+      //reset new code
+      resetNewCode(){
+          this.newCode = '';
       },
       //hàm ẩn hiện form
       showForm(){
@@ -197,6 +206,9 @@ export default {
        */
       rowClick(index){
             this.$refs.deleteBox[index].defaultChecked = !this.$refs.deleteBox[index].defaultChecked;
+
+            this.$refs.tableRow[index].classList.toggle('selected_row');
+
             if (this.$refs.deleteBox[index].defaultChecked) {
                 this.employeesToDelete.push(this.$refs.deleteBox[index].defaultValue);
                 
@@ -204,6 +216,7 @@ export default {
                 if (this.employeesToDelete.indexOf(this.$refs.deleteBox[index].defaultValue) > -1) {
                 this.employeesToDelete.splice(this.employeesToDelete.indexOf(this.$refs.deleteBox[index].defaultValue), 1);
                 }
+                
             }
             
       },
@@ -222,7 +235,8 @@ export default {
                 if (index == self.employeesToDelete.length){
                     self.loadData();
                     self.showToast('Xoá thành công!','success-toast');
-                    self.employeesToDelete=[]
+                    self.employeesToDelete=[];
+                    
                 }
                 console.log(res);
           }).catch(res =>{
@@ -250,6 +264,12 @@ export default {
             this.contentPopup =content;
             this.typePopup = type;
         },
+        
+        //xác nhận popup thông báo
+        confirmPopup(){
+            this.showPopup();
+            this.deleteEmployee();
+        }
 
   },
   data(){
@@ -312,5 +332,8 @@ export default {
     }
     .showToast{
         display: flex;
+    }
+    .selected_row{
+        background-color: #ebf9f4 !important;
     }
 </style>

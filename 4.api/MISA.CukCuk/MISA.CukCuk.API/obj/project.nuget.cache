@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KGqlKPRe4J/XyUrwMyTr7rClMJt5nmxCU5ltPGl10aBpDThJeQayvSBCqSlSvbX6GxWzYVJ3eJA78tQEpfVmEg==",
+  "dgSpecHash": "oaiukIrpBjxTNvzgnwxnQStvc4EZ6Sia6uzOL/pEowLqjI+NKVA4emW9P3hoz6JIaiy1tCDyIBrqMiNdTDbbjA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Admin\\source\\repos\\MISA.CukCuk\\MISA.CukCuk.API\\MISA.CukCuk.API.csproj",
+  "projectFilePath": "D:\\New folder\\thực tập\\git\\fresher-web-\\4.api\\MISA.CukCuk\\MISA.CukCuk.API\\MISA.CukCuk.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\dapper\\2.0.90\\dapper.2.0.90.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
