@@ -1,6 +1,8 @@
 <template>
     <div class="container">
-        <clip-loader :loading="loading" :color="color" :size="size"></clip-loader>
+        <div class="spinner">
+            <clip-loader ></clip-loader>
+        </div>
         
     </div>
 </template>
@@ -13,12 +15,24 @@ export default {
     
 }
 </script>
-<style lang="">
+<style lang="css" scope>
     .container{
+        z-index: 30;
         position: fixed;
+        top:0;
+        left: 0;
         width: 100vw;
         height: 100vh;
-        opacity: 0.2;
+        background-color:#000000;
+        opacity: 0.25;
         align-items: center;
+        color: #019160;
+    }
+    .spinner{
+        position: absolute;
+        bottom: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        
     }
 </style>

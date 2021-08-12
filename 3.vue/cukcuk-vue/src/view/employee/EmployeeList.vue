@@ -90,6 +90,8 @@
                 :contentToast="contentToast"
                 :typeToast="typeToast"
                 :isShowToast="isShowToast"/>
+        <base-loading v-show="isLoading"/>
+
     </div>
 </template>
 <script>
@@ -99,11 +101,13 @@ import BaseDropdown from "../../components/base/BaseDropDown.vue"
 import toast from "../../components/base/BaseToast.vue"
 import BaseTable from "../../components/base/BaseTable.vue"
 import popup from "../../components/base/BasePopup.vue"
+import BaseLoading from '../../components/base/BaseLoading.vue'
+
 import EmployeesAPI from "@/api/components/EmployeesAPI";
 export default {
     name: 'employeeList',
   components:{
-      employeeDetail, BaseDropdown, toast, popup,BaseTable
+      employeeDetail, BaseDropdown, toast, popup,BaseTable,BaseLoading
   },
   mounted() {
       var self = this;
@@ -112,18 +116,19 @@ export default {
   },
   methods:{
       loadData(){
-            
             var self = this;
+            self.isLoading = true;
             self.employees = {};
+            
             //Gọi API lấy dữ liệu nhân viên
             EmployeesAPI.getAll().then(res=>{
                 self.employees = res.data;
+                self.isLoading = false;
+
                 // self.showToast('Load dữ liệu thành công!','success-toast');
             }).catch(res=>{
                 console.log(res);
             })
-            
-            
       },
       
     //   hiện form nhập thông tin nhân viên khi ấn vào btn thêm nhân viên
@@ -241,6 +246,7 @@ export default {
           titlePopup:'',
           contentPopup:'',
           employeesToDelete:[],
+          isLoading:false,
       }
   },
   watch:{
