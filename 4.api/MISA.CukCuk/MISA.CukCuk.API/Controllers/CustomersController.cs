@@ -29,7 +29,7 @@ namespace MISA.CukCuk.API.Controllers
                 //Khai báo thông tin database
                 var connectionString = "Host = 47.241.69.179;" +
                     "Database = MISA.CukCuk_Demo_NVMANH;" +
-                    "User Id = deva;" +
+                    "User Id = dev;" +
                     "Password = 12345678";
 
                 //Khởi tạo đới tượng kết nối với database
@@ -95,8 +95,8 @@ namespace MISA.CukCuk.API.Controllers
                 //Trả về cho client
                 if(customer == null )
                 {
-                    var response = StatusCode(204, customer);
-                    return Ok(response);
+                    return StatusCode(204);
+                   
                 }
                 else
                 {
