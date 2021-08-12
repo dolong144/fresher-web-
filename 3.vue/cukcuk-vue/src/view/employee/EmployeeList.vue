@@ -45,55 +45,15 @@
                     title="Tất cả vị trí"
                     type="Position"
                 />
-
                 <div class="textbox-default" @click="loadData()">
                     <div class="refresh"></div>
                 </div>
             </div>
-            <div class="table">
-                <table id="detailEmployee">
-                    <thead>
-                        <th class="delete-box">
-                                <input type="checkbox" ref="deleteBox">
-                                <span class="checkmark"></span>
-                        </th>
-                        <th>Mã nhân viên</th>
-                        <th>Họ và tên</th>
-                        <th>Giới tính</th>
-                        <th>Ngày sinh</th>
-                        <th>Điện thoại</th>
-                        <th>Email</th>
-                        <th>Chức vụ</th>
-                        <th>Phòng ban</th>
-                        <th>Mức lương cơ bản</th>
-                        <th>Tình trạng công việc</th> 
-                    </thead>
-                    <tbody ref="body">
-                        
-                        <tr v-for="(employee, index) in employees" 
-                            :key="employee.EmployeeId" 
-                            ref="tableRow"
-                            @dblclick="rowDbClick(employee.EmployeeId)" 
-                            @click="rowClick(index)">
-                            <td class="delete-box">
-                                <input type="checkbox" :value="employee['EmployeeId']"  ref="deleteBox">
-                                <span class="checkmark"></span>
-                            </td>
-                            <td>{{employee.EmployeeCode}}</td>
-                            <td>{{employee.FullName}}</td>
-                            <td>{{employee.GenderName}}</td>
-                            <td>{{employee.DateOfBirth | formatDate}}</td>
-                            <td>{{employee.PhoneNumber}}</td>
-                            <td>{{employee.Email}}</td>
-                            <td>{{employee.PositionName}}</td>
-                            <td>{{employee.DepartmentName}}</td>
-                            <td>{{employee.Salary | formatMoney}}</td>
-                            <td>{{employee.WorkStatus }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            
+            <BaseTable :employees="employees"
+                    :employeesToDelete="employeesToDelete"
+                    @addEmployeeDelete="addEmployeeDelete"
+                    @deleteEmployeeDelete="deleteEmployeeDelete"
+                    @rowDbClick="rowDbClick"/>
             <div class="footer">
                 <div class="number">Hiển thị 1-10/1000 nhân viên</div>
                 <div class="page">
@@ -136,14 +96,14 @@
 import axios from "axios";
 import employeeDetail from "./EmployeeDetail.vue"
 import BaseDropdown from "../../components/base/BaseDropDown.vue"
-import Format from "../../utils/Format.js"
 import toast from "../../components/base/BaseToast.vue"
+import BaseTable from "../../components/base/BaseTable.vue"
 import popup from "../../components/base/BasePopup.vue"
 import EmployeesAPI from "@/api/components/EmployeesAPI";
 export default {
     name: 'employeeList',
   components:{
-      employeeDetail, BaseDropdown, toast, popup
+      employeeDetail, BaseDropdown, toast, popup,BaseTable
   },
   mounted() {
       var self = this;
@@ -204,21 +164,13 @@ export default {
       /* check-uncheck khi nhấn vào 1 hàng
       dvlong(2/8/2021)
        */
-      rowClick(index){
-            this.$refs.deleteBox[index].defaultChecked = !this.$refs.deleteBox[index].defaultChecked;
+      addEmployeeDelete(id){
+        this.employeesToDelete.push(id);
 
-            this.$refs.tableRow[index].classList.toggle('selected_row');
+      },
+      deleteEmployeeDelete(id){
+        this.employeesToDelete.splice(this.employeesToDelete.indexOf(id), 1);
 
-            if (this.$refs.deleteBox[index].defaultChecked) {
-                this.employeesToDelete.push(this.$refs.deleteBox[index].defaultValue);
-                
-            } else {
-                if (this.employeesToDelete.indexOf(this.$refs.deleteBox[index].defaultValue) > -1) {
-                this.employeesToDelete.splice(this.employeesToDelete.indexOf(this.$refs.deleteBox[index].defaultValue), 1);
-                }
-                
-            }
-            
       },
       popupDelete(){
           this.showPopup('Xoá nhân viên','Bạn có chắc muốn xoá nhân viên?',)
@@ -276,7 +228,6 @@ export default {
       
       return{
           isShowButtonDelete:false,
-          employeesToDelete:[],
           typeSubmitForm:true,
           employeeId :'',
           newCode: '',
@@ -289,6 +240,7 @@ export default {
           typePopup:'',
           titlePopup:'',
           contentPopup:'',
+          employeesToDelete:[],
       }
   },
   watch:{
@@ -306,15 +258,15 @@ export default {
           }
       }
   },
-  filters:{
-      formatDate: function(date){
-        return Format.dobFormat(date);
-      },
-        formatMoney: function(money){
-            return Format.currencyFormatter(money);
-        }
-  }
-}
+//   filters:{
+//       formatDate: function(date){
+//         return Format.dobFormat(date);
+//       },
+//         formatMoney: function(money){
+//             return Format.currencyFormatter(money);
+//         }
+//   }
+ }
 </script>
 <style scoped>
     @import url('../../assets/css/layout/content.css');

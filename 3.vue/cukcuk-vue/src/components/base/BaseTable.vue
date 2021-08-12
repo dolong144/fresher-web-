@@ -47,13 +47,18 @@ import Format from "../../utils/Format.js"
 export default {
     props:{
         employees:{
-            type:Array,
+            type: Array,
             required:true,
+        },
+        employeesToDelete:{
+            type:Array,
+            
         }
+
     },
     data(){
         return{
-            employeesToDelete:[],
+            
         }
 
     },
@@ -67,11 +72,10 @@ export default {
             this.$refs.tableRow[index].classList.toggle('selected_row');
 
             if (this.$refs.deleteBox[index].defaultChecked) {
-                this.employeesToDelete.push(this.$refs.deleteBox[index].defaultValue);
-                
+                this.$emit('addEmployeeDelete',this.$refs.deleteBox[index].defaultValue)
             } else {
                 if (this.employeesToDelete.indexOf(this.$refs.deleteBox[index].defaultValue) > -1) {
-                this.employeesToDelete.splice(this.employeesToDelete.indexOf(this.$refs.deleteBox[index].defaultValue), 1);
+                    this.$emit('deleteEmployeeDelete',this.$refs.deleteBox[index].defaultValue)
                 }
                 
             }
@@ -80,11 +84,7 @@ export default {
         //hiện thông tin chi tiết 1 nhân viên khi nhấn đúp vào 1 hàng
         //   dvlong(3/8/2021)
       rowDbClick(employeeId){
-          
-          this.typeSubmitForm = false;
-          this.employeeId = employeeId;
-          this.isShowForm = !this.isShowForm;
-          //gọi api
+          this.$emit('rowDbClick',employeeId);
          
       },
     },

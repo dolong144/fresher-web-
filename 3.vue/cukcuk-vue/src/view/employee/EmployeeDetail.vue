@@ -25,7 +25,7 @@
                                 <input type="text" class="input-box" id="txtEmployeeCode" v-model="employee.EmployeeCode" autofocus
                                     placeholder="MF953">
                             </div>
-                            <div class="input-field input-binding" id="employeeName" >
+                            <div class="input-field input-binding" name="employeeName" >
                                 <Tooltip></Tooltip>
                                 <div class="title-input" >Họ và tên(<span class="binding">*</span>)</div>
                                 <input type="text" class="input-box" id="txtFullName" v-model="employee.FullName" 
@@ -243,6 +243,9 @@ export default {
         
         //Ấn lưu thông tin nhân viên
         submitForm(){
+            //validate dữ liệu
+            // this.$refs('employeeName').children[0]
+
             let self = this;
             //thêm mới nhân viên
             if(self.typeSubmitForm){
