@@ -1,12 +1,16 @@
 ﻿using Dapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MISA.Core.Entities;
+using MISA.Core.Interfaces.Services;
+using MISA.Core.Services;
 using MISA.CukCuk.API.Model;
 using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace MISA.CukCuk.API.Controllers
@@ -15,6 +19,13 @@ namespace MISA.CukCuk.API.Controllers
     [ApiController]
     public class CustomersController : ControllerBase
     {
+        ICustomerService _customerService;
+        ServiceResult _serviceResult;
+        public CustomersController(ICustomerService customerservice)
+        {
+            _customerService = customerservice;
+            _serviceResult = new ServiceResult();
+        }
         /// <summary>
         /// lấy toàn bộ dữ liệu
         /// dvlong (12/8/2021)
@@ -25,31 +36,11 @@ namespace MISA.CukCuk.API.Controllers
         {
             try
             {
-                //truy cập vào database 
-                //Khai báo thông tin database
-                var connectionString = "Host = 47.241.69.179;" +
-                    "Database = MISA.CukCuk_Demo_NVMANH;" +
-                    "User Id = dev;" +
-                    "Password = 12345678";
-
-                //Khởi tạo đới tượng kết nối với database
-                IDbConnection dbConnection = new MySqlConnection(connectionString);
-
-                //Lấy dữu liệu
-                var sqlCommand = "SELECT * FROM Customer";
-                var customers = dbConnection.Query<Customer>(sqlCommand);
+                ServiceResult serviceResult = _customerService.Get();
 
                 //Trả về cho client
-                if (customers.Count() == 0)
-                {
-                    var response = StatusCode(204, customers);
-                    return Ok(response);
-                }
-                else
-                {
-                    var response = StatusCode(200, customers);
-                    return Ok(response);
-                }
+                return serviceResult.Data is not null ? StatusCode(200, serviceResult.Data) : StatusCode(204,serviceResult.Data);
+                
             }
             catch (Exception e)
             {
@@ -60,8 +51,7 @@ namespace MISA.CukCuk.API.Controllers
                     errorCode = "ms_001",
 
                 };
-                var response = StatusCode(500, errorObject);
-                return response;
+                return  StatusCode(500, errorObject);
 
             }
         }
@@ -76,34 +66,11 @@ namespace MISA.CukCuk.API.Controllers
         {
             try
             {
-                //truy cập vào database 
-                //Khai báo thông tin database
-                var connectionString = "Host = 47.241.69.179;" +
-                    "Database = MISA.CukCuk_Demo_NVMANH;" +
-                    "User Id = dev;" +
-                    "Password = 12345678";
-
-                //Khởi tạo đới tượng kết nối với database
-                IDbConnection dbConnection = new MySqlConnection(connectionString);
-
-                //Lấy dữu liệu
-                var sqlCommand = $"SELECT * FROM Customer WHERE CustomerId = @CustomerIdParam";
-                DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("@CustomerIdParam", customerId);
-                var customer = dbConnection.QueryFirstOrDefault<Customer>(sqlCommand, param: parameters);
+                var serviceResult = _customerService.GetById(customerId);
 
                 //Trả về cho client
-                if(customer == null )
-                {
-                    return StatusCode(204);
-                   
-                }
-                else
-                {
-                    var response = StatusCode(200, customer);
-                    return Ok(response);
-                }
-                
+                return serviceResult.Data is not null ? StatusCode(200, serviceResult.Data) : StatusCode(204,serviceResult.Data);
+
             }
             catch (Exception e)
             {
@@ -114,8 +81,8 @@ namespace MISA.CukCuk.API.Controllers
                     errorCode = "ms_001",
 
                 };
-                var response = StatusCode(500, errorObject);
-                return response;
+                return StatusCode(500, errorObject);
+
             }
         }
         /// <summary>
@@ -127,146 +94,21 @@ namespace MISA.CukCuk.API.Controllers
         [HttpPost]
         public IActionResult InsertCustomer(Customer customer)
         {
-            //truy cập vào database 
-            //Khai báo thông tin database
-            var connectionString = "Host = 47.241.69.179;" +
-                "Database = MISA.CukCuk_Demo_NVMANH;" +
-                "User Id = dev;" +
-                "Password = 12345678";
-
-            //Khởi tạo đới tượng kết nối với database
-            IDbConnection dbConnection = new MySqlConnection(connectionString);
-            // khai báo dynamic param
-            var dynamicParam = new DynamicParameters();
-
-
-            //Thêm dữu liệu vào database
-            var columnsName = string.Empty;
-            var columnsParam = string.Empty;
-
-            //Đọc từng property của object:
-            var properties = customer.GetType().GetProperties();
-
-            //Duyệt qua các property
-            foreach (var prop in properties)
-            {
-                //lấy tên prop
-                var propName = prop.Name;
-
-                //lấy value của prop
-                var propvalue = prop.GetValue(customer);
-
-                // lấy kiểu dữ liệu của prop
-                var propType = prop.PropertyType;
-
-                //Thêm param tương ứng với prop
-                dynamicParam.Add($"@{propName}", propvalue);
-
-                columnsName += $"{propName},";
-                columnsParam += $"@{propName},";
-            }
-            columnsName = columnsName.Remove(columnsName.Length - 1, 1);
-            columnsParam = columnsParam.Remove(columnsParam.Length - 1, 1);
-            // kiểm tra dữ liệu
-
-            //kiểm tra id
-           
+            
+            
             try
             {
-                var sqlCommand = $"SELECT * FROM Customer WHERE CustomerId = @CustomerId";
-                DynamicParameters parameters = new DynamicParameters();
-                var checkId = dbConnection.QueryFirstOrDefault(sqlCommand, param: dynamicParam);
-                if(checkId is not null)
-                {
-                    var errorObject = new
-                    {
-                        userMsg = Properties.Resource.errorDoubleId,
-                        devMsg = Properties.Resource.errorDoubleId,
-                        errorCode = "ms_004",
-
-                    };
-                    var response = StatusCode(400, errorObject);
-                    return response;
-                }
-            }
-            catch (Exception e)
-            {
-                var errorObject = new
-                {
-                    userMsg = Properties.Resource.errorServe,
-                    devMsg = e.Message,
-                    errorCode = "ms_001",
-
-                };
-                var response = StatusCode(500, errorObject);
-                return response;
-
-            }
-
-            // kiểm tra mã 
-            //kiểm tra rỗng
-            if(customer.CustomerCode == "" || customer.CustomerCode == null)
-            {
-                var errorObject = new
-                {
-                    userMsg = Properties.Resource.nullCode,
-                    devMsg = Properties.Resource.nullCode,
-                    errorCode = "ms_003",
-
-                };
-                var response = StatusCode(400, errorObject);
-                return response;
-            }
-            //kiểm tra trùng
-            try
-            {
-                var sqlCommand = $"SELECT * FROM Customer WHERE CustomerCode = @CustomerCode";
-                DynamicParameters parameters = new DynamicParameters();
-                var checkCode = dbConnection.QueryFirstOrDefault(sqlCommand, param: dynamicParam);
-                if (checkCode is not null)
-                {
-                    var errorObject = new
-                    {
-                        userMsg = Properties.Resource.errorDoubleCode,
-                        devMsg = Properties.Resource.errorDoubleCode,
-                        errorCode = "ms_002",
-
-                    };
-                    var response = StatusCode(400, errorObject);
-                    return response;
-                }
-            }
-            catch (Exception e)
-            {
-                var errorObject = new
-                {
-                    userMsg = Properties.Resource.errorServe,
-                    devMsg = e.Message,
-                    errorCode = "ms_001",
-
-                };
-                var response = StatusCode(500, errorObject);
-                return response;
-
-            }
-
-
-            try
-            {
-                
-                var sqlCommand = $"INSERT INTO Customer({columnsName}) VALUES({columnsParam})";
-
-                var rowEffects = dbConnection.Execute(sqlCommand, param: dynamicParam);
+                var serviceResult = _customerService.Add(customer);
 
                 //Trả về cho client
-                if(rowEffects > 0) {
+                if(serviceResult.IsValid) {
 
-                    return StatusCode(201);
+                    return StatusCode(201, serviceResult.Data);
                     
                 }
                 else
                 {
-                    return StatusCode(400);
+                    return BadRequest(serviceResult.Data);
                 } 
                 
             }
@@ -291,106 +133,23 @@ namespace MISA.CukCuk.API.Controllers
         /// <param name="customer"></param>
         /// <returns></returns>
         [HttpPut("{customerId}")]
-        public IActionResult ModifyCustomer(Guid customerId, Customer customer)
+        public IActionResult Update(Guid customerId, Customer customer)
         {
-            //truy cập vào database 
-            //Khai báo thông tin database
-            var connectionString = "Host = 47.241.69.179;" +
-                "Database = MISA.CukCuk_Demo_NVMANH;" +
-                "User Id = dev;" +
-                "Password = 12345678";
-
-            //Khởi tạo đới tượng kết nối với database
-            IDbConnection dbConnection = new MySqlConnection(connectionString);
-            // khai báo dynamic param
-            var dynamicParam = new DynamicParameters();
-
-
-            //Sửa dữ liệu database
-            var columnsName = string.Empty;
-            var columnsParam = string.Empty;
-
-            //Đọc từng property của object:
-            var properties = customer.GetType().GetProperties();
-
-            //Duyệt qua các property
-            foreach (var prop in properties)
-            {
-                //lấy tên prop
-                var propName = prop.Name;
-
-                //lấy value của prop
-                var propvalue = prop.GetValue(customer);
-
-                // lấy kiểu dữ liệu của prop
-                var propType = prop.PropertyType;
-
-                //Thêm param tương ứng với prop
-                dynamicParam.Add($"@{propName}", propvalue);
-
-                columnsName += $"{propName} = @{propName},";
-                //columnsParam += $"@{propName},";
-            }
-            columnsName = columnsName.Remove(columnsName.Length - 1, 1);
-            dynamicParam.Add($"@CustomerIdToModify", customerId);
-
-            // kiểm tra mã 
-            //kiểm tra rỗng
-            if (customer.CustomerCode == "" || customer.CustomerCode == null)
-            {
-                var errorObject = new
-                {
-                    userMsg = Properties.Resource.nullCode,
-                    devMsg = Properties.Resource.nullCode,
-                    errorCode = "ms_003",
-
-                };
-                var response = StatusCode(400, errorObject);
-                return response;
-            }
-            //kiểm tra trùng
             try
             {
-                var sqlCommand = $"SELECT * FROM Customer WHERE CustomerCode = @CustomerCode";
-                DynamicParameters parameters = new DynamicParameters();
-                var checkCode = dbConnection.QueryFirstOrDefault(sqlCommand, param: dynamicParam);
-                if (checkCode is not null)
-                {
-                    var errorObject = new
-                    {
-                        userMsg = Properties.Resource.errorDoubleCode,
-                        devMsg = Properties.Resource.errorDoubleCode,
-                        errorCode = "ms_002",
-
-                    };
-                    var response = StatusCode(400, errorObject);
-                    return response;
-                }
-            }
-            catch (Exception e)
-            {
-                var errorObject = new
-                {
-                    userMsg = Properties.Resource.errorServe,
-                    devMsg = e.Message,
-                    errorCode = "ms_001",
-
-                };
-                var response = StatusCode(500, errorObject);
-                return response;
-
-            }
-            try
-            {
-                
-                // truy vấn sửa dữ liệu
-                var sqlCommand = $"UPDATE Customer SET {columnsName} WHERE CustomerID = @CustomerIdToModify";
-
-                var rowEffects = dbConnection.Execute(sqlCommand, param: dynamicParam);
+                var serviceResult = _customerService.Update(customer,customerId);
 
                 //Trả về cho client
-                var response = StatusCode(200, rowEffects);
-                return Ok(response);
+                if (serviceResult.IsValid)
+                {
+
+                    return StatusCode(200, serviceResult.Data);
+
+                }
+                else
+                {
+                    return BadRequest(serviceResult.Data);
+                }
             }
             catch (Exception e)
             {
@@ -417,25 +176,20 @@ namespace MISA.CukCuk.API.Controllers
         {
             try
             {
-                //truy cập vào database 
-                //Khai báo thông tin database
-                var connectionString = "Host = 47.241.69.179;" +
-                    "Database = MISA.CukCuk_Demo_NVMANH;" +
-                    "User Id = dev;" +
-                    "Password = 12345678";
-
-                //Khởi tạo đới tượng kết nối với database
-                IDbConnection dbConnection = new MySqlConnection(connectionString);
-
-                //Xoá dữu liệu
-                var sqlCommand = $"DELETE FROM Customer WHERE CustomerId = @CustomerId";
-                DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("@CustomerId", customerId);
-                var rowEffects = dbConnection.Execute(sqlCommand, param: parameters);
+                var serviceResult = _customerService.Delete(customerId);
 
                 //Trả về cho client
-                var response = StatusCode(200, rowEffects);
-                return Ok(response);
+                if (serviceResult.IsValid)
+                {
+
+                    return StatusCode(200, serviceResult.Data);
+
+                }
+                else
+                {
+                    return BadRequest(serviceResult.Data);
+                }
+
             }
             catch (Exception e)
             {
@@ -448,7 +202,6 @@ namespace MISA.CukCuk.API.Controllers
                 };
                 var response = StatusCode(500, errorObject);
                 return response;
-
             }
         }
     }

@@ -3,7 +3,7 @@
 	text-align: center;
 	position: absolute;
 	left: 50%;
-	top: -20%;
+	top: -57%;
 	transform: translate(-50%, 0);
 	max-width: 50%;
 	background-color: #F65464;
@@ -11,7 +11,7 @@
 	border-radius: 8px;
 	z-index: 6;
 	transition: 0.2s all ease-in-out;
-	display: none;
+	/* display: none; */
 }
 .error .tooltip-alert{
 	display: inline-block;

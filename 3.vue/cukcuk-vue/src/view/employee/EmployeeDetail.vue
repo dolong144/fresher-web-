@@ -20,15 +20,15 @@
                         </div>
                         <div class="row">
                             <div class="input-field input-binding" id="employeeCode">
-                                <Tooltip></Tooltip>
+                                <Tooltip ref="tooltip"  v-show="arrTooltip[0]"></Tooltip>
                                 <div class="title-input" >Mã nhân viên(<span class="binding">*</span>)</div>
-                                <input type="text" class="input-box" id="txtEmployeeCode" v-model="employee.EmployeeCode" autofocus
+                                <input type="text" class="input-box" ref="inputBinding0" v-model="employee.EmployeeCode" autofocus
                                     placeholder="MF953">
                             </div>
                             <div class="input-field input-binding" name="employeeName" >
-                                <Tooltip></Tooltip>
+                                <Tooltip ref="tooltip" v-show="arrTooltip[1]"></Tooltip>
                                 <div class="title-input" >Họ và tên(<span class="binding">*</span>)</div>
-                                <input type="text" class="input-box" id="txtFullName" v-model="employee.FullName" 
+                                <input type="text" class="input-box" ref="inputBinding1" v-model="employee.FullName" 
                                 placeholder="Đỗ Văn Long">
                             </div>
                         </div>
@@ -50,9 +50,9 @@
                         </div>
                         <div class="row">
                             <div class="input-field input-binding" id="employeeIdentity">
-                                <Tooltip></Tooltip>
+                                <Tooltip ref="tooltip" v-show="arrTooltip[2]" ></Tooltip>
                                 <div class="title-input" >Số CMTND/Căn cước(<span class="binding">*</span>)</div>
-                                <input type="text" class="input-box" id="txtIdentityNumber" v-model="employee.IdentityNumber"
+                                <input type="text" class="input-box" ref="inputBinding2" v-model="employee.IdentityNumber"
                                 placeholder="001200012345">
                             </div>
                             <div class="input-field">
@@ -69,14 +69,14 @@
                         </div>
                         <div class="row">
                             <div class="input-field input-binding" id="employeeEmail">
-                                <Tooltip></Tooltip>
+                                <Tooltip ref="tooltip" v-show="arrTooltip[3]"></Tooltip>
                                 <div class="title-input">Email(<span class="binding">*</span>)</div>
-                                <input type="email" class="input-box" id="txtEmail" v-model="employee.Email" placeholder="Example@gmail.com">
+                                <input type="email" class="input-box" ref="inputBinding3" v-model="employee.Email" placeholder="Example@gmail.com">
                             </div>
                             <div class="input-field input-binding" id="employeePhone">
-                                <Tooltip></Tooltip>
+                                <Tooltip ref="tooltip" v-show="arrTooltip[4]"></Tooltip>
                                 <div class="title-input">Số điện thoại(<span class="binding">*</span>)</div>
-                                <input type="tel" class="input-box" id="txtPhoneNumber" v-model="employee.PhoneNumber" placeholder="012345678">
+                                <input type="tel" class="input-box" ref="inputBinding4" v-model="employee.PhoneNumber" placeholder="012345678">
                             </div>
                         </div>
                         
@@ -199,6 +199,9 @@ export default {
         return {
             employee:{
                 EmployeeCode: this.newCode,
+                FullName:'',
+                Email:'',
+                PhoneNumber:'',
                 DepartmentId:'',
                 PositionId:'',
                 Salary:'',
@@ -207,6 +210,7 @@ export default {
             titlePopup:'',
             typePopup:'',
             contentPopup:'',
+            arrTooltip: [false,false,false,false,false],
             
             
         }
@@ -241,10 +245,29 @@ export default {
             this.closeForm();
         },
         
+        
         //Ấn lưu thông tin nhân viên
         submitForm(){
             //validate dữ liệu
-            // this.$refs('employeeName').children[0]
+           if(this.employee.EmployeeCode == ""){
+               this.arrTooltip[0] = true;
+           }
+           if(this.employee.FullName == ""){
+               this.arrTooltip[1] = true;
+               return;
+           }
+           if(this.employee.IdentityNumber == ""){
+               this.arrTooltip[2] = true;
+           }
+           if(this.employee.Email == ""){
+               this.arrTooltip[3] = true;
+           }
+           if(this.employee.PhoneNumber == ""){
+               this.arrTooltip[4] = true;
+           }
+            
+            
+            
 
             let self = this;
             //thêm mới nhân viên
@@ -257,7 +280,7 @@ export default {
                 }).catch(res=>{
                     console.log(res);
                     self.$emit('showToast','Có lỗi xảy ra!','error-toast');
-                    self.closeForm();
+                    // self.closeForm();
                 })
             }
             //Sửa 1 nhân viên
@@ -270,7 +293,7 @@ export default {
                 }).catch(res=>{
                     console.log(res);
                     self.$emit('showToast','Có lỗi xảy ra!','error-toast');
-                    self.closeForm();
+                    // self.closeForm();
                 })
             }
             
@@ -341,6 +364,9 @@ export default {
     }
     .showToast{
         display: flex;
+    }
+    .show{
+        display: block !important;
     }
     
 </style>

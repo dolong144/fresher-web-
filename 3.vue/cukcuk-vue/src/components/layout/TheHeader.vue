@@ -7,7 +7,7 @@
         <div class="header-right">
             <div class="name-restaurant">
                 <b>
-                    <!-- <div class="combo-box">
+                    <!-- <div class="dropdown">
                         <div class="select-button">
                             
                             <div class="title">Nhà hàng Biển Đông</div>

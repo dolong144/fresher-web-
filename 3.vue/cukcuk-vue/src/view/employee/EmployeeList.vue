@@ -55,7 +55,7 @@
                     @deleteEmployeeDelete="deleteEmployeeDelete"
                     @rowDbClick="rowDbClick"/>
             <div class="footer">
-                <div class="number">Hiển thị 1-10/1000 nhân viên</div>
+                <div>Hiển thị <span style="font-weight: bold"> 1-10/1000 </span> nhân viên</div>
                 <div class="page">
                     <div class="first-page"></div>
                     <div class="prev-page"></div>
@@ -66,7 +66,7 @@
                     <div class="next-page"></div>
                     <div class="last-page"></div>
                 </div>
-                <div class="acount">10 nhân viên/trang</div>
+                <div><span style="font-weight: bold"> 10 </span>nhân viên/trang</div>
             </div>
         </div>
         <employeeDetail :class="{'showForm':isShowForm}" 

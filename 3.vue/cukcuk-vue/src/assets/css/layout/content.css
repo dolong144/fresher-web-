@@ -48,13 +48,16 @@
 .content .search {
   position: relative;
   display: flex;
-  margin-top: 16px;
-  margin-bottom: 16px;
+  margin-top: 24px;
+  margin-bottom: 8px;
 }
-.content .search .combo-box {
+.content .search .dropdown {
   width: 200px;
 }
 .content .search .textbox-default{
+  cursor: pointer;
+  padding-left: 8px;
+  padding-right: 8px;
   background-color: #ffffff;
 }
 .content .search .textbox-default:hover{
@@ -138,6 +141,7 @@
   padding-left: 10px;
   height: 48px;
   text-align: left;
+  white-space: nowrap;
 }
 .content .table table tbody tr td:nth-child(5) {
   min-width: 40px;
@@ -160,19 +164,16 @@
   height: 56px;
   width: 100%;
   justify-content: space-between;
-}
-.content .footer .number {
-  height: 56px;
-  display: flex;
   align-items: center;
 }
+
 .content .footer .page {
   display: flex;
 }
 
 .content .footer .page .first-page {
-  margin: 8px;
-  width: 40px;
+  margin: 8px 4px;
+  width: 32px;
   height: 40px;
   background-position: center;
   background-image: url(../../icon/btn-firstpage.svg);
@@ -181,8 +182,8 @@
   border-radius: 4px;
 }
 .content .footer .page .prev-page {
-  margin: 8px;
-  width: 40px;
+  margin: 8px 4px;
+  width: 32px;
   height: 40px;
   background-position: center;
   background-image: url(../../icon/btn-prev-page.svg);
@@ -202,8 +203,8 @@
   align-items: center;
 }
 .content .footer .page .next-page {
-  margin: 8px;
-  width: 40px;
+  margin: 8px 4px;
+  width: 32px;
   height: 40px;
   background-position: center;
   background-image: url(../../icon/btn-next-page.svg);
@@ -212,8 +213,8 @@
   border-radius: 4px;
 }
 .content .footer .page .last-page {
-  margin: 8px;
-  width: 40px;
+  margin: 8px 4px;
+  width: 32px;
   height: 40px;
   background-position: center;
   background-image: url(../../icon/btn-lastpage.svg);
@@ -242,8 +243,4 @@
   color: #ffffff;
   border: none;
 }
-.content .footer .acount {
-  height: 56px;
-  display: flex;
-  align-items: center;
-}
+

@@ -31,6 +31,10 @@ body {
     font-family: 'GoogleSans-Light';
     src: url('../font/GoogleSans-Light.otf') format('opentype');
 }
+@font-face {
+    font-family: 'GoogleSans-Medium';
+    src: url('../font/GoogleSans-Medium.otf') format('opentype');
+}
 
 @font-face {
     font-family: 'GoogleSans-Regular';
@@ -49,20 +53,20 @@ body {
 }
 ::-webkit-scrollbar-track{
     border-radius: 4px;
-    background-color: #e9ebee;
+    background-color: #bbbbbb;
 }
 ::-webkit-scrollbar-thumb{
     border-radius: 2.5px;;
     background-color: #bbbbbb;
     min-height: 40px;
 }
-table::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb{
     border-radius: 2.5px;;
-    background-color: #bbbbbb;
+    background-color: #454545;
     padding-bottom: 40px;
     min-height: 40px;
 }
-table::-webkit-scrollbar-track-piece{
+content::-webkit-scrollbar-track-piece{
     margin-top: 48px;
 }
 
@@ -93,17 +97,18 @@ table::-webkit-scrollbar-track-piece{
 }
 .delete-box input[type=checkbox]:checked ~ .checkmark{
     background-color: #019160;
+    border: none;
 }
 .delete-box input[type=checkbox]:checked ~ .checkmark::after{
     display: block;
 }
 .delete-box .checkmark{
-    margin: 0 8px;
+    margin: 0 10px 0 16px;
     position: absolute;
-    top: 10px;
+    top: 14px;
     left: 0;
-    height: 24px;
-    width: 24px;
+    height: 20px;
+    width: 20px;
     background-color: #ffffff;
     border: 1px solid #bbbbbb;
     border-radius: 4px;
@@ -112,8 +117,8 @@ table::-webkit-scrollbar-track-piece{
     content: "";
     position: absolute;
     display: none;
-    left: 8px;
-    top: 3px;
+    left: 6px;
+    top: 2px;
     width: 5px;
     height: 10px;
     border: solid white;

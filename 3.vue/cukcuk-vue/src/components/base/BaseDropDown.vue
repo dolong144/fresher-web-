@@ -1,5 +1,5 @@
 <template>
-    <div class="combo-box" id="department"  @click="clickDropDown()" :value="value" :class="{'cb-box-active':isShowOption}">
+    <div class="dropdown" id="department"  @click="clickDropDown()" :value="value" :class="{'cb-box-active':isShowOption}">
         <div class="select-button">
             <div class="title">{{dropdownTitle}}</div>
             <div class="icon-button">

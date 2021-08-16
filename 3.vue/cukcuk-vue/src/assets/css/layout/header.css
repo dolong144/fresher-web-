@@ -39,17 +39,17 @@
     box-shadow: 0 4px 15px 0 rgb(0 0 0 25%);
 
 }
-.header .header-right .name-restaurant .combo-box{
+.header .header-right .name-restaurant .dropdown{
     width:fit-content
 }
-.header .header-right .name-restaurant .combo-box .select-button{
+.header .header-right .name-restaurant .dropdown .select-button{
     border: none;
 }
-.header .header-right .name-restaurant .combo-box .select-button .icon-button{
+.header .header-right .name-restaurant .dropdown .select-button .icon-button{
     border: none;
 }
 
-.header .header-right .name-restaurant .combo-box .title{
+.header .header-right .name-restaurant .dropdown .title{
     padding: 0 16px;
     font-size: 20px;
 

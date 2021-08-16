@@ -1,5 +1,5 @@
 @import url(../main.css);
-.cover-form{
+.cover-form {
   display: none;
   position: fixed;
   top: 0;
@@ -7,7 +7,7 @@
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.3);
-  z-index: 5
+  z-index: 5;
   /* opacity: 70%; */
 }
 .form {
@@ -25,7 +25,7 @@
 }
 .form .head-form .title {
   padding: 24px;
-  font-size: 20px;
+  font-size: 24px;
   width: calc(100% - 32px);
   color: #000000;
 }
@@ -33,21 +33,20 @@
   position: absolute;
   right: 0;
   top: 0;
-  height: 32px;
-  width: 32px;
+  height: 24px;
+  width: 24px;
   background-image: url(../../icon/x.svg);
   background-size: contain;
   background-repeat: no-repeat;
   border-radius: 0 4px;
+  cursor: pointer;
 }
-.form .head-form .close-button:hover{
-  background-color:#E9EBEE;
+.form .head-form .close-button:hover {
+  background-color: #e9ebee;
 }
-.form .body{
-  max-height: 77vh;
-  overflow-x: hidden;
+.form .body {
+  max-height: 73vh;
   display: flex;
-
 }
 .form .body .image .avatar {
   align-items: center;
@@ -61,48 +60,51 @@
   background-repeat: no-repeat;
   background-position: center;
 }
-.form .body .image .require{
+.form .body .image .require {
   width: 150px;
   margin: 24px;
   word-wrap: normal;
   text-align: center;
 }
-
+.form .body .form-boby {
+  overflow-x: hidden;
+}
 .form .body .modal {
   width: calc(60vw - 198px);
   display: block;
 }
-.form .body .modal .title-modal{
+.form .body .modal .title-modal {
   font-family: GoogleSans-Bold;
   font-size: 15px;
   margin-top: 16px;
 }
-.form .body .modal .underline{
+.form .body .modal .underline {
   margin-top: 4px;
   margin-bottom: 16px;
   width: 100px;
   height: 4px;
   background-color: #019160;
 }
-.form .body .modal .row{
+.form .body .modal .row {
   display: grid;
   grid-template-columns: 50% 50%;
 }
-.form .body .modal .row .input-field{
+.form .body .modal .row .input-field {
   position: relative;
   margin: 0 16px 8px 0;
 }
-.form .body .modal .row .input-field{
+.form .body .modal .row .input-field {
   display: block;
 }
-.form .body .modal .row .title-input{
+.form .body .modal .row .title-input {
+  font-family: GoogleSans-Medium;
   margin: 0px 0 4px 0;
 }
-.form .body .modal .row .title-input .binding{
+.form .body .modal .row .title-input .binding {
   color: red;
 }
-.form .body .modal .row .input-box{
-  margin-bottom: 16px;
+.form .body .modal .row .input-box {
+  margin-bottom: 8px;
   height: 40px;
   width: 100%;
   padding: 0 16px 0 16px;
@@ -111,46 +113,47 @@
   outline: none;
   font-family: 'GOOGLESANS-REGULAR';
 }
-.form .body .modal .row .input-field .input-box:focus{
+.form .body .modal .row .input-field .input-box:focus {
   border: 1px solid #019160;
 }
-.form .body .modal .row .input-field .input-box::placeholder{
+.form .body .modal .row .input-field .input-box::placeholder {
   font-size: 11px;
   color: #bbbbbb;
 }
-.form .body .modal .row .input-field .combo-box{
+.form .body .modal .row .input-field .dropdown {
   margin: 0;
   width: 100%;
 }
-.form .body .modal .row .input-field .error{
+.form .body .modal .row .input-field .error {
   border: 1px solid red;
 }
+/* .form .body .dropdown .option{
+  bottom: 52px;
+  
+} */
 
-.form .footer-form{
+.form .footer-form {
   display: flex;
   position: absolute;
-  border-radius:  0 0 4px 4px;
+  border-radius: 0 0 4px 4px;
   width: 100%;
   height: 60px;
   bottom: 0;
-  background-color: #E9EBEE;
+  background-color: #e9ebee;
   justify-content: flex-end;
   align-items: center;
-
 }
-.form .footer-form .button-icon{
+.form .footer-form .button-icon {
   display: flex;
   align-items: baseline;
 }
-.form .footer-form .button .icon-button{
-  
+.form .footer-form .button .icon-button {
   color: #ffffff;
 }
-.form .footer-form .cancle{
+.form .footer-form .cancle {
   color: #000000;
   background-color: transparent;
 }
-.form .footer-form .cancle:hover{
+.form .footer-form .cancle:hover {
   background-color: #bbbbbb;
 }
-

@@ -4,7 +4,7 @@
             <div class="header-popup">
                 <div class="head-title">{{titlePopup}}</div>
                 <div class="close-button" @click="hidePopup">
-                    <i class="fas fal fa-times"></i>
+                    
                 </div>
             </div>
             <div class="body-popup">
@@ -15,7 +15,7 @@
             </div>
             <div class="footer-popup">
                 <div class="button button-cancle" @click="hidePopup">Huỷ</div>
-                <div class="button button-yes" @click="confirmPopup">Đóng</div>
+                <div class="button button-yes" @click="confirmPopup">Đồng ý</div>
             </div>
         </div>
     </div>

@@ -62,3 +62,7 @@ D:\New folder\thực tập\git\fresher-web-\4.api\MISA.CukCuk\MISA.CukCuk.API\ob
 D:\New folder\thực tập\git\fresher-web-\4.api\MISA.CukCuk\MISA.CukCuk.API\obj\Debug\net5.0\MISA.CukCuk.API.genruntimeconfig.cache
 D:\New folder\thực tập\git\fresher-web-\4.api\MISA.CukCuk\MISA.CukCuk.API\obj\Debug\net5.0\MISA.CukCuk.API.Properties.Resource.resources
 D:\New folder\thực tập\git\fresher-web-\4.api\MISA.CukCuk\MISA.CukCuk.API\obj\Debug\net5.0\MISA.CukCuk.API.csproj.GenerateResource.cache
+D:\New folder\thực tập\git\fresher-web-\4.api\MISA.CukCuk\MISA.CukCuk.API\bin\Debug\net5.0\MISA.Core.dll
+D:\New folder\thực tập\git\fresher-web-\4.api\MISA.CukCuk\MISA.CukCuk.API\bin\Debug\net5.0\MISA.Infrastructure.dll
+D:\New folder\thực tập\git\fresher-web-\4.api\MISA.CukCuk\MISA.CukCuk.API\bin\Debug\net5.0\MISA.Core.pdb
+D:\New folder\thực tập\git\fresher-web-\4.api\MISA.CukCuk\MISA.CukCuk.API\bin\Debug\net5.0\MISA.Infrastructure.pdb

@@ -1,0 +1,14 @@
+D:\New folder\thực tập\git\fresher-web-\4.api\MISA.CukCuk\MISA.Core\bin\Debug\net5.0\MISA.Core.deps.json
+D:\New folder\thực tập\git\fresher-web-\4.api\MISA.CukCuk\MISA.Core\bin\Debug\net5.0\MISA.Core.dll
+D:\New folder\thực tập\git\fresher-web-\4.api\MISA.CukCuk\MISA.Core\bin\Debug\net5.0\ref\MISA.Core.dll
+D:\New folder\thực tập\git\fresher-web-\4.api\MISA.CukCuk\MISA.Core\bin\Debug\net5.0\MISA.Core.pdb
+D:\New folder\thực tập\git\fresher-web-\4.api\MISA.CukCuk\MISA.Core\obj\Debug\net5.0\MISA.Core.csproj.AssemblyReference.cache
+D:\New folder\thực tập\git\fresher-web-\4.api\MISA.CukCuk\MISA.Core\obj\Debug\net5.0\MISA.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\New folder\thực tập\git\fresher-web-\4.api\MISA.CukCuk\MISA.Core\obj\Debug\net5.0\MISA.Core.AssemblyInfoInputs.cache
+D:\New folder\thực tập\git\fresher-web-\4.api\MISA.CukCuk\MISA.Core\obj\Debug\net5.0\MISA.Core.AssemblyInfo.cs
+D:\New folder\thực tập\git\fresher-web-\4.api\MISA.CukCuk\MISA.Core\obj\Debug\net5.0\MISA.Core.csproj.CoreCompileInputs.cache
+D:\New folder\thực tập\git\fresher-web-\4.api\MISA.CukCuk\MISA.Core\obj\Debug\net5.0\MISA.Core.dll
+D:\New folder\thực tập\git\fresher-web-\4.api\MISA.CukCuk\MISA.Core\obj\Debug\net5.0\ref\MISA.Core.dll
+D:\New folder\thực tập\git\fresher-web-\4.api\MISA.CukCuk\MISA.Core\obj\Debug\net5.0\MISA.Core.pdb
+D:\New folder\thực tập\git\fresher-web-\4.api\MISA.CukCuk\MISA.Core\obj\Debug\net5.0\MISA.Core.Properties.Resource.resources
+D:\New folder\thực tập\git\fresher-web-\4.api\MISA.CukCuk\MISA.Core\obj\Debug\net5.0\MISA.Core.csproj.GenerateResource.cache
