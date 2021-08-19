@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace MISA.Core.Interfaces.Repository
 {
-    public interface IEmployeeRepository
+    public interface IEmployeeRepository:IBaseRepository<Employee>
     {
-        List<Employee> Get();
-        Customer GetById(Guid employeeId);
-        int Add(Employee employee);
-        int Update(Employee employee, Guid employeeId);
-        int Delete(Guid employeeId);
+        //List<Employee> Get();
+        //Customer GetById(Guid employeeId);
+        //int Add(Employee employee);
+        //int Update(Employee employee, Guid employeeId);
+        //int Delete(Guid employeeId);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using MISA.Core.Entities;
+using MISA.Core.Interfaces.Repository;
 using MISA.Core.Interfaces.Services;
 using System;
 using System.Collections.Generic;
@@ -8,16 +9,17 @@ using System.Threading.Tasks;
 
 namespace MISA.Core.Services
 {
-    public class EmployeeService : IEmployeeService
+
+    public class EmployeeService :BaseService<Employee>, IEmployeeService
     {
-        public ServiceResult Add(Employee Employee)
+        IEmployeeRepository _employeeRepository;
+        ServiceResult _serviceResult;
+        public EmployeeService(IEmployeeRepository employeeRepository, IBaseRepository<Employee> baseRepository) :base(baseRepository)
         {
-            throw new NotImplementedException();
+            _employeeRepository = employeeRepository;
+            _serviceResult = new ServiceResult();
         }
 
-        public ServiceResult Update(Employee Employee, Guid EmployeeId)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

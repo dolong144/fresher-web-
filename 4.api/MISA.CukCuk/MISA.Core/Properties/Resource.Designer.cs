@@ -61,6 +61,15 @@ namespace MISA.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email sai định dạng!.
+        /// </summary>
+        public static string errEmail {
+            get {
+                return ResourceManager.GetString("errEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mã bị trùng!.
         /// </summary>
         public static string errorDoubleCode {
@@ -93,6 +102,15 @@ namespace MISA.Core.Properties {
         public static string nullCode {
             get {
                 return ResourceManager.GetString("nullCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thông tin không được phép để trống!.
+        /// </summary>
+        public static string nullString {
+            get {
+                return ResourceManager.GetString("nullString", resourceCulture);
             }
         }
     }

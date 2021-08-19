@@ -7,12 +7,8 @@ using System.Threading.Tasks;
 
 namespace MISA.Core.Interfaces.Repository
 {
-    public interface ICustomerRepository
+    public interface ICustomerRepository:IBaseRepository<Customer>
     {
-        List<Customer> Get();
-        Customer GetById(Guid customerId);
-        int Add(Customer customer);
-        int Update(Customer customer, Guid customerId);
-        int Delete(Guid customerId);
+       
     }
 }

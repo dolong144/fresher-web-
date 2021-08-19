@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MISA.Core.MISAAtribute;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -115,6 +116,8 @@ namespace MISA.Core.Entities
         /// Tiền lương 
         /// </summary>
         public double Salary { get; set; }
+        [MISANotMap]
+        public string GenderName { get; set; }
 
         #endregion
     }

@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "9su4cAK+mFZt7uorSaoomI4tSRcNyjnMTVpE9iFxSdPlqAiLgczN482LAyKuWPLrJH3/mC0J5eA6SHDPgSnQPQ==",
+  "dgSpecHash": "8o16afeMIaV2gk1b4FiuMp42HVF7WmiigZjXfwses9+uhzdzbEwDfurrmSaWV+2dZh9PAqOGLAQrgNrRIEGbhg==",
   "success": true,
   "projectFilePath": "D:\\New folder\\thực tập\\git\\fresher-web-\\4.api\\MISA.CukCuk\\MISA.Infrastructure\\MISA.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\dapper\\2.0.90\\dapper.2.0.90.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\5.0.0\\microsoft.extensions.configuration.abstractions.5.0.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.0\\microsoft.extensions.primitives.5.0.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\mysqlconnector\\1.3.11\\mysqlconnector.1.3.11.nupkg.sha512"
   ],
   "logs": []

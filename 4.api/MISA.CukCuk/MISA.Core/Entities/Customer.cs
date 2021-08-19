@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MISA.Core.MISAAtribute;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,8 @@ namespace MISA.Core.Entities
         /// <summary>
         /// Mã khách hàng
         /// </summary>
+        [MISARequired]
+        [MISACode]
         public string CustomerCode { get; set; }
 
         /// <summary>
@@ -32,6 +35,7 @@ namespace MISA.Core.Entities
         /// <summary>
         /// Họ và tên
         /// </summary>
+        [MISARequired]
         public string FullName { get; set; }
 
         /// <summary>
@@ -52,6 +56,8 @@ namespace MISA.Core.Entities
         /// <summary>
         /// email
         /// </summary>
+        [MISARequired]
+        [MISAEmail]
         public string Email { get; set; }
 
         /// <summary>
