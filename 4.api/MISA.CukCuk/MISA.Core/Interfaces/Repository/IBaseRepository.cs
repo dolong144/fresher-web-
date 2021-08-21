@@ -14,6 +14,7 @@ namespace MISA.Core.Interfaces.Repository
         MISAEntity GetById(Guid entityId);
         int Delete(Guid entityId);
         bool GetByCode(string code);
+        string GetCode(Guid entityId,string entityName);
     }
 
 }

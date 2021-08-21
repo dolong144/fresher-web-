@@ -66,3 +66,6 @@ D:\New folder\thực tập\git\fresher-web-\4.api\MISA.CukCuk\MISA.CukCuk.API\bi
 D:\New folder\thực tập\git\fresher-web-\4.api\MISA.CukCuk\MISA.CukCuk.API\bin\Debug\net5.0\MISA.Infrastructure.dll
 D:\New folder\thực tập\git\fresher-web-\4.api\MISA.CukCuk\MISA.CukCuk.API\bin\Debug\net5.0\MISA.Core.pdb
 D:\New folder\thực tập\git\fresher-web-\4.api\MISA.CukCuk\MISA.CukCuk.API\bin\Debug\net5.0\MISA.Infrastructure.pdb
+D:\New folder\thực tập\git\fresher-web-\4.api\MISA.CukCuk\MISA.CukCuk.API\bin\Debug\net5.0\EPPlus.dll
+D:\New folder\thực tập\git\fresher-web-\4.api\MISA.CukCuk\MISA.CukCuk.API\bin\Debug\net5.0\Microsoft.IO.RecyclableMemoryStream.dll
+D:\New folder\thực tập\git\fresher-web-\4.api\MISA.CukCuk\MISA.CukCuk.API\bin\Debug\net5.0\System.Xml.XPath.XmlDocument.dll

@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using Microsoft.Extensions.Configuration;
+using MISA.Core.Entities;
 using MISA.Core.Interfaces.Repository;
 using MISA.Core.MISAAtribute;
 using MySqlConnector;
@@ -12,17 +13,22 @@ using System.Threading.Tasks;
 
 namespace MISA.Infrastructure.Repository
 {
-    public class BaseRepository<MISAEntity> : IBaseRepository<MISAEntity>
+    public class BaseRepository<MISAEntity> : IBaseRepository<MISAEntity> where MISAEntity:BaseEntity
     {
 
         public readonly string _connectionString ;
-        IConfiguration _configuration;
         string _className;
         public BaseRepository(IConfiguration configuration)
         {
             _className = typeof(MISAEntity).Name;
             _connectionString = configuration.GetConnectionString("MyDatabase");
         }
+        /// <summary>
+        /// Thêm đối tượng
+        /// </summary>
+        /// <param name="entity">thông tin đối tượng</param>
+        /// <returns></returns>
+        /// CreatedBy: dvlong(19/8/2021)
         public int Add(MISAEntity entity)
         {
 
@@ -50,7 +56,7 @@ namespace MISA.Infrastructure.Repository
                     var propvalue = prop.GetValue(entity);
 
                     //Khởi tạo id mới
-                    if (propName == $"{_className}ID" && prop.PropertyType == typeof(Guid))
+                    if (propName == $"{_className}Id" && prop.PropertyType == typeof(Guid))
                     {
                         propvalue = Guid.NewGuid();
                     }
@@ -76,7 +82,12 @@ namespace MISA.Infrastructure.Repository
             }
             
         }
-
+        /// <summary>
+        /// Xoá đối tượng theo Id
+        /// </summary>
+        /// <param name="entityId">Id của đối tượng</param>
+        /// <returns></returns>
+        /// CreatedBy:dvlong(19/8/2021)
         public int Delete(Guid entityId)
         {
             
@@ -97,7 +108,11 @@ namespace MISA.Infrastructure.Repository
             }
             
         }
-
+        /// <summary>
+        /// Lây toàn bộ thông tin
+        /// </summary>
+        /// <returns></returns>
+        /// createdBy:dvlong(19/8/2021)
         public List<MISAEntity> GetAll()
         {
             
@@ -113,12 +128,15 @@ namespace MISA.Infrastructure.Repository
             }
             
         }
-
+        /// <summary>
+        /// Lấy thông tin đối tượng theo Id
+        /// </summary>
+        /// <param name="entityId">Id của đối tượng</param>
+        /// <returns></returns>
+        /// createdby:dvlong(19/8/2021)
         public MISAEntity GetById(Guid entityId)
         {
-            
-
-            //Lấy dữu liệu
+            //thông tin kết nối
             var sqlCommand = $"SELECT * FROM {_className} WHERE {_className}Id = @EntityIdParam";
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@EntityIdParam", entityId);
@@ -131,9 +149,15 @@ namespace MISA.Infrastructure.Repository
             }
             
         }
+        /// <summary>
+        /// check xem mã đối tương đã ttoofn tại chưa
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns>true-đã tồn tại, false- không tồn tại</returns>
+        /// createdBy:dvlong(19/8/2021)
         public bool GetByCode(string code)
         {
-            //Lấy dữu liệu
+            //thông tin kết nối
             var sqlCommand = $"SELECT * FROM {_className} WHERE {_className}Code = @EntityIdParam";
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@EntityIdParam", code);
@@ -152,28 +176,33 @@ namespace MISA.Infrastructure.Repository
                 }
             }
         }
-        //public string GetCode(Guid entityId)
-        //{
-        //    //Lấy dữu liệu
-        //    var sqlCommand = $"SELECT * FROM {_className} WHERE {_className}ID = @EntityIdParam";
-        //    DynamicParameters parameters = new DynamicParameters();
-        //    parameters.Add("@EntityIdParam", entityId);
+        /// <summary>
+        /// lấy mã của đối tượng theo Id
+        /// </summary>
+        /// <param name="entityId"></param>
+        /// <returns></returns>
+        /// CreatedBy: dvlong(19/8/2021)
+        public string GetCode(Guid entityId,string entityName)
+        {
+            //Lấy dữu liệu
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add($"@{entityName}Id", entityId);
+            parameters.Add($"@{entityName}Code", "");
 
-        //    //Khởi tạo đới tượng kết nối với database
-        //    using (IDbConnection dbConnection = new MySqlConnection(_connectionString))
-        //    {
-        //        var entity = dbConnection.QueryFirstOrDefault<MISAEntity>(sqlCommand, param: parameters);
-        //        if (entity is not null)
-        //        {
-        //            return entity.
-        //        }
-        //        else
-        //        {
-        //            return false;
-        //        }
-        //    }
-        //}
-
+            //Khởi tạo đới tượng kết nối với database
+            using (IDbConnection dbConnection = new MySqlConnection(_connectionString))
+            {
+                var entityCode = dbConnection.QueryFirstOrDefault<string>($"PROC_{_className}GetCodeById", param: parameters,commandType:CommandType.StoredProcedure);
+                return entityCode;
+            }
+        }
+        /// <summary>
+        /// Cập nhật thông tin đối tượng
+        /// </summary>
+        /// <param name="entity">thông tin cập nhật đối tượng</param>
+        /// <param name="entityId">Id đối tượng</param>
+        /// <returns></returns>
+        /// CreatedBy:dvlong(19/8/2021)
         public int Update(MISAEntity entity, Guid entityId)
         {
             
@@ -208,18 +237,18 @@ namespace MISA.Infrastructure.Repository
                     //Thêm param tương ứng với prop
                     dynamicParam.Add($"@{propName}", propvalue);
 
-                    columnsName += $"{propName} = @{propName},";
-                    //columnsParam += $"@{propName},";
+                    
+                    
                 }
             }
-            columnsName = columnsName.Remove(columnsName.Length - 1, 1);
-            dynamicParam.Add($"@EntityIdToModify", entityId);
+            
+            dynamicParam.Add($"@{_className}Id", entityId);
 
             // truy vấn sửa dữ liệu
-            var sqlCommand = $"UPDATE {_className} SET {columnsName} WHERE {_className}Id = @EntityIdToModify";
+            
             using (IDbConnection dbConnection = new MySqlConnection(_connectionString))
             {
-                var rowEffects = dbConnection.Execute(sqlCommand, param: dynamicParam);
+                var rowEffects = dbConnection.Execute($"PROC_{_className}Update", param: dynamicParam,commandType:CommandType.StoredProcedure);
                 return rowEffects;
             }
             

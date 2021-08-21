@@ -23,5 +23,6 @@ namespace MISA.Core.Interfaces.Services
         /// <returns>ServiceResult- kết quả xử lí qua nghiệp vụ</returns>
         /// Createby:dvlong(14/8/2021)
         //ServiceResult UpdateEmployee(Employee Employee, Guid EmployeeId);
+        ServiceResult Pagination(string employeeFilter, Guid? departmentId, Guid? positionId, int pageIndex, int pageSize);
     }
 }

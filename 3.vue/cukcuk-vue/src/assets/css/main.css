@@ -48,25 +48,22 @@ body {
 ::-webkit-scrollbar{
     width: 5px;
     height: 5px;
-    background-color: lightgray;
+    background-color: #e5e5e5;
     border-radius: 2.5px;
 }
 ::-webkit-scrollbar-track{
     border-radius: 4px;
-    background-color: #bbbbbb;
+    background-color: #e5e5e5;
 }
 ::-webkit-scrollbar-thumb{
     border-radius: 2.5px;;
     background-color: #bbbbbb;
-    min-height: 40px;
-}
-::-webkit-scrollbar-thumb{
-    border-radius: 2.5px;;
-    background-color: #454545;
     padding-bottom: 40px;
     min-height: 40px;
+    padding-top: 48px;
+
 }
-content::-webkit-scrollbar-track-piece{
+:-webkit-scrollbar-track-piece{
     margin-top: 48px;
 }
 

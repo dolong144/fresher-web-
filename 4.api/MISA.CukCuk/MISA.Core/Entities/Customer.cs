@@ -13,7 +13,7 @@ namespace MISA.Core.Entities
         /// <summary>
         /// Khoá chính
         /// </summary>
-        public Guid CustomerID { get; set; }
+        public Guid CustomerId { get; set; }
 
         /// <summary>
         /// Mã khách hàng
@@ -64,8 +64,31 @@ namespace MISA.Core.Entities
         /// Số điện thoại
         /// </summary>
         public string PhoneNumber { get; set; }
-
-
+        /// <summary>
+        /// Id nhóm khách hàng
+        /// </summary>
+        public Guid CustomerGroupId { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int DebitAmount { get; set; }
+        /// <summary>
+        /// mã thẻ thành viên
+        /// </summary>
+        public string MemberCardCode { get; set; }
+        /// <summary>
+        /// tên công ti
+        /// </summary>
+        public string CompanyName { get; set; }
+        /// <summary>
+        /// mã công ti
+        /// </summary>
+        public string CompanyTaxCode { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool IsStopFollow { get; set; }
+        public List<string> ErrorImport { get; set; } = new List<string>();
 
 
         #endregion

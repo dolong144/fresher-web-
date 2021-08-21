@@ -7,11 +7,14 @@ using MISA.Core.Interfaces.Services;
 using MISA.Core.Services;
 using MISA.CukCuk.API.Model;
 using MySqlConnector;
+using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace MISA.CukCuk.API.Controllers
@@ -28,183 +31,47 @@ namespace MISA.CukCuk.API.Controllers
             _customerService = customerService;
             _serviceResult = new ServiceResult();
         }
-        ///// <summary>
-        ///// lấy toàn bộ dữ liệu
-        ///// dvlong (12/8/2021)
-        ///// </summary>
-        ///// <returns></returns>
-        //[HttpGet]
-        //public IActionResult GetCustomers()
-        //{
-        //    try
-        //    {
-        //        ServiceResult serviceResult = _customerService.Get();
+        [HttpPost("import")]
 
-        //        //Trả về cho client
-        //        return serviceResult.Data is not null ? StatusCode(200, serviceResult.Data) : StatusCode(204,serviceResult.Data);
-                
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        var errorObject = new
-        //        {
-        //            userMsg = Properties.Resource.errorServe,
-        //            devMsg = e.Message,
-        //            errorCode = "ms_001",
+        public async Task<IActionResult> ImportAsync(IFormFile formFile, CancellationToken cancellationToken)
+        {
+            if (formFile == null || formFile.Length < 1)
+            {
+                var errorObject = new
+                {
+                    devMsg = Properties.Resource.nullFile,
+                    userMsg = Properties.Resource.nullFile,
+                };
+                return BadRequest(errorObject);
+            }
+            var customers = new List<Customer>();
+            using (var stream = new MemoryStream())
+            {
+                await formFile.CopyToAsync(stream, cancellationToken);
+                using (var package = new ExcelPackage(stream))
+                {
+                    ExcelWorksheet worksheet = package.Workbook.Worksheets["Danh sách khách hàng"];
+                    var rowCount = worksheet.Dimension.Rows;
 
-        //        };
-        //        return  StatusCode(500, errorObject);
+                    for (int row = 3; row <= rowCount; row++)
+                    {
+                        var customer = new Customer();
+                        customer.CustomerCode = worksheet.Cells[row, 1].Value== null? "" : worksheet.Cells[row, 1].Value.ToString().Trim();
+                        customer.FullName = worksheet.Cells[row, 2].Value == null ? "" : worksheet.Cells[row, 2].Value.ToString().Trim();
+                        customer.MemberCardCode = worksheet.Cells[row, 3].Value == null ? "" : worksheet.Cells[row, 3].Value.ToString().Trim();
+                        customer.MemberCardCode = worksheet.Cells[row, 4].Value == null ? "" : worksheet.Cells[row, 4].Value.ToString().Trim();
+                        customer.PhoneNumber = worksheet.Cells[row, 5].Value == null ? "" : worksheet.Cells[row, 5].Value.ToString().Trim();
+                        //customer.DateOfBirth = worksheet.Cells[row, 6].Value== null? "" :worksheet.Cells[row, 6].Value.ToString().Trim();
+                        customer.CompanyName = worksheet.Cells[row, 7].Value == null ? "" : worksheet.Cells[row, 7].Value.ToString().Trim();
+                        customer.CompanyTaxCode = worksheet.Cells[row, 8].Value == null ? "" : worksheet.Cells[row, 8].Value.ToString().Trim();
+                        customer.Email = worksheet.Cells[row, 9].Value == null ? "" : worksheet.Cells[row, 9].Value.ToString().Trim();
+                        customer.Address = worksheet.Cells[row, 10].Value == null ? "" : worksheet.Cells[row, 10].Value.ToString().Trim();
+                        customers.Add(customer);
+                    }
+                }
+            }
 
-        //    }
-        //}
-        /// <summary>
-        /// Lấy thông tin theo id
-        /// dvlong(12/8/2021)
-        /// </summary>
-        /// <param name="customerId"> id của đối tượng cần lấy</param>
-        /// <returns></returns>
-        //[HttpGet("{customerId}")]
-        //public IActionResult GetById(Guid customerId)
-        //{
-        //    try
-        //    {
-        //        var serviceResult = _customerService.GetById(customerId);
-
-        //        //Trả về cho client
-        //        return serviceResult.Data is not null ? StatusCode(200, serviceResult.Data) : StatusCode(204,serviceResult.Data);
-
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        var errorObject = new
-        //        {
-        //            userMsg = Properties.Resource.errorServe,
-        //            devMsg = e.Message,
-        //            errorCode = "ms_001",
-
-        //        };
-        //        return StatusCode(500, errorObject);
-
-        //    }
-        //}
-        ///// <summary>
-        ///// thêm mới 1 đối tượng
-        ///// dvlong(12/8/2021)
-        ///// </summary>
-        ///// <param name="customer"></param>
-        ///// <returns></returns>
-        //[HttpPost]
-        //public IActionResult InsertCustomer(Customer customer)
-        //{
-            
-            
-        //    try
-        //    {
-        //        var serviceResult = _customerService.Add(customer);
-
-        //        //Trả về cho client
-        //        if(serviceResult.IsValid) {
-
-        //            return StatusCode(201, serviceResult.Data);
-                    
-        //        }
-        //        else
-        //        {
-        //            return BadRequest(serviceResult.Data);
-        //        } 
-                
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        var errorObject = new
-        //        {
-        //            userMsg = Properties.Resource.errorServe,
-        //            devMsg = e.Message,
-        //            errorCode = "ms_001",
-
-        //        };
-        //        var response = StatusCode(500, errorObject);
-        //        return response;
-        //    }
-        //}
-        ///// <summary>
-        ///// Sửa 1 đối tượng đã có
-        ///// dvlong(12/8/2021)
-        ///// </summary>
-        ///// <param name="customerId"></param>
-        ///// <param name="customer"></param>
-        ///// <returns></returns>
-        //[HttpPut("{customerId}")]
-        //public IActionResult Update(Guid customerId, Customer customer)
-        //{
-        //    try
-        //    {
-        //        var serviceResult = _customerService.Update(customer,customerId);
-
-        //        //Trả về cho client
-        //        if (serviceResult.IsValid)
-        //        {
-
-        //            return StatusCode(200, serviceResult.Data);
-
-        //        }
-        //        else
-        //        {
-        //            return BadRequest(serviceResult.Data);
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        var errorObject = new
-        //        {
-        //            userMsg = Properties.Resource.errorServe,
-        //            devMsg = e.Message,
-        //            errorCode = "ms_001",
-
-        //        };
-        //        var response = StatusCode(500, errorObject);
-        //        return response;
-
-        //    }
-        //}
-        ///// <summary>
-        ///// xoá 1 đối tượng theo id
-        ///// dvlong(12/8/2021)
-        ///// </summary>
-        ///// <param name="customerId"></param>
-        ///// <returns></returns>
-        //[HttpDelete("{customerId}")]
-        //public IActionResult DeleteById(Guid customerId)
-        //{
-        //    try
-        //    {
-        //        var serviceResult = _customerService.Delete(customerId);
-
-        //        //Trả về cho client
-        //        if (serviceResult.IsValid)
-        //        {
-
-        //            return StatusCode(200, serviceResult.Data);
-
-        //        }
-        //        else
-        //        {
-        //            return BadRequest(serviceResult.Data);
-        //        }
-
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        var errorObject = new
-        //        {
-        //            userMsg = Properties.Resource.errorServe,
-        //            devMsg = e.Message,
-        //            errorCode = "ms_001",
-
-        //        };
-        //        var response = StatusCode(500, errorObject);
-        //        return response;
-        //    }
-        //}
+            return Ok(customers);
+        }
     }
 }

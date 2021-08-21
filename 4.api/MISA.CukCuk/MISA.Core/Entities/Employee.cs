@@ -19,6 +19,8 @@ namespace MISA.Core.Entities
         /// <summary>
         /// Mã nhân viên
         /// </summary>
+        [MISARequired]
+        [MISACode]
         public string EmployeeCode { get; set; }
 
         /// <summary>
@@ -34,6 +36,7 @@ namespace MISA.Core.Entities
         /// <summary>
         /// Họ và tên
         /// </summary>
+        [MISARequired]
         public string FullName { get; set; }
 
         /// <summary>
@@ -54,6 +57,8 @@ namespace MISA.Core.Entities
         /// <summary>
         /// Email
         /// </summary>
+        [MISARequired]
+        [MISAEmail]
         public string Email { get; set; }
 
         /// <summary>
@@ -116,6 +121,13 @@ namespace MISA.Core.Entities
         /// Tiền lương 
         /// </summary>
         public double Salary { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int EducationalBackground { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         [MISANotMap]
         public string GenderName { get; set; }
 

@@ -129,4 +129,7 @@
   <data name="nullCode" xml:space="preserve">
     <value>Mã không được trống!</value>
   </data>
+  <data name="nullFile" xml:space="preserve">
+    <value>File tải lên không được trống!</value>
+  </data>
 </root>

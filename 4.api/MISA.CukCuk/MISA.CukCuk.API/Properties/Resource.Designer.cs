@@ -95,5 +95,14 @@ namespace MISA.CukCuk.API.Properties {
                 return ResourceManager.GetString("nullCode", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File tải lên không được trống!.
+        /// </summary>
+        public static string nullFile {
+            get {
+                return ResourceManager.GetString("nullFile", resourceCulture);
+            }
+        }
     }
 }

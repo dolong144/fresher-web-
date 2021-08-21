@@ -76,7 +76,7 @@ namespace MISA.CukCuk.API.Controllers
                 var res = _baseService.Add(entity);
                 if (res.IsValid == true)
                 {
-                    return StatusCode(200, res.Data);
+                    return StatusCode(201, res);
                 }
                 else
                 {
@@ -117,7 +117,7 @@ namespace MISA.CukCuk.API.Controllers
         {
             try
             {
-                var rowEffect = _baseRepository.Update(entity, entityId);
+                var rowEffect = _baseService.Update(entity, entityId);
                 return Ok(rowEffect);
             }
             catch (Exception e)

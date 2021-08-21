@@ -30,7 +30,59 @@ namespace MISA.Core.Services
         public ServiceResult Add(MISAEntity entity)
         {
             //validate dữ liệu, xử lí nghiệp vụ
-            _serviceResult.IsValid = ValidateData(entity);
+            _serviceResult.IsValid = true;
+            {
+                var className = typeof(MISAEntity).Name;
+                //kiểm tra
+                //Đọc từng property của object:
+                var properties = entity.GetType().GetProperties();
+
+                //Duyệt qua các property
+                foreach (var prop in properties)
+                {
+                    //lấy tên prop
+                    var propName = prop.Name;
+
+                    //lấy value của prop
+                    var propvalue = prop.GetValue(entity);
+
+                    //validate Email
+                    var propMISAEmail = prop.GetCustomAttributes(typeof(MISAEmail), true);
+                    if (propMISAEmail.Length > 0)
+                    {
+                        if (!validEmail(propvalue.ToString()))
+                        {
+                            _serviceResult.IsValid = false;
+                            _serviceResult.Messenger = Properties.Resource.errEmail;
+                        }
+                    }
+
+                    // check trùng mã
+                    var propMISACode = prop.GetCustomAttributes(typeof(MISACode), true);
+                    if (propMISACode.Length > 0)
+                    {
+                        if (!validCodeAdd(propvalue.ToString()))
+                        {
+                            _serviceResult.IsValid = false;
+                            _serviceResult.Messenger = Properties.Resource.errorDoubleCode;
+                        }
+
+                    }
+
+
+                    //validate trường bắt buộc
+                    var propMISARequired = prop.GetCustomAttributes(typeof(MISARequired), true);
+                    if (propMISARequired.Length > 0)
+                    {
+                        if (!validRequired(propvalue.ToString()))
+                        {
+                            _serviceResult.IsValid = false;
+                            _serviceResult.Messenger = Properties.Resource.nullString;
+                        }
+                    }
+                }
+
+            }
             if (_serviceResult.IsValid)
             {
                 _serviceResult.IsValid = ValidateCustom(entity);
@@ -72,86 +124,121 @@ namespace MISA.Core.Services
         {
 
             //validate dữ liệu, xử lí nghiệp vụ
-
-            //thực hiện sửa
-            _serviceResult.Data = _baseRepository.Update(entity,entityId);
-            return _serviceResult;
-        }
-        /// <summary>
-        /// Xử lí validate dữ liệu
-        /// </summary>
-        /// <param name="entity">đối tượng cần validate</param>
-        /// <returns>true- hợp lệ, false-không hợp lệ</returns>
-        /// createdby:dvlong(17/8/2021)
-        private bool ValidateData(MISAEntity entity)
-        {
-            var className = typeof(MISAEntity).Name;
-            var isValidate = true;
-            //kiểm tra
-            //Đọc từng property của object:
-            var properties = entity.GetType().GetProperties();
-
-            //Duyệt qua các property
-            foreach (var prop in properties)
+            _serviceResult.IsValid = true;
             {
-                //lấy tên prop
-                var propName = prop.Name;
+                var className = typeof(MISAEntity).Name;
+                //kiểm tra
+                //Đọc từng property của object:
+                var properties = entity.GetType().GetProperties();
 
-                //lấy value của prop
-                var propvalue = prop.GetValue(entity);
-
-                //validate Email
-                var propMISAEmail = prop.GetCustomAttributes(typeof(MISAEmail), true);
-                if (propMISAEmail.Length > 0)
+                //Duyệt qua các property
+                foreach (var prop in properties)
                 {
-                    var emailFormat = @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$";
-                    var isMatch = Regex.IsMatch(propvalue.ToString(), emailFormat, RegexOptions.IgnoreCase);
-                    if (!isMatch)
+                    //lấy tên prop
+                    var propName = prop.Name;
+
+                    //lấy value của prop
+                    var propvalue = prop.GetValue(entity);
+
+                    //validate Email
+                    var propMISAEmail = prop.GetCustomAttributes(typeof(MISAEmail), true);
+                    if (propMISAEmail.Length > 0)
                     {
-
-                        isValidate = false;
-                        _serviceResult.Messenger = Properties.Resource.errEmail;
-
-                    }
-                }
-
-                // check trùng mã
-                var propMISACode = prop.GetCustomAttributes(typeof(MISACode), true);
-                if (propMISACode.Length > 0)
-                {
-                    //thêm mới nhân viên
-                    {
-                        isValidate = !_baseRepository.GetByCode(propvalue.ToString());
-                        if (!isValidate)
-                        {
-                            _serviceResult.Messenger = Properties.Resource.errorDoubleCode;
+                        if (!validEmail(propvalue.ToString())){
+                            _serviceResult.IsValid = false;
+                            _serviceResult.Messenger = Properties.Resource.errEmail;
                         }
                     }
 
-                    //sửa nhân viên
-
-                    //{
-                    //    var oldEntity = _baseRepository.GetById(entityId);
-                    //    if(propvalue == oldEntity.)
-                    //}
-                }
-
-
-                //validate trường bắt buộc
-                var propMISARequired = prop.GetCustomAttributes(typeof(MISARequired), true);
-                if (propMISARequired.Length > 0)
-                {
-                    if(prop.PropertyType == typeof(string) && (propvalue.ToString() == string.Empty|| propvalue.ToString() ==""))
+                    // check trùng mã
+                    var propMISACode = prop.GetCustomAttributes(typeof(MISACode), true);
+                    if (propMISACode.Length > 0)
                     {
-                        isValidate = false;
-                        _serviceResult.Messenger = Properties.Resource.nullString;
+                        if (!validCodeUpdate(propvalue.ToString(),entityId,_className))
+                        {
+                            _serviceResult.IsValid = false;
+                            _serviceResult.Messenger = Properties.Resource.errorDoubleCode;
+                        }
+                        
+                    }
+
+
+                    //validate trường bắt buộc
+                    var propMISARequired = prop.GetCustomAttributes(typeof(MISARequired), true);
+                    if (propMISARequired.Length > 0)
+                    {
+                        if (!validRequired(propvalue.ToString()))
+                        {
+                            _serviceResult.IsValid = false;
+                            _serviceResult.Messenger = Properties.Resource.nullString;
+                        }
                     }
                 }
-
-                
+               
             }
-            return isValidate;
+            if (_serviceResult.IsValid)
+            {
+                _serviceResult.IsValid = ValidateCustom(entity);
+            }
+            //thực hiện sửa
+            if (_serviceResult.IsValid)
+            {
+                _serviceResult.Data = _baseRepository.Update(entity, entityId);
+            }
+            return _serviceResult;
         }
+        /// <summary>
+        /// Xử lí validate Email
+        /// </summary>
+        /// <param name="email">Email cần validate</param>
+        /// <returns>true- hợp lệ, false-không hợp lệ</returns>
+        /// createdby:dvlong(17/8/2021)
+        
+        private bool validEmail(string email)
+        {
+            var emailFormat = @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$";
+            var isMatch = Regex.IsMatch(email, emailFormat, RegexOptions.IgnoreCase);
+            if (!isMatch)
+            {
+
+                return false;
+                //_serviceResult.Messenger = Properties.Resource.errEmail;
+
+            }
+            return true;
+        }
+        private bool validCodeAdd(string code)
+        {
+            
+            var isValidate = !_baseRepository.GetByCode(code);
+            //if (!isValidate)
+            //{
+            //    //return isValidate;
+            //    _serviceResult.Messenger = Properties.Resource.errorDoubleCode;
+            //}
+            return isValidate;
+            
+        }
+        private bool validCodeUpdate(string code, Guid entityId,string entityName)
+        {
+            var isCode = _baseRepository.GetByCode(code);
+            var oldCode = _baseRepository.GetCode(entityId,entityName);
+            if(isCode && code != oldCode)
+            {
+                return false;
+            }
+            return true;
+        }
+        private bool validRequired(string value)
+        {
+            if (value.ToString() == string.Empty || value.ToString() == "")
+            {
+                return  false;
+                //_serviceResult.Messenger = Properties.Resource.nullString;
+            }
+            return true;
+        }
+
         
         /// <summary>
         /// Xử lí validate dữ liệu cho con ghi đè
